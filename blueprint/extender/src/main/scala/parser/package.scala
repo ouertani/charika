@@ -21,12 +21,18 @@ import net.dikka.charika.blueprint.extender.impl.beans.Activation
 
 package object parser {
 
-  implicit def toActivation(activation: String):Activation = {
-    Activation.unapply(activation) get
+  implicit def toActivation(activation: String): Activation = {
+    if(activation ==null ) Eager
+    if(activation=="lazy") Lazy
+    else if(activation=="eager") Eager
+    else throw new IllegalArgumentException("invalid activation text")
   }
-
-  implicit def toScope(scope :String) :Scope = {
-    Scope.unapply(scope) get
+  
+  implicit def toScope(scope: String): Scope={
+    if(scope== null) Singleton
+    if(scope=="singleton")  Singleton
+    else if(scope =="prototype") Prototype
+    else throw new IllegalArgumentException("invalid scope text")
   }
 
   implicit def toOptionOfString(string :String):Option[String]= {

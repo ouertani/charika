@@ -14,10 +14,10 @@ package net.dikka.charika.blueprint.extender.impl
 package beans
 
 class Property (name:Option[String], ref: Option[String], value: Option[String],component: Option[Component]) {
-  require(name != null)
-  require (ref != null)
-  require (value != null)
-  require (component != null)
+  require(name != null,"Name must not be null")
+  require (ref != null, "ref must not be null")
+  require (value != null,"value must not be null")
+  require (component != null, "component must not be null")
 
 
 

@@ -14,11 +14,11 @@ package net.dikka.charika.blueprint.extender.impl
 package beans
 
 case class Argument (index: Option[Int], tipe:Option[String], ref:Option[String], value:Option[String], component: Option[Component]) {
-  require (index!=null)
-  require (tipe!=null)
-  require (ref !=null)
-  require (value != null)
-  require (component != null)
+  require (index!=null, "index must not be null")
+  require (tipe!=null, "type must not be null")
+  require (ref !=null,"ref must not be null")
+  require (value != null,"value must not be null")
+  require (component != null,"component must not be null")
 
   /*
    The following attributes and elements are mutually exclusive:
