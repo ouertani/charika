@@ -10,10 +10,8 @@
     <artifactId>charika-parent</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-
     <name>Root POM for charika </name>
     <description>charika  is osgi entreprise implementation</description>
-
     <inceptionYear>2010</inceptionYear>
     <organization>
         <name>Dikka</name>
@@ -31,7 +29,6 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
         <project.reporting.outputEncoding>${project.build.sourceEncoding}</project.reporting.outputEncoding>
         <maven.compiler.source>1.5</maven.compiler.source>
         <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
@@ -39,6 +36,7 @@
         <osgi.version>4.2.0</osgi.version>
         <pax-exam.version>1.2.0</pax-exam.version>
         <specs.artifactId>specs_2.8.0.RC5</specs.artifactId>
+        <mockito-all.version>1.8.5</mockito-all.version>
     </properties>
 
 
@@ -79,13 +77,13 @@
             <dependency>
                 <groupId>org.scala-tools.testing</groupId>
                 <artifactId>${specs.artifactId}</artifactId>
-                <version>1.6.5-SNAPSHOT</version>                
+                <version>1.6.5-SNAPSHOT</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-all</artifactId>
-                <version>1.8.4</version>
+                <version>${mockito-all.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -209,7 +207,7 @@
                             <include>src/test/scala/**</include>
                         </includes>
                         <excludes>
-                            <exclude>.git/**</exclude>
+                            <exclude>.svn/**</exclude>
                             <exclude>**/.gitignore</exclude>
                             <exclude>**/.manager/**</exclude>
                             <exclude>**/*.css</exclude>
