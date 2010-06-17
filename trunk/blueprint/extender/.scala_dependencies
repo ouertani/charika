@@ -1,22 +1,22 @@
 /home/slim/dev/svn/charika/blueprint/extender/target/classes:/home/slim/.m2/repository/org/scala-lang/scala-library/2.8.0.RC5/scala-library-2.8.0.RC5.jar:/home/slim/.m2/repository/org/osgi/org.osgi.core/4.2.0/org.osgi.core-4.2.0.jar:/home/slim/.m2/repository/org/osgi/org.osgi.compendium/4.2.0/org.osgi.compendium-4.2.0.jar:/home/slim/.m2/repository/org/scala-lang/scala-compiler/2.8.0.RC5/scala-compiler-2.8.0.RC5.jar
 -------
-src/main/scala/beans/Argument.scala -> src/main/scala/beans/package.scala
-src/main/scala/beans/Argument.scala -> src/main/scala/beans/Argument.scala
-src/main/scala/parser/package.scala -> src/main/scala/parser/package.scala
-src/main/scala/parser/package.scala -> src/main/scala/beans/package.scala
 src/main/scala/beans/Bean.scala -> src/main/scala/beans/Property.scala
 src/main/scala/beans/Bean.scala -> src/main/scala/beans/package.scala
 src/main/scala/beans/Bean.scala -> src/main/scala/beans/Argument.scala
 src/main/scala/beans/Bean.scala -> src/main/scala/beans/Bean.scala
-src/main/scala/beans/Blueprint.scala -> src/main/scala/beans/package.scala
-src/main/scala/Waiter.scala -> src/main/scala/Waiter.scala
 src/main/scala/parser/BeanParser.scala -> src/main/scala/parser/package.scala
 src/main/scala/parser/BeanParser.scala -> src/main/scala/parser/ComponentParser.scala
 src/main/scala/parser/BeanParser.scala -> src/main/scala/parser/BeanParser.scala
 src/main/scala/parser/BeanParser.scala -> src/main/scala/beans/Bean.scala
-src/main/scala/beans/package.scala -> src/main/scala/beans/package.scala
 src/main/scala/beans/Property.scala -> src/main/scala/beans/Property.scala
 src/main/scala/beans/Property.scala -> src/main/scala/beans/package.scala
+src/main/scala/Waiter.scala -> src/main/scala/Waiter.scala
+src/main/scala/beans/Blueprint.scala -> src/main/scala/beans/package.scala
+src/main/scala/parser/package.scala -> src/main/scala/parser/package.scala
+src/main/scala/parser/package.scala -> src/main/scala/beans/package.scala
+src/main/scala/beans/Argument.scala -> src/main/scala/beans/package.scala
+src/main/scala/beans/Argument.scala -> src/main/scala/beans/Argument.scala
+src/main/scala/beans/package.scala -> src/main/scala/beans/package.scala
 -------
 src/main/scala/beans/Bean.scala -> target/classes/net/dikka/charika/blueprint/extender/impl/beans/Callback.class
 src/main/scala/beans/Bean.scala -> target/classes/net/dikka/charika/blueprint/extender/impl/beans/Bean$.class
