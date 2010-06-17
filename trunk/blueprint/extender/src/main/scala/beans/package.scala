@@ -14,7 +14,7 @@ package net.dikka.charika.blueprint.extender.impl
 
 package object beans {
   
-  def xor(x: Boolean, y: Boolean, z : Boolean): Boolean = (x || y || z ) && !(x && y) && !(x || z) && !(y || z) && ! (x && y && z)
+  def xor3(x: Boolean, y: Boolean, z : Boolean): Boolean = (x || y || z ) && !(x && y) && !(x || z) && !(y || z) && ! (x && y && z)
 
 
   def xor(x: Boolean, y: Boolean): Boolean = (x || y) && !(x && y)
