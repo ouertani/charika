@@ -15,7 +15,10 @@ package parser
 
 import net.dikka.charika.blueprint.extender.impl._
 import net.dikka.charika.blueprint.extender.impl.beans.Bean
+import net.dikka.charika.blueprint.extender.impl.beans._
 import scala.xml.Node
+
+
 class BeanParser  extends ComponentParser {
  
   override def parseElement( node:Node) ={
