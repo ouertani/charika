@@ -26,7 +26,7 @@ package object beans {
       if(activation ==null ) Some(Eager)
       if(activation=="lazy") Some(Lazy)
       else if(activation=="eager") Some(Eager)
-      else None
+      else throw new IllegalArgumentException("invalid activation text")
     }
   }
   sealed trait Activation {
@@ -41,7 +41,7 @@ package object beans {
     def unapply(scope: String): Option[Scope]={
       if(scope=="singleton")  Some(Singleton)
       else if(scope =="prototype") Some (Prototype)
-      else None
+      else throw new IllegalArgumentException("invalid scope text")
     }
   }
   sealed trait Scope 

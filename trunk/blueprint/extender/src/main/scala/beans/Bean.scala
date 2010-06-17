@@ -13,24 +13,19 @@ package net.dikka.charika.blueprint.extender.impl
 package beans
 
 
-case class Callback(initMethod:Option[String],
-                    destroyMethod:Option[String])
+case class Callback(initMethod:Option[String], destroyMethod:Option[String])
 
-case class Construction (clazz:Option[String],
-                         factoryMethod: Option[String],
-                         factoryRef:Option[String])
+case class Construction (clazz:Option[String], factoryMethod: Option[String], factoryRef:Option[String])
 
-case class ConstructionParam( dependsOn:List[String]=List(),
-                             arguments :List[Argument] =List(),
-                             propertys : List[Property]=List())
+case class ConstructionParam( dependsOn:List[String], arguments :List[Argument],  propertys : List[Property])
 
 
 case class Bean (id:String,
                  activation:Activation,
                  scope:Scope=Singleton ,
-                 dependsOn:List[String]=List() ,
-                 arguments :List[Argument]=List() ,
-                 propertys : List[Property]=List(),
+                 dependsOn:List[String],
+                 arguments :List[Argument] ,
+                 propertys : List[Property],
                  clazz:Option[String],
                  factoryMethod: Option[String],
                  factoryRef:Option[String],
