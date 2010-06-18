@@ -20,24 +20,20 @@ import org.specs.mock.Mockito
 class BeanSpec extends SpecificationWithJUnit with Mockito {
 
   """ The destroyMethod mustNot be set when the scope is prototype."""  in {
-     Bean("id", Lazy, Prototype,
-             ConstructionParam(List(),List(),List()),
-             Construction( Some("class"), Some(" initMethod:String,"), Some(" destroyMethod")),
-             Callback (None,Some(" factoryRef:String,"))
+    Bean("id", Lazy, Prototype,
+         ConstructionParam(List(),List(),List()),
+         Construction( Some("class"), Some(" initMethod:String,"), Some(" destroyMethod")),
+         Callback (None,Some(" factoryRef:String,"))
     )   must throwA[IllegalArgumentException]
   }
 
-
-
-
-
   """ The activation must not be set to eager if the bean also has prototype scope.""" in {
-     Bean("id",
-             Eager,
-             Prototype,
-             ConstructionParam(List(),List(),List()),
-             Construction(Some("class"),  None, None),
-             Callback(None, None)
+    Bean("id",
+         Eager,
+         Prototype,
+         ConstructionParam(List(),List(),List()),
+         Construction(Some("class"),  None, None),
+         Callback(None, None)
     ) must throwA[IllegalArgumentException]
 
   }
@@ -89,6 +85,3 @@ class BeanSpec extends SpecificationWithJUnit with Mockito {
     )must throwA[IllegalArgumentException]
   }
 }
-
- 
-  
