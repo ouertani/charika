@@ -17,11 +17,23 @@ package beans
 
 import org.specs.SpecificationWithJUnit
 import org.specs.mock.Mockito
-
+import org.mockito.Matchers._
 
 class ConstructionParamSpec extends SpecificationWithJUnit with Mockito {
-//  """Either all arguments have a specified index or none have a specified index.""" in {
-//    val arguments = List(Argument(Some(-1),None, None,None,None))
-//    ConstructionParam(List(),arguments,List())must throwA[IllegalArgumentException]
-//  }
+  """index must be > 0.""" in {
+    val component=Some(mock[Component])
+    val arg1 =Argument(Some(-1),None, None,None,component)
+    val arguments = List(arg1)
+    ConstructionParam(List(),arguments,List())must throwA[IllegalArgumentException]
+  }
+
+
+    """Either all arguments have a specified index or none have a specified index.""" in {
+    val component=Some(mock[Component])
+    val arg1 =Argument(Some(0),None, None,None,component)
+    val arg2 =Argument(None,None, None,None,component)
+    val arguments = List(arg1,arg2)
+    ConstructionParam(List(),arguments,List())must throwA[IllegalArgumentException]
+  }
+
 }
