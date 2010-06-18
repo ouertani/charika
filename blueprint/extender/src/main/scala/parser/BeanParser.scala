@@ -25,14 +25,13 @@ class BeanParser  extends ComponentParser {
     val b: Bean= Bean(id =node \ "@name"  text,
                       activation = node \ "@activation" text,
                       scope = node \ "@scope" text ,
-                      dependsOn =(node \ "@dependsOn"). text.split (" ").toList,
-                      propertys = List(),
-                      arguments = List(),
-                      clazz = node \ "@clazz" text ,
-                      factoryMethod=  node \ "@factoryMethod" text,
-                      factoryRef=  node \ "@factoryRef" text,
-                      initMethod=  node \ "@initMethod" text ,
-                      destroyMethod =node \ "@destroyMethod" text
+                      ConstructionParam(dependsOn =(node \ "@dependsOn"). text.split (" ").toList, propertys = List(),  arguments = List()),
+                      Construction( clazz = node \ "@clazz" text ,
+                                   factoryMethod=  node \ "@factoryMethod" text,
+                                   factoryRef=  node \ "@factoryRef" text)         ,
+                      Callback(initMethod=  node \ "@initMethod" text ,
+                               destroyMethod =node \ "@destroyMethod" text)
+                      
     )
     b
   

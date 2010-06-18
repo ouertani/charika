@@ -13,51 +13,50 @@ package net.dikka.charika.blueprint.extender.impl
 package beans
 
 
-case class Callback(initMethod:Option[String], destroyMethod:Option[String])
+case class Callback(initMethod:Option[String], destroyMethod:Option[String]){
+  require(initMethod != null, "InitMethod must not be null!")
+  require(destroyMethod != null, "DestroyMethod must not be null!")
+}
 
-case class Construction (clazz:Option[String], factoryMethod: Option[String], factoryRef:Option[String])
+case class Construction (clazz:Option[String], factoryMethod: Option[String], factoryRef:Option[String]){
+  require(clazz != null, "Class must not be null!")
+  require(factoryMethod != null, "FactoryMethod must not be null!")
+  require(factoryRef != null, "FactoryRef must not be null!")
 
-case class ConstructionParam( dependsOn:List[String], arguments :List[Argument],  propertys : List[Property])
+
+    if(clazz isDefined) {
+    require((factoryRef  isEmpty), "Invalid combination" )
+  }
+
+  if(factoryMethod isDefined) {
+    require(xor( factoryRef isDefined ,  clazz isDefined ) , "Invalid combination" )
+  }
+  require ((clazz isDefined ) || (factoryMethod isDefined) || (factoryRef isDefined ),"Invalid combination" )
+}
+
+case class ConstructionParam( dependsOn:List[String], arguments :List[Argument],  propertys : List[Property]) {
+  require(dependsOn != null, "DependsOn must not be null!")
+  require(arguments != null, "arguments must not be null!")
+  require(propertys != null, "propertys must not be null!")
+}
 
 
 case class Bean (id:String,
                  activation:Activation,
-                 scope:Scope=Singleton ,
-                 dependsOn:List[String],
-                 arguments :List[Argument] ,
-                 propertys : List[Property],
-                 clazz:Option[String],
-                 factoryMethod: Option[String],
-                 factoryRef:Option[String],
-                 initMethod:Option[String],
-                 destroyMethod:Option[String] ) extends Component(id, activation, dependsOn) {
+                 scope:Scope ,
+                 constructionParam: ConstructionParam,
+                 construction :Construction,
+                 callback :Callback) extends Component(id, activation, constructionParam.dependsOn) {
 
-  def this(id:String,
-           activation:Activation,
-           scope:Scope ,
-           constructionParam: ConstructionParam,
-           construction :Construction,
-           callback :Callback){  this(id,
-                                      activation,
-                                      scope,
-                                      constructionParam.dependsOn,
-                                      constructionParam.arguments,
-                                      constructionParam.propertys,
-                                      construction.clazz, construction.factoryMethod, construction.factoryRef,
-                                      callback.initMethod, callback.destroyMethod)  }
  
 
   require(id != null, "Id must not be null!")
   require(activation != null, "Activation must not be null!")
   require(scope != null, "Scope must not be null!")
-  require(dependsOn != null, "DependsOn must not be null!")
-  require(propertys != null, "propertys must not be null!")
-  require(propertys != null, "propertys must not be null!")
-  require(clazz != null, "Class must not be null!")
-  require(factoryMethod != null, "FactoryMethod must not be null!")
-  require(factoryRef != null, "FactoryRef must not be null!")
-  require(initMethod != null, "InitMethod must not be null!")
-  require(destroyMethod != null, "DestroyMethod must not be null!")
+
+ 
+
+
 
   /*
    * The destroyMethod must not be set when the scope is prototype.
@@ -69,18 +68,11 @@ case class Bean (id:String,
    */
 
   if(scope == Prototype) {
-    require (destroyMethod isEmpty,"The destroyMethod must not be set when the scope is prototype.")      
+    require (callback.destroyMethod isEmpty,"The destroyMethod must not be set when the scope is prototype.")
     require (activation == Lazy, "The activation must not be set to eager if the bean also has prototype scope.")
   }
 
-  if(clazz isDefined) {
-    require((factoryRef  isEmpty), "Invalid combination" )
-  }
 
-  if(factoryMethod isDefined) {
-    require(xor( factoryRef isDefined ,  clazz isDefined ) , "Invalid combination" )
-  }
-  require ((clazz isDefined ) || (factoryMethod isDefined) || (factoryRef isDefined ),"Invalid combination" )
 
 
 
