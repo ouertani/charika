@@ -22,19 +22,31 @@ import scala.xml.Node
 class BeanParser  extends ComponentParser {
  
   override def parseElement( node:Node) ={
-    val b: Bean= Bean(id =node \ "@name"  text,
+     Bean( node \ "@name"  text,
                       activation = node \ "@activation" text,
                       scope = node \ "@scope" text ,
-                      ConstructionParam(dependsOn =(node \ "@dependsOn"). text.split (" ").toList, propertys = List(),  arguments = List()),
-                      Construction( clazz = node \ "@clazz" text ,
-                                   factoryMethod=  node \ "@factoryMethod" text,
-                                   factoryRef=  node \ "@factoryRef" text)         ,
-                      Callback(initMethod=  node \ "@initMethod" text ,
-                               destroyMethod =node \ "@destroyMethod" text)
-                      
+                      node,
+                      node,
+                      node
     )
-    b
+   
   
   }
 
+
+  implicit def toConstructionParam(node:Node):ConstructionParam= {
+    ConstructionParam(dependsOn =(node \ "@dependsOn"). text.split (" ").toList, propertys = List(),  arguments = List())
+  }
+  implicit def toConstruction(node:Node):Construction ={
+    Construction( clazz = node \ "@clazz"  ,
+                 factoryMethod=  node \ "@factoryMethod" ,
+                 factoryRef=  node \ "@factoryRef" )
+  }
+
+  implicit def toCallback(node :Node):Callback= {
+    Callback(initMethod=  node \ "@initMethod"  ,
+             destroyMethod =node \ "@destroyMethod" )
+  }
+
+  
 }
