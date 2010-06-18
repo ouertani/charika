@@ -29,8 +29,6 @@ class BeanParser  extends ComponentParser {
                       node,
                       node
     )
-   
-  
   }
 
 
