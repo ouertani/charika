@@ -41,10 +41,12 @@ class BeanParser extends ComponentParser [Bean] {
   }
 
   def toDepends(node : Node)={
-    val l =( node \ "@dependsOn" ). text.split (" ").toList.filter(_ !="")
-    if (l isEmpty) List()
-    else  {
-      l
+    val n=( node \ "@dependsOn" )
+    if( n isDefined){
+      n.text.split (" ").toList
+  
+    }else  {
+      List()
     }
   }
 
@@ -60,10 +62,10 @@ class BeanParser extends ComponentParser [Bean] {
   }
 
   implicit def toArgument (node : NodeSeq):List[Argument]={
- //Argument (n \ "@index"  text, n \ "@type", n \ "@ref", n \ "value" , None)
-   val h= for (n <- node ) yield Argument (n \ "@index"  text, n \ "@type", None, Some("arg1") , None)
+    //Argument (n \ "@index"  text, n \ "@type", n \ "@ref", n \ "value" , None)
+    val h= for (n <- node ) yield Argument (n \ "@index"  text, n \ "@type", None, Some("arg1") , None)
   
-   h toList
+    h toList
   }
     
 }
