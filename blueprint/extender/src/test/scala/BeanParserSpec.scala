@@ -1,3 +1,14 @@
+/**
+ * Copyright (c) 2010 DIKKA.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Apache License, v. 2.0
+ * which accompanies this distribution, and is available at
+ * http://www.apache.org/licenses/
+ *
+ * Contributors:
+ *   Slim Ouertani   - initial API and implementation
+ *
+ */
 package net.dikka.charika.blueprint.extender.impl
 package parser
 
@@ -13,15 +24,23 @@ class BeanParserSpec extends SpecificationWithJUnit with Mockito {
 
     val xml = <bean id="id" class="clazz">
       <argument value="arg1" />
-              </bean>
+    </bean>
 
-    new BeanParser().parseElement(xml
-    ) mustEqual Bean("id",
+
+    val srcBean:Bean = new BeanParser().parseElement(xml)
+
+
+    val arg = Argument(None,None,None,Some("arg1"),None)
+
+
+    val destBean = Bean("id",
                      Eager,
-                     mock[Scope] ,
-                     mock [ConstructionParam],
-                     mock[Construction],
-                     mock [Callback])
+                     Singleton ,
+                     ConstructionParam(List(),List(arg),List()),
+                     Construction(Some("clazz"),None,None),
+                     Callback(None,None))
+
+    srcBean mustEqual destBean
   }
     
 }

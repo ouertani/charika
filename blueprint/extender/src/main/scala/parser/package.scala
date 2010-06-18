@@ -25,6 +25,7 @@ package object parser {
     if(activation ==null ) Eager
     if(activation=="lazy") Lazy
     else if(activation=="eager") Eager
+    else if(activation isEmpty) Eager
     else throw new IllegalArgumentException("invalid activation text")
   }
   
@@ -32,6 +33,7 @@ package object parser {
     if(scope== null) Singleton
     if(scope=="singleton")  Singleton
     else if(scope =="prototype") Prototype
+    else if (scope isEmpty) Singleton
     else throw new IllegalArgumentException("invalid scope text")
   }
 
@@ -42,4 +44,18 @@ package object parser {
 
 
   implicit def toString(node:scala.xml.NodeSeq):Option[String]=node.text
+
+  implicit def toOptionInt(string : String):Option[Int]= {
+    
+   
+    try {
+      if(string == null || string.isEmpty ) None
+      else Some( Int.unbox(string))
+    }catch {
+
+      case _ => throw new IllegalArgumentException("Inavalid index found [" + string +"]")
+    }
+
+
+  }
 }

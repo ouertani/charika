@@ -20,7 +20,7 @@ import scala.xml.Node
 import net.dikka.charika.blueprint.extender.impl.beans.Component
 import scala.collection._
 
-trait ComponentParser {
-//  def  parseElement[T <: Component]( node:Node):T
-  def  parseElement( node:Node)
+trait ComponentParser [T] {
+  def  parseElement( node:Node):T
+
 }
