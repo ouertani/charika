@@ -24,15 +24,15 @@ class PropertySpec extends SpecificationWithJUnit with Mockito {
    • ref
    • value
    • An inlined object value""" in {
-     val TestComponent=Some(mock[Component])
-     Property(None,Some("ref"),Some("value"),TestComponent) must throwA[IllegalArgumentException]
+     val testComponent=Some(mock[Component])
+     Property(None,Some("ref"),Some("value"),testComponent) must throwA[IllegalArgumentException]
      Property(None,Some("ref"),Some("value"),None) must throwA[IllegalArgumentException]
-     Property(None,None,Some("value"),TestComponent) must throwA[IllegalArgumentException]
-     Property(None,Some("ref"),None,TestComponent) must throwA[IllegalArgumentException]
+     Property(None,None,Some("value"),testComponent) must throwA[IllegalArgumentException]
+     Property(None,Some("ref"),None,testComponent) must throwA[IllegalArgumentException]
      Property(None,None,None,None) must throwA[IllegalArgumentException]
 
      Property(None,Some("ref"),None,None) mustNot throwA[IllegalArgumentException]
      Property(None,None,Some("value"),None)  mustNot throwA[IllegalArgumentException]
-     Property(None,None,None,TestComponent) mustNot throwA[IllegalArgumentException]
+     Property(None,None,None,testComponent) mustNot throwA[IllegalArgumentException]
   }
 }
