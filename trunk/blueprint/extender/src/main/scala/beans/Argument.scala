@@ -19,6 +19,9 @@ case class Argument (index: Option[Int], tipe:Option[String], ref:Option[String]
   require (value != null,"value must not be null")
   require (component != null,"component must not be null")
 
+
+
+ 
   /*
    The following attributes and elements are mutually exclusive:
    • ref
