@@ -28,7 +28,7 @@ class ConstructionParamSpec extends SpecificationWithJUnit with Mockito {
   }
 
 
-    """Either all arguments have a specified index or none have a specified index.""" in {
+  """Either all arguments have a specified index or none have a specified index.""" in {
     val component=Some(mock[Component])
     val arg1 =Argument(Some(0),None, None,None,component)
     val arg2 =Argument(None,None, None,None,component)
@@ -36,4 +36,59 @@ class ConstructionParamSpec extends SpecificationWithJUnit with Mockito {
     ConstructionParam(List(),arguments,List())must throwA[IllegalArgumentException]
   }
 
+
+
+  """Either all arguments have a specified index or none have a specified index.""" in {
+    val component=Some(mock[Component])
+    val arg1 =Argument(Some(0),None, None,None,component)
+    val arg2 =Argument(None,None, None,None,component)
+    val arguments = List(arg1,arg2)
+    ConstructionParam(List(),arguments,List())must throwA[IllegalArgumentException]
+  }
+
+
+  """If indexes are specified, they must be unique and run from 0..(n-1), where n is the number of arguments.""" in {
+    val component=Some(mock[Component])
+    val arg1 =Argument(Some(0),None, None,None,component)
+    val arg2 =Argument(Some(2),None, None,None,component)
+    val arguments = List(arg1,arg2)
+    ConstructionParam(List(),arguments,List())must throwA[IllegalArgumentException]
+  }
+
+
+  """If indexes are specified, they must be unique and run from 0..(n-1), where n is the number of arguments.""" in {
+    val component=Some(mock[Component])
+    val arg1 =Argument(Some(1),None, None,None,component)
+    val arg2 =Argument(Some(2),None, None,None,component)
+    val arguments = List(arg1,arg2)
+    ConstructionParam(List(),arguments,List())must throwA[IllegalArgumentException]
+  }
+
+  """If indexes are specified, they must be unique and run from 0..(n-1), where n is the number of arguments.""" in {
+    val component=Some(mock[Component])
+    val arg1 =Argument(Some(0),None, None,None,component)
+    val arg2 =Argument(Some(1),None, None,None,component)
+    val arg3 =Argument(Some(1),None, None,None,component)
+    val arguments = List(arg1,arg2,arg3)
+    ConstructionParam(List(),arguments,List())must throwA[IllegalArgumentException]
+  }
+
+
+  """If indexes are specified, they must be unique and run from 0..(n-1), where n is the number of arguments.""" in {
+    val component=Some(mock[Component])
+    val arg1 =Argument(Some(0),None, None,None,component)
+    val arg2 =Argument(Some(0),None, None,None,component)
+    val arg3 =Argument(Some(1),None, None,None,component)
+    val arguments = List(arg1,arg2,arg3)
+    ConstructionParam(List(),arguments,List())must throwA[IllegalArgumentException]
+  }
+
+  """If indexes are specified, they must be unique and run from 0..(n-1), where n is the number of arguments.""" in {
+    val component=Some(mock[Component])
+    val arg1 =Argument(Some(0),None, None,None,component)
+    val arg2 =Argument(Some(1),None, None,None,component)
+    val arg3 =Argument(Some(2),None, None,None,component)
+    val arguments = List(arg1,arg2,arg3)
+    ConstructionParam(List(),arguments,List())mustNot throwA[IllegalArgumentException]
+  }
 }
