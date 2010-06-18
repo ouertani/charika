@@ -18,6 +18,7 @@ package net.dikka.charika.blueprint.extender.impl
 import net.dikka.charika.blueprint.extender.impl.beans._
 import net.dikka.charika.blueprint.extender.impl.beans.Activation
 
+
 package object parser {
 
   implicit def toActivation(activation: String): Activation = {
@@ -38,4 +39,7 @@ package object parser {
     if(string==null || string.isEmpty) None
     else Some(string)
   }
+
+
+  implicit def toString(node:scala.xml.NodeSeq):Option[String]=node.text
 }
