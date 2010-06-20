@@ -41,7 +41,7 @@ case class ConstructionParam( dependsOn:List[String], arguments : List[Argument]
 }
 
 class ConstructionParamBuilder {
-  private[this] var dependsOns:List[String]= _
+  private[this] var  dependsOns:List[String]= _
   private[this] var  arguments : List[Argument]= _
   private[this] var  propertys :  List[Property]= _
 

@@ -5,7 +5,7 @@
     <parent>
         <groupId>net.dikka</groupId>
         <artifactId>charika-parent</artifactId>
-        <version>1.0-SNAPSHOT</version>      
+        <version>1.0-SNAPSHOT</version>
         <relativePath>../../resources/charika-parent/pom.xml</relativePath>
     </parent>
     <groupId>net.dikka.charika.blueprint</groupId>
@@ -27,6 +27,11 @@
             <artifactId>org.osgi.compendium</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.enterprise</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.scala-tools.testing</groupId>
             <artifactId>${specs.artifactId}</artifactId>
         </dependency>
@@ -46,30 +51,30 @@
     </dependencies>
 
 
-      <build>
-    <plugins>
-      <plugin>
-        <artifactId>maven-source-plugin</artifactId>
-      </plugin>
-      <plugin>
-        <groupId>com.google.code.maven-license-plugin</groupId>
-        <artifactId>maven-license-plugin</artifactId>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <configuration>
-          <instructions>
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-source-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.google.code.maven-license-plugin</groupId>
+                <artifactId>maven-license-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <configuration>
+                    <instructions>
                         <Export-Package>net.dikka.charika.blueprint.extender;version="1.0"</Export-Package>
                         <Private-Package>net.dikka.charika.blueprint.extender.impl</Private-Package>
                     </instructions>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.scala-tools</groupId>
-        <artifactId>maven-scala-plugin</artifactId>
-      </plugin>
-    </plugins>
-  </build>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.scala-tools</groupId>
+                <artifactId>maven-scala-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
