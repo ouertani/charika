@@ -19,5 +19,10 @@ package object beans {
 
   def xor(x: Boolean, y: Boolean): Boolean = (x || y) && !(x && y)
 
+
+
+  implicit def toOption[T](t:T):Option[T]={if(t!=null) Some(t) else None}
+
+
  
 }
