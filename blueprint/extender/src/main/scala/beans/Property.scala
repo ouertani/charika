@@ -44,4 +44,6 @@ class PropertyBuilder {
   def withName(name:String ) = {this.name=name;this}
   def withRef(ref:String)={this.ref=ref;this}
   def withComponent(component : Component){this.component=component;this}
+  
+  def build = Property(name =name, ref =ref, value= value,component= component)
 }

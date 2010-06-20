@@ -37,3 +37,27 @@ case class Construction (clazz:Option[String], factoryMethod: Option[String], fa
   }
   require ((clazz isDefined ) || (factoryMethod isDefined) || (factoryRef isDefined ),"Invalid combination" )
 }
+
+class ConstructionBuilder {
+  private[this] var   clazz:Option[String]=None
+  private[this] var   factoryMethod:Option[String]=None
+  private[this] var   factoryRef:Option[String]=None
+
+
+  def withClass(clazz :String)= {
+    this.clazz =clazz
+    this
+  }
+
+
+  def withFactoryMethod(factoryMethod:String)={
+    this.factoryMethod=factoryMethod
+    this
+  }
+
+  def withFactoryRef(factoryRef:String)={
+    this.factoryRef=factoryRef
+    this
+  }
+  def build=Construction(clazz,factoryMethod,factoryRef)
+}

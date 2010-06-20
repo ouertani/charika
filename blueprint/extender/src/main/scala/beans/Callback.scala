@@ -17,3 +17,22 @@ case class Callback(initMethod:Option[String], destroyMethod:Option[String]){
   require(initMethod != null, "InitMethod must not be null!")
   require(destroyMethod != null, "DestroyMethod must not be null!")
 }
+
+class CallbackBuilder {
+  private[this] var initMethod:Option[String]=None
+  private[this] var  destroyMethod:Option[String]=None
+
+
+  def withInitMethod(initMethod:String)={
+    this.initMethod=initMethod
+    this
+  }
+
+  def withDestroyMethod(destroyMethod:String)={
+    this.destroyMethod=destroyMethod
+    this
+  }
+  def build =Callback(initMethod, destroyMethod)
+
+
+}
