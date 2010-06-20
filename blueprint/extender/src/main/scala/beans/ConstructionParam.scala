@@ -39,3 +39,17 @@ case class ConstructionParam( dependsOn:List[String], arguments : List[Argument]
 
 
 }
+
+class ConstructionParamBuilder {
+  private[this] var dependsOns:List[String]= _
+  private[this] var  arguments : List[Argument]= _
+  private[this] var  propertys :  List[Property]= _
+
+
+
+  def + (dependsOn:String) = {this.dependsOns =  this.dependsOns :::List(dependsOn);this}
+  def + (argument:Argument) ={this.arguments =  this.arguments :::List(argument);this}
+  def + (property:Property) ={this.propertys =  this.propertys :::List(property);this}
+
+  def toConstructionParam= ConstructionParam(dependsOns,arguments,propertys)
+}

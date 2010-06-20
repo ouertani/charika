@@ -62,8 +62,8 @@ class BeanParser extends ComponentParser [Bean] {
   }
 
   implicit def toArgument (node : NodeSeq):List[Argument]={
-    //Argument (n \ "@index"  text, n \ "@type", n \ "@ref", n \ "value" , None)
-    val h= for (n <- node ) yield Argument (n \ "@index"  text, n \ "@type", None, Some("arg1") , None)
+  
+    val h= for (n <- node ) yield Argument (n \ "@index"  text, n \ "@type", None, n \ "@value" , None)
   
     h toList
   }

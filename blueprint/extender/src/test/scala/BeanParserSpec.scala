@@ -24,7 +24,7 @@ class BeanParserSpec extends SpecificationWithJUnit with Mockito {
 
     val xml = <bean id="id" class="clazz">
       <argument value="arg1" />
-    </bean>
+              </bean>
 
 
     val srcBean:Bean = new BeanParser().parseElement(xml)
@@ -34,13 +34,48 @@ class BeanParserSpec extends SpecificationWithJUnit with Mockito {
 
 
     val destBean = Bean("id",
-                     Eager,
-                     Singleton ,
-                     ConstructionParam(List(),List(arg),List()),
-                     Construction(Some("clazz"),None,None),
-                     Callback(None,None))
+                        Eager,
+                        Singleton ,
+                        ConstructionParam(List(),List(arg),List()),
+                        Construction(Some("clazz"),None,None),
+                        Callback(None,None))
 
     srcBean mustEqual destBean
+  }
+
+  """cosntructor with argument with type""" in {
+
+    val xml=  <bean id="id" class="clazz">
+      <argument type="java.lang.Integer" value="1"/>
+              </bean>
+
+    val srcBean= new BeanParser().parseElement(xml)
+    val arg = new ArgumentBuilder withType "java.lang.Integer" withValue "1" toArgument
+    
+    val destBean= Bean("id",Eager,Singleton, ConstructionParam(List(),List(arg),List()),
+                       Construction(Some("clazz"),None,None),
+                       Callback(None,None))
+    srcBean mustEqual destBean
+  }
+
+
+  """constructor with multiple argument""" in {
+
+    val xml =     <bean id="id" class="clazz"
+      factory-method = "create" >
+      <argument value="arg1"/>
+      <argument value="arg2"/>
+                  </bean>
+
+
+    val srcBean= new BeanParser().parseElement(xml)
+    val arg1 =  (new ArgumentBuilder withValue "arg1" ) +  (    new ArgumentBuilder withValue "arg2"  )
+    val destBean= Bean("id",Eager,Singleton, ConstructionParam(List(),arg1,List()),
+                       Construction(Some("clazz"),None,None),
+                       Callback(None,None))
+
+    srcBean mustEqual destBean
+
   }
     
 }

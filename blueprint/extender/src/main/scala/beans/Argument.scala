@@ -12,7 +12,11 @@
 package net.dikka.charika.blueprint.extender.impl
 package beans
 
-case class Argument (index: Option[Int], tipe:Option[String], ref:Option[String], value:Option[String], component: Option[Component]) {
+case class Argument (index: Option[Int], 
+                     tipe:Option[String],
+                     ref:Option[String],
+                     value:Option[String],
+                     component: Option[Component]) {
   require (index!=null, "index must not be null")
   require (tipe!=null, "type must not be null")
   require (ref !=null,"ref must not be null")
@@ -32,4 +36,41 @@ case class Argument (index: Option[Int], tipe:Option[String], ref:Option[String]
    • ref
    • value
    • An inlined object value""")
+}
+
+class ArgumentBuilder(){
+
+  private [this] var index: Option[Int]=None
+  private [this] var tipe:Option[String]=None
+  private [this] var ref:Option[String]=None
+  private [this] var value:Option[String]=None
+  private [this] var component: Option[Component]=None
+
+
+
+  
+  def withIndex(index: Int)={
+    this.index=Some(index)    
+    this}
+
+  def withType(tipe: String)={
+    this.tipe=tipe
+    this
+  }
+
+  def withRef(ref:String)={
+    this.ref=ref    
+    this}
+  def withValue(value:String)={
+    this.value=value   
+    this}
+  def withComponent(component:Component)={
+    this.component=(component)
+    this}
+
+
+  def toArgument  = Argument(index,tipe,ref,value,component)
+
+  def + (that :ArgumentBuilder) = toArgument ::that.toArgument ::Nil
+
 }
