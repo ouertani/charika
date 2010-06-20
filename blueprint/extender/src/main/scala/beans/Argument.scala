@@ -12,11 +12,13 @@
 package net.dikka.charika.blueprint.extender.impl
 package beans
 
+import org.osgi.service.blueprint.reflect.BeanArgument
+
 case class Argument (index: Option[Int], 
                      tipe:Option[String],
                      ref:Option[String],
                      value:Option[String],
-                     component: Option[Component]) {
+                     component: Option[Component])  {
   require (index!=null, "index must not be null")
   require (tipe!=null, "type must not be null")
   require (ref !=null,"ref must not be null")
@@ -74,3 +76,4 @@ class ArgumentBuilder(){
   def + (that :ArgumentBuilder) = build ::that.build ::Nil
 
 }
+

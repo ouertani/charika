@@ -22,5 +22,4 @@ import scala.collection._
 
 trait ComponentParser [T] {
   def  parseElement( node:Node):T
-
 }

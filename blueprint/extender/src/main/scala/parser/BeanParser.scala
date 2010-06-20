@@ -33,41 +33,6 @@ class BeanParser extends ComponentParser [Bean] {
          node
     )
   }
-
-
-  implicit def toConstructionParam(node:Node):ConstructionParam= {
-    node \\ "arguments"
-    ConstructionParam(dependsOn = toDepends(node), propertys = List(),  arguments = node \\ "argument")
-  }
-
-  def toDepends(node : Node)={
-    val n=( node \ "@dependsOn" )
-    if( n isDefined){
-      n.text.split (" ").toList
-  
-    }else  {
-      List()
-    }
-  }
-
-  implicit def toConstruction(node:Node):Construction ={
-    Construction( clazz = node \ "@class"  ,
-                 factoryMethod=  node \ "@factoryMethod" ,
-                 factoryRef=  node \ "@factoryRef" )
-  }
-
-  implicit def toCallback(node :Node):Callback= {
-    Callback(initMethod=  node \ "@initMethod"  ,
-             destroyMethod =node \ "@destroyMethod" )
-  }
-
-  implicit def toArgument (node : NodeSeq):List[Argument]={
-  
-    val h= for (n <- node ) yield Argument (n \ "@index"  text, n \ "@type", None, n \ "@value" , None)
-  
-    h toList
-  }
-    
 }
 
   
