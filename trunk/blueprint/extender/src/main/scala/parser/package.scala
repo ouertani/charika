@@ -12,7 +12,8 @@
 package net.dikka.charika.blueprint.extender.impl
 
 
-
+import scala.xml.Node
+import scala.xml.NodeSeq
 
 
 import net.dikka.charika.blueprint.extender.impl.beans._
@@ -45,9 +46,7 @@ package object parser {
 
   implicit def toString(node:scala.xml.NodeSeq):Option[String]=node.text
 
-  implicit def toOptionInt(string : String):Option[Int]= {
-    
-   
+  implicit def toOptionOfInt(string : String):Option[Int]= {
     try {
       if(string == null || string.isEmpty ) None
       else Some( Int.unbox(string))
@@ -55,7 +54,45 @@ package object parser {
 
       case _ => throw new IllegalArgumentException("Inavalid index found [" + string +"]")
     }
-
-
   }
+
+
+  implicit def toArgument (node : NodeSeq):List[Argument]={
+
+    val h= for (n <- node ) yield Argument (n \ "@index"  text, n \ "@type", None, n \ "@value" , None)
+
+    h toList
+  }
+
+
+  implicit def toConstructionParam(node:Node):ConstructionParam= {
+    node \\ "arguments"
+    ConstructionParam(dependsOn = node, propertys = List(),  arguments = node \\ "argument")
+  }
+
+  implicit def toDepends(node : Node):List[String]={
+    val n=( node \ "@dependsOn" )
+    if( n isDefined){
+      n.text.split (" ").toList
+
+    }else  {
+      List()
+    }
+  }
+
+  implicit def toConstruction(node:Node):Construction ={
+    Construction( clazz = node \ "@class"  ,
+                 factoryMethod=  node \ "@factoryMethod" ,
+                 factoryRef=  node \ "@factoryRef" )
+  }
+
+
+
+
+  implicit def toCallback(node :Node):Callback= {
+    Callback(initMethod=  node \ "@initMethod"  ,
+             destroyMethod =node \ "@destroyMethod" )
+  }
+
+
 }
