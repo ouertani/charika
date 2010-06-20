@@ -28,3 +28,45 @@ case class Bean (id:String,
     require (activation == Lazy, "The activation must not be set to eager if the bean also has prototype scope.")
   }
 }
+
+
+class BeanBuilder {
+  private[this] var id:String=null
+  private[this] var activation:Activation=Eager
+  private[this] var scope:Scope = Singleton
+  private[this] var constructionParam: ConstructionParam=new ConstructionParamBuilder()
+  private[this] var construction :Construction= new ConstructionBuilder()
+  private[this] var callback :Callback= new CallbackBuilder()
+
+
+  def withId(id :String)={
+    this.id=id
+    this
+  }
+  def withActivation(activation:Activation)={
+    this.activation=activation
+    this
+  }
+
+  def withScope(scope:Scope)={
+    this.scope=scope
+    this
+  }
+
+  def withConstructionParam(constructionParam:ConstructionParam)={
+    this.constructionParam=constructionParam
+    this
+  }
+
+  def withConstruction(cosntruction :Construction)={
+    this.construction= construction
+    this
+  }
+  def withCallback(callback:Callback)={
+    this.callback=callback
+    this
+  }
+
+
+  def build = Bean (id, activation, scope, constructionParam,construction,callback)
+}

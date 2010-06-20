@@ -47,9 +47,9 @@ class ConstructionParamBuilder {
 
 
 
-  def + (dependsOn:String) = {this.dependsOns =  this.dependsOns :::List(dependsOn);this}
-  def + (argument:Argument) ={this.arguments =  this.arguments :::List(argument);this}
-  def + (property:Property) ={this.propertys =  this.propertys :::List(property);this}
+  def withDependsOn (dependsOn:String) = {this.dependsOns =  this.dependsOns :::List(dependsOn);this}
+  def withArgument (argument:Argument) ={this.arguments =  this.arguments :::List(argument);this}
+  def withProperty (property:Property) ={this.propertys =  this.propertys :::List(property);this}
 
-  def toConstructionParam= ConstructionParam(dependsOns,arguments,propertys)
+  def build= ConstructionParam(dependsOns,arguments,propertys)
 }

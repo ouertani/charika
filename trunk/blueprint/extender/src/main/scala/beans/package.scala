@@ -24,5 +24,14 @@ package object beans {
   implicit def toOption[T](t:T):Option[T]={if(t!=null) Some(t) else None}
 
 
+
+  implicit def toConstructionParam(cpb:ConstructionParamBuilder)=cpb.build
+
+  implicit def toArgumentBuilder(ab:ArgumentBuilder)=ab.build
+
+  implicit def toCallback(cb :CallbackBuilder)=cb.build
+
+  implicit def toConstruction(cb:ConstructionBuilder)=cb.build
+  implicit def toProperty(pb:PropertyBuilder)=pb.build
  
 }

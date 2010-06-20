@@ -69,8 +69,8 @@ class ArgumentBuilder(){
     this}
 
 
-  def toArgument  = Argument(index,tipe,ref,value,component)
+  def build  = Argument(index,tipe,ref,value,component)
 
-  def + (that :ArgumentBuilder) = toArgument ::that.toArgument ::Nil
+  def + (that :ArgumentBuilder) = build ::that.build ::Nil
 
 }

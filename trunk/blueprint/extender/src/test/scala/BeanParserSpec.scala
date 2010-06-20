@@ -50,7 +50,7 @@ class BeanParserSpec extends SpecificationWithJUnit with Mockito {
               </bean>
 
     val srcBean= new BeanParser().parseElement(xml)
-    val arg = new ArgumentBuilder withType "java.lang.Integer" withValue "1" toArgument
+    val arg = new ArgumentBuilder withType "java.lang.Integer" withValue "1" 
     
     val destBean= Bean("id",Eager,Singleton, ConstructionParam(List(),List(arg),List()),
                        Construction(Some("clazz"),None,None),
