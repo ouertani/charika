@@ -5,6 +5,7 @@ class Project(info: ProjectInfo) extends DefaultProject(info) {
   val mavenLocal = "Local Maven Repository" at "file://" + Path.userHome + "/.m2/repository"
   override def libraryDependencies = Set(
     "org.osgi" % "org.osgi.core" % "4.2.0",
+    "org.osgi" % "org.osgi.enterprise" % "4.2.0",
     "org.osgi" % "org.osgi.compendium" % "4.2.0",
     "org.scala-tools.testing" % "specs_2.8.0.RC5" % "1.6.5-SNAPSHOT" % "test",
     "org.mockito" % "mockito-all" % "1.8.4" % "test",

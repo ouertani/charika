@@ -32,3 +32,16 @@ case class Property (name:Option[String], ref: Option[String], value: Option[Str
    • value
    • An inlined object value""")
 }
+
+
+class PropertyBuilder {
+  private[this] var  name:Option[String]=None
+  private[this] var  ref: Option[String]=None
+  private[this] var  value: Option[String]=None
+  private[this] var  component: Option[Component]=None
+
+
+  def withName(name:String ) = {this.name=name;this}
+  def withRef(ref:String)={this.ref=ref;this}
+  def withComponent(component : Component){this.component=component;this}
+}
