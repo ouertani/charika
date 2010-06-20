@@ -8,6 +8,8 @@ package reflect
 
 import net.dikka.charika.blueprint.extender.impl.beans.Activation
 import org.osgi.service.blueprint.reflect._
+import scala.collection.JavaConversions._
+
 trait TMetadata extends Metadata
 trait TNullMetadata extends NullMetadata with TMetadata
 trait TNonNullMetadata extends NonNullMetadata with TMetadata
@@ -21,8 +23,8 @@ trait TComponentMetadata extends ComponentMetadata with NonNullMetadata {
   override  def getDependsOn()=dependsOn
 }
 trait TCollectionMetadata extends CollectionMetadata with TNonNullMetadata {
-  val values:List[TMetadata]
-  override  def getValues()=values.toList
+  val values:List[_ <:Metadata]
+  override  def getValues()=values
 }
 trait TPropsMetadata extends PropsMetadata with TNonNullMetadata
 trait TMapMetadata extends MapMetadata with TNonNullMetadata
