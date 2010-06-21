@@ -12,6 +12,7 @@
 package net.dikka.charika.blueprint.extender.impl
 package beans
 
+import org.osgi.service.blueprint.container.ComponentDefinitionException
 import org.specs.SpecificationWithJUnit
 import org.specs.mock.Mockito
 
@@ -23,14 +24,14 @@ class ArgumentSpec extends SpecificationWithJUnit with Mockito {
    • value
    • An inlined object value""" in {
     val testComponent=Some(mock[Component])
-    Argument(None,None,Some("ref"),Some("value"),testComponent) must throwA[IllegalArgumentException]
-    Argument(None,None,Some("ref"),Some("value"),None) must throwA[IllegalArgumentException]
-    Argument(None,None,None,Some("value"),testComponent) must throwA[IllegalArgumentException]
-    Argument(None,None,Some("ref"),None,testComponent) must throwA[IllegalArgumentException]
-    Argument(None,None,None,None,None) must throwA[IllegalArgumentException]
+    Argument(None,None,Some("ref"),Some("value"),testComponent) must throwA[ComponentDefinitionException]
+    Argument(None,None,Some("ref"),Some("value"),None) must throwA[ComponentDefinitionException]
+    Argument(None,None,None,Some("value"),testComponent) must throwA[ComponentDefinitionException]
+    Argument(None,None,Some("ref"),None,testComponent) must throwA[ComponentDefinitionException]
+    Argument(None,None,None,None,None) must throwA[ComponentDefinitionException]
 
-    Argument(None,None,Some("ref"),None,None) mustNot throwA[IllegalArgumentException]
-    Argument(None,None,None,Some("value"),None)  mustNot throwA[IllegalArgumentException]
-    Argument(None,None,None,None,testComponent) mustNot throwA[IllegalArgumentException]
+    Argument(None,None,Some("ref"),None,None) mustNot throwA[ComponentDefinitionException]
+    Argument(None,None,None,Some("value"),None)  mustNot throwA[ComponentDefinitionException]
+    Argument(None,None,None,None,testComponent) mustNot throwA[ComponentDefinitionException]
   }
 }

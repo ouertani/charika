@@ -13,10 +13,10 @@ package net.dikka.charika.blueprint.extender.impl
 package beans
 
 case class Property (name:Option[String], ref: Option[String], value: Option[String],component: Option[Component]) {
-  require(name != null,"Name must not be null")
-  require (ref != null, "ref must not be null")
-  require (value != null,"value must not be null")
-  require (component != null, "component must not be null")
+  need(name != null,"Name must not be null")
+  need (ref != null, "ref must not be null")
+  need (value != null,"value must not be null")
+  need (component != null, "component must not be null")
 
 
 
@@ -27,7 +27,7 @@ case class Property (name:Option[String], ref: Option[String], value: Option[Str
    • An inlined object value
    */
 
-  require (xor3(ref isDefined, value isDefined , component isDefined), """ The following attributes/elements are mutually exclusive
+  need (xor3(ref isDefined, value isDefined , component isDefined), """ The following attributes/elements are mutually exclusive
    • ref
    • value
    • An inlined object value""")

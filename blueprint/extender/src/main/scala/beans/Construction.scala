@@ -16,9 +16,9 @@ package beans
 
 
 case class Construction (clazz:Option[String], factoryMethod: Option[String], factoryRef:Option[String]){
-  require(clazz != null, "Class must not be null!")
-  require(factoryMethod != null, "FactoryMethod must not be null!")
-  require(factoryRef != null, "FactoryRef must not be null!")
+  need(clazz != null, "Class must not be null!")
+  need(factoryMethod != null, "FactoryMethod must not be null!")
+  need(factoryRef != null, "FactoryRef must not be null!")
 
   /*
    The destroyMethod must not be set when the scope is prototype.
@@ -29,13 +29,13 @@ case class Construction (clazz:Option[String], factoryMethod: Option[String], fa
    • factory-ref, factory-method
    */
   if(clazz isDefined) {
-    require((factoryRef  isEmpty), "Invalid combination" )
+    need((factoryRef  isEmpty), "Invalid combination" )
   }
 
   if(factoryMethod isDefined) {
-    require(xor( factoryRef isDefined ,  clazz isDefined ) , "Invalid combination" )
+    need(xor( factoryRef isDefined ,  clazz isDefined ) , "Invalid combination" )
   }
-  require ((clazz isDefined ) || (factoryMethod isDefined) || (factoryRef isDefined ),"Invalid combination" )
+  need ((clazz isDefined ) || (factoryMethod isDefined) || (factoryRef isDefined ),"Invalid combination" )
 }
 
 class ConstructionBuilder {

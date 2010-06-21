@@ -19,13 +19,13 @@ case class Bean (id:String,
                  construction :Construction,
                  callback :Callback) extends Component(id, activation, constructionParam.dependsOn) {
 
-  require(id != null, "Id must not be null!")
-  require(activation != null, "Activation must not be null!")
-  require(scope != null, "Scope must not be null!")
+  need(id != null, "Id must not be null!")
+  need(activation != null, "Activation must not be null!")
+  need(scope != null, "Scope must not be null!")
 
   if(scope == Prototype) {
-    require (callback.destroyMethod isEmpty,"The destroyMethod must not be set when the scope is prototype.")
-    require (activation == Lazy, "The activation must not be set to eager if the bean also has prototype scope.")
+    need (callback.destroyMethod isEmpty,"The destroyMethod must not be set when the scope is prototype.")
+    need (activation == Lazy, "The activation must not be set to eager if the bean also has prototype scope.")
   }
 }
 

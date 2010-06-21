@@ -14,6 +14,7 @@ package parser
 
 import javax.xml.stream.XMLStreamException
 import javax.xml.stream.XMLStreamReader
+import org.osgi.service.blueprint.container.ComponentDefinitionException
 import scala.xml.Node
 import net.dikka.charika.blueprint.extender.impl.beans.BluePrintContainerTree
 
@@ -31,7 +32,7 @@ class Parser extends ComponentParser [BluePrintContainerTree] {
       if(BLUEPRINT_NAMESPACE == n.namespace ) {
         delegates.get(n.label) match {
           case Some(p) => bct + p.parseElement(n)
-          case None => throw new IllegalArgumentException (n.label + " is not a valid blueprint element ")
+          case None => throw new ComponentDefinitionException (n.label + " is not a valid blueprint element ")
         }
       }else {
         //TODO
