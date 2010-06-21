@@ -12,9 +12,18 @@
 package net.dikka.charika.blueprint.extender.impl
 import org.osgi.framework. {BundleActivator , BundleContext }
 
+object Activator {
+  val BUNDLE_BLUEPRINT_HEADER = "Bundle-Blueprint";
+}
+
+
 class Activator extends BundleActivator{
 
-  override def start(bc:BundleContext){}
+   override def start(bc:BundleContext){}
    override def stop(bc:BundleContext){}
+
+
+
+ 
 
 }

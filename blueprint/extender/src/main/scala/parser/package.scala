@@ -22,6 +22,10 @@ import net.dikka.charika.blueprint.extender.impl.beans.Activation
 
 package object parser {
 
+
+  
+
+
   implicit def toActivation(activation: String): Activation = {
     if(activation ==null ) Eager
     if(activation=="lazy") Lazy

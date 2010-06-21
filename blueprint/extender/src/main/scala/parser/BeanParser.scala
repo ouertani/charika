@@ -17,7 +17,7 @@ import net.dikka.charika.blueprint.extender.impl._
 import net.dikka.charika.blueprint.extender.impl.beans.Bean
 import net.dikka.charika.blueprint.extender.impl.beans._
 import scala.xml.Node
-import scala.xml.NodeSeq
+
 
 
 class BeanParser extends ComponentParser [Bean] {

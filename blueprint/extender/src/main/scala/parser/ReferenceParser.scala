@@ -9,14 +9,12 @@
  *   Slim Ouertani   - initial API and implementation
  *
  */
-
-package reflect
-
-import net.dikka.charika.blueprint.extender.impl.beans.Argument
-import org.osgi.service.blueprint.reflect.BeanArgument
-
-trait TBeanArgument extends BeanArgument {
- 
+package net.dikka.charika.blueprint.extender.impl
+package parser
+import net.dikka.charika.blueprint.extender.impl.beans._
+import scala.xml.Node
+class ReferenceParser extends ComponentParser [Reference] {
+override def parseElement ( node:Node):Reference ={
+    Reference()
+  }
 }
-
-
