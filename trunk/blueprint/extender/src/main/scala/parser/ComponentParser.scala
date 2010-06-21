@@ -17,9 +17,13 @@ package parser
 import javax.xml.stream.XMLStreamException
 import javax.xml.stream.XMLStreamReader
 import scala.xml.Node
+import net.dikka.charika.blueprint.extender.impl.beans.BluePrintContainerTree
 import net.dikka.charika.blueprint.extender.impl.beans.Component
 import scala.collection._
 
 trait ComponentParser [T] {
   def  parseElement( node:Node):T
 }
+
+
+

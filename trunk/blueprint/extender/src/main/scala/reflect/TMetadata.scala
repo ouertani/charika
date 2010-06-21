@@ -1,3 +1,14 @@
+/**
+ * Copyright (c) 2010 DIKKA.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Apache License, v. 2.0
+ * which accompanies this distribution, and is available at
+ * http://www.apache.org/licenses/
+ *
+ * Contributors:
+ *   Slim Ouertani   - initial API and implementation
+ *
+ */
 /*
  *  slim ouertani
  *  
@@ -11,9 +22,9 @@ import net.dikka.charika.blueprint.extender.impl.beans.Scope
 import org.osgi.service.blueprint.reflect._
 import scala.collection.JavaConversions._
 
-trait TMetadata extends Metadata
+sealed trait TMetadata extends Metadata
 trait TNullMetadata extends NullMetadata with TMetadata
-trait TNonNullMetadata extends NonNullMetadata with TMetadata
+sealed trait TNonNullMetadata extends NonNullMetadata with TMetadata
 
 trait TValueMetadata extends ValueMetadata with TNonNullMetadata
 trait TIdRefMetadata extends IdRefMetadata with TNonNullMetadata
