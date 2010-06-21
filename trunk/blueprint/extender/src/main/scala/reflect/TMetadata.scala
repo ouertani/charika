@@ -7,6 +7,7 @@ package reflect
 
 
 import net.dikka.charika.blueprint.extender.impl.beans.Activation
+import net.dikka.charika.blueprint.extender.impl.beans.Scope
 import org.osgi.service.blueprint.reflect._
 import scala.collection.JavaConversions._
 
@@ -29,7 +30,15 @@ trait TCollectionMetadata extends CollectionMetadata with TNonNullMetadata {
 trait TPropsMetadata extends PropsMetadata with TNonNullMetadata
 trait TMapMetadata extends MapMetadata with TNonNullMetadata
 trait TTarget extends Target with TNonNullMetadata
-trait TBeanMetadata extends BeanMetadata with TTarget with TComponentMetadata
+trait TBeanMetadata extends BeanMetadata with TTarget with TComponentMetadata {
+
+  val factoryComponent:TTarget
+  val scope:Scope
+  override def   getFactoryComponent():Target=factoryComponent
+
+  override def getScope()=scope.scope
+
+}
 trait TRefMetadata extends RefMetadata with TTarget with TNonNullMetadata
 
 trait TServiceReferenceMetadata extends ServiceReferenceMetadata with TComponentMetadata

@@ -13,6 +13,12 @@ package net.dikka.charika.blueprint.extender.impl
 package beans
 
 
-sealed trait Scope
-case object Singleton extends Scope
-case object Prototype extends Scope
+sealed trait Scope {
+  val scope:String
+}
+case object Singleton extends Scope {
+override val scope="singleton"
+}
+case object Prototype extends Scope {
+override val  scope="prototype"
+}
