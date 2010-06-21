@@ -15,6 +15,7 @@ package beans
 
 
 
+import org.osgi.service.blueprint.container.ComponentDefinitionException
 import org.specs.SpecificationWithJUnit
 import org.specs.mock.Mockito
 
@@ -25,14 +26,14 @@ class PropertySpec extends SpecificationWithJUnit with Mockito {
    • value
    • An inlined object value""" in {
      val testComponent=Some(mock[Component])
-     Property(None,Some("ref"),Some("value"),testComponent) must throwA[IllegalArgumentException]
-     Property(None,Some("ref"),Some("value"),None) must throwA[IllegalArgumentException]
-     Property(None,None,Some("value"),testComponent) must throwA[IllegalArgumentException]
-     Property(None,Some("ref"),None,testComponent) must throwA[IllegalArgumentException]
-     Property(None,None,None,None) must throwA[IllegalArgumentException]
+     Property(None,Some("ref"),Some("value"),testComponent) must throwA[ComponentDefinitionException]
+     Property(None,Some("ref"),Some("value"),None) must throwA[ComponentDefinitionException]
+     Property(None,None,Some("value"),testComponent) must throwA[ComponentDefinitionException]
+     Property(None,Some("ref"),None,testComponent) must throwA[ComponentDefinitionException]
+     Property(None,None,None,None) must throwA[ComponentDefinitionException]
 
-     Property(None,Some("ref"),None,None) mustNot throwA[IllegalArgumentException]
-     Property(None,None,Some("value"),None)  mustNot throwA[IllegalArgumentException]
-     Property(None,None,None,testComponent) mustNot throwA[IllegalArgumentException]
+     Property(None,Some("ref"),None,None) mustNot throwA[ComponentDefinitionException]
+     Property(None,None,Some("value"),None)  mustNot throwA[ComponentDefinitionException]
+     Property(None,None,None,testComponent) mustNot throwA[ComponentDefinitionException]
   }
 }

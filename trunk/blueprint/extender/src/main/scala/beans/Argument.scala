@@ -19,11 +19,11 @@ case class Argument (index: Option[Int],
                      ref:Option[String],
                      value:Option[String],
                      component: Option[Component])  {
-  require (index!=null, "index must not be null")
-  require (tipe!=null, "type must not be null")
-  require (ref !=null,"ref must not be null")
-  require (value != null,"value must not be null")
-  require (component != null,"component must not be null")
+  need (index!=null, "index must not be null")
+  need (tipe!=null, "type must not be null")
+  need (ref !=null,"ref must not be null")
+  need (value != null,"value must not be null")
+  need (component != null,"component must not be null")
 
 
 
@@ -34,7 +34,7 @@ case class Argument (index: Option[Int],
    • value
    • An inlined object value
    */
-  require (xor3(ref isDefined, value isDefined, component isDefined),""" The following attributes and elements are mutually exclusive:
+  need (xor3(ref isDefined, value isDefined, component isDefined),""" The following attributes and elements are mutually exclusive:
    • ref
    • value
    • An inlined object value""")

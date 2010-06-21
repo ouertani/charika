@@ -12,6 +12,7 @@
 package net.dikka.charika.blueprint.extender.impl
 package beans
 
+import org.osgi.service.blueprint.container.ComponentDefinitionException
 import org.specs.SpecificationWithJUnit
 import org.specs.mock.Mockito
 
@@ -24,7 +25,7 @@ class BeanSpec extends SpecificationWithJUnit with Mockito {
          ConstructionParam(List(),List(),List()),
          Construction( Some("class"), Some(" initMethod:String,"), Some(" destroyMethod")),
          Callback (None,Some(" factoryRef:String,"))
-    )   must throwA[IllegalArgumentException]
+    )   must throwA[ComponentDefinitionException]
   }
 
   """ The activation must not be set to eager if the bean also has prototype scope.""" in {
@@ -34,7 +35,7 @@ class BeanSpec extends SpecificationWithJUnit with Mockito {
          ConstructionParam(List(),List(),List()),
          Construction(Some("class"),  None, None),
          Callback(None, None)
-    ) must throwA[IllegalArgumentException]
+    ) must throwA[ComponentDefinitionException]
 
   }
 
@@ -74,7 +75,7 @@ class BeanSpec extends SpecificationWithJUnit with Mockito {
           ConstructionParam(List(),List(),List()),
           Construction(None, None,None),
           Callback(None, None)
-    )must throwA[IllegalArgumentException]
+    )must throwA[ComponentDefinitionException]
 
     Bean ("id",
           Lazy,
@@ -82,6 +83,6 @@ class BeanSpec extends SpecificationWithJUnit with Mockito {
           ConstructionParam(List(),List(),List()),
           Construction(Some(""), Some(""),Some("")),
           Callback(None, None)
-    )must throwA[IllegalArgumentException]
+    )must throwA[ComponentDefinitionException]
   }
 }

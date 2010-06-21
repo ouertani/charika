@@ -12,6 +12,8 @@
 package net.dikka.charika.blueprint.extender.impl
 
 
+import org.osgi.service.blueprint.container.ComponentDefinitionException
+
 package object beans {
   
   def xor3(x: Boolean, y: Boolean, z : Boolean): Boolean = (x || y || z ) && !(x && y) && !(x && z) && !(y && z) && ! (x && y && z)
@@ -30,5 +32,9 @@ package object beans {
   implicit def toCallback(cb :CallbackBuilder)=cb.build
   implicit def toConstruction(cb:ConstructionBuilder)=cb.build
   implicit def toProperty(pb:PropertyBuilder)=pb.build
+
+  def need(b :Boolean, msg : String) {
+    if(!b) throw new ComponentDefinitionException("Unknown element " + msg);
+  }
  
 }
