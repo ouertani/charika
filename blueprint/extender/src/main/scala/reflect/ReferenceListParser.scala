@@ -9,16 +9,12 @@
  *   Slim Ouertani   - initial API and implementation
  *
  */
-package net.dikka.charika.blueprint.extender.impl
-import org.osgi.framework. {BundleActivator , BundleContext }
-
-object Activator {
-  val BUNDLE_BLUEPRINT_HEADER = "Bundle-Blueprint";
-}
-
-
-class Activator extends BundleActivator{
-
-   override def start(bc:BundleContext){}
-   override def stop(bc:BundleContext){}
+package net.dikka.charika.blueprint
+package reflect
+import net.dikka.charika.blueprint.extender.impl.beans._
+import scala.xml.Node
+class ReferenceListParser extends ComponentParser [ReferenceList] {
+ override def parseElement ( node:Node):ReferenceList ={
+    ReferenceList()
+  }
 }

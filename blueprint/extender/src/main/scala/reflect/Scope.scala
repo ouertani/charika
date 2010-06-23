@@ -9,16 +9,16 @@
  *   Slim Ouertani   - initial API and implementation
  *
  */
-package net.dikka.charika.blueprint.extender.impl
-import org.osgi.framework. {BundleActivator , BundleContext }
+package net.dikka.charika.blueprint
+package reflect
 
-object Activator {
-  val BUNDLE_BLUEPRINT_HEADER = "Bundle-Blueprint";
+
+sealed trait Scope {
+  val scope:String
 }
-
-
-class Activator extends BundleActivator{
-
-   override def start(bc:BundleContext){}
-   override def stop(bc:BundleContext){}
+case object Singleton extends Scope {
+override val scope="singleton"
+}
+case object Prototype extends Scope {
+override val  scope="prototype"
 }

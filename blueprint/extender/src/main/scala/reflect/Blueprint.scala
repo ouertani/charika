@@ -9,16 +9,9 @@
  *   Slim Ouertani   - initial API and implementation
  *
  */
-package net.dikka.charika.blueprint.extender.impl
-import org.osgi.framework. {BundleActivator , BundleContext }
+package net.dikka.charika.blueprint
+package reflect
 
-object Activator {
-  val BUNDLE_BLUEPRINT_HEADER = "Bundle-Blueprint";
-}
-
-
-class Activator extends BundleActivator{
-
-   override def start(bc:BundleContext){}
-   override def stop(bc:BundleContext){}
-}
+class Blueprint (defaultActivation:Activation=Eager,
+                 defaultTimeout:Int=300000,
+                 defaultAvailability:Availability = Mandatory )
