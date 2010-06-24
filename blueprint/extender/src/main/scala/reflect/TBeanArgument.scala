@@ -60,40 +60,5 @@ case class Argument (index: Option[Int],
    • An inlined object value""")
 }
 
-class ArgumentBuilder(){
 
-  private [this] var index: Option[Int]=None
-  private [this] var tipe:Option[String]=None
-  private [this] var ref:Option[String]=None
-  private [this] var value:Option[String] =None
-  private [this] var component: Option[Component]=None
-
-
-
-  
-  def withIndex(index: Int)={
-    this.index=Some(index)    
-    this}
-
-  def withType(tipe: String)={
-    this.tipe=tipe
-    this
-  }
-
-  def withRef(ref:String)={
-    this.ref=ref    
-    this}
-  def withValue(value:String)={
-    this.value=value   
-    this}
-  def withComponent(component:Component)={
-    this.component=(component)
-    this}
-
-
-  def build  = Argument(index,tipe,ref,value ,component)
-
-  def + (that :ArgumentBuilder) = build ::that.build ::Nil
-
-}
 

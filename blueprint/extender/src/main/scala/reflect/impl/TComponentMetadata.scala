@@ -4,4 +4,4 @@ import org.osgi.service.blueprint.reflect._
 
 trait TComponentMetadata extends ComponentMetadata with TNonNullMetadata
 
-case class ComponentMetadataImpl(id :String , activation:Activation , dependsOns:List[String]) extends TComponentMetadata
+case class IComponentMetadata(id :String , activation:Activation , dependsOns:List[String]) extends TComponentMetadata

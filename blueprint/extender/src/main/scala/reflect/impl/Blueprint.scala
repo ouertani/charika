@@ -9,8 +9,10 @@
  *   Slim Ouertani   - initial API and implementation
  *
  */
-package net.dikka.charika.blueprint.extender.impl
-class Parser(xml:String) {
+package net.dikka.charika.blueprint
+package reflect.impl
 
-  
-}
+class Blueprint (
+                 defaultActivation:Activation=Eager,
+                 defaultTimeout:Int=300000,
+                 defaultAvailability:Availability = Mandatory )
