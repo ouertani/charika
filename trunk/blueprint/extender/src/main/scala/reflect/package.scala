@@ -21,27 +21,12 @@ import org.osgi.service.blueprint.container._
 
 package object reflect {
 
-  trait ComponentParser [T] {
-    def  parseElement( node:Node):T
-  }
+ 
   
 
 
-  implicit def toActivation(activation: String): Activation = {
-    if(activation ==null ) Eager
-    if(activation=="lazy") Lazy
-    else if(activation=="eager") Eager
-    else if(activation isEmpty) Eager
-    else throw new IllegalArgumentException("invalid activation text")
-  }
   
-  implicit def toScope(scope: String): Scope={
-    if(scope== null) Singleton
-    if(scope=="singleton")  Singleton
-    else if(scope =="prototype") Prototype
-    else if (scope isEmpty) Singleton
-    else throw new IllegalArgumentException("invalid scope text")
-  }
+
 
   implicit def toOptionOfString(string :String):Option[String]= {
     if(string==null || string.isEmpty) None
@@ -110,11 +95,7 @@ package object reflect {
 
 
 
-  implicit def toConstructionParam(cpb:ConstructionParamBuilder)=cpb.build
-  implicit def toArgumentBuilder(ab:ArgumentBuilder)=ab.build
-  implicit def toCallback(cb :CallbackBuilder)=cb.build
-  implicit def toConstruction(cb:ConstructionBuilder)=cb.build
-  implicit def toProperty(pb:PropertyBuilder)=pb.build
+
 
   def need(b :Boolean, msg : String) {
     if(!b) throw new ComponentDefinitionException("Unknown element " + msg);
