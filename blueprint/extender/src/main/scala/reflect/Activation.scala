@@ -10,14 +10,9 @@
  *
  */
 package net.dikka.charika.blueprint
-package reflect.impl
+package reflect
 
-sealed trait Scope {
-  val scope:String
-}
-case object Singleton extends Scope {
-override val scope="singleton"
-}
-case object Prototype extends Scope {
-override val  scope="prototype"
-}
+
+sealed trait Activation { val   intValue:Int  }
+case object Lazy extends Activation {val intValue=2 }
+case object Eager extends Activation{ val intValue=1}

@@ -1,10 +1,10 @@
 package net.dikka.charika.blueprint
-package reflect
+
 
 import org.osgi.service.blueprint.container.ComponentDefinitionException
 import scala.xml.Node
 
-class impl {
+package object  reflect {
   def need(b :Boolean, msg : String) {
     if(!b) throw new ComponentDefinitionException("Unknown element " + msg);
   }

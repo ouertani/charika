@@ -1,5 +1,5 @@
 package net.dikka.charika.blueprint
-package reflect.impl
+package reflect
 
 sealed trait MemberType
 {

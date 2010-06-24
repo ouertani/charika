@@ -19,7 +19,7 @@ import scala.xml.NodeSeq
 import org.osgi.service.blueprint.container._
 
 
-package object reflect {
+package object reflecttt{
 
  
   
@@ -47,18 +47,18 @@ package object reflect {
   }
 
 
-  implicit def toArgument (node : NodeSeq):List[Argument]={
+//  implicit def toArgument (node : NodeSeq):List[Argument]={
+//
+//    val h= for (n <- node ) yield Argument (n \ "@index"  text, n \ "@type", None, n \ "@value" , None)
+//
+//    h toList
+//  }
 
-    val h= for (n <- node ) yield Argument (n \ "@index"  text, n \ "@type", None, n \ "@value" , None)
 
-    h toList
-  }
-
-
-  implicit def toConstructionParam(node:Node):ConstructionParam= {
-    node \\ "arguments"
-    ConstructionParam(dependsOn = node, propertys = List(),  arguments = node \\ "argument")
-  }
+//  implicit def toConstructionParam(node:Node):ConstructionParam= {
+//    node \\ "arguments"
+//    ConstructionParam(dependsOn = node, propertys = List(),  arguments = node \\ "argument")
+//  }
 
   implicit def toDepends(node : Node):List[String]={
     val n=( node \ "@dependsOn" )
@@ -70,19 +70,19 @@ package object reflect {
     }
   }
 
-  implicit def toConstruction(node:Node):Construction ={
-    Construction( clazz = node \ "@class"  ,
-                 factoryMethod=  node \ "@factoryMethod" ,
-                 factoryRef=  node \ "@factoryRef" )
-  }
+//  implicit def toConstruction(node:Node):Construction ={
+//    Construction( clazz = node \ "@class"  ,
+//                 factoryMethod=  node \ "@factoryMethod" ,
+//                 factoryRef=  node \ "@factoryRef" )
+//  }
 
 
 
-
-  implicit def toCallback(node :Node):Callback= {
-    Callback(initMethod=  node \ "@initMethod"  ,
-             destroyMethod =node \ "@destroyMethod" )
-  }
+//
+//  implicit def toCallback(node :Node):Callback= {
+//    Callback(initMethod=  node \ "@initMethod"  ,
+//             destroyMethod =node \ "@destroyMethod" )
+//  }
 
   def xor3(x: Boolean, y: Boolean, z : Boolean): Boolean = (x || y || z ) && !(x && y) && !(x && z) && !(y && z) && ! (x && y && z)
 
