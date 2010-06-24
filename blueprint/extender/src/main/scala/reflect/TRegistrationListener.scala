@@ -5,8 +5,14 @@ import org.osgi.service.blueprint.reflect.RegistrationListener
 
 trait TRegistrationListener extends RegistrationListener
 
-case class RegistrationListenerImpl (
+class RegistrationListener_ (
+  listenerComponent:TTarget, 
+  registrationMethod:String,
+  unregistrationMethod:String
+)extends TRegistrationListener {
 
-   listenerComponent:TTarget, registrationMethod:String,unregistrationMethod:String
+  override def getListenerComponent()=listenerComponent
+  override def getRegistrationMethod()=registrationMethod
+  override def getUnregistrationMethod()=unregistrationMethod
 
-  )extends TRegistrationListener
+}

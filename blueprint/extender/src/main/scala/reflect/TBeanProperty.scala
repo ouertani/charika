@@ -6,5 +6,9 @@ import org.osgi.service.blueprint.reflect.BeanProperty
 trait TBeanProperty extends BeanProperty
 
 
-case class BeanPropertyImpl(name:String ,
-                            value : TMetadata ) extends TBeanProperty
+class BeanProperty_(name:String ,
+                         value : TMetadata ) extends TBeanProperty {
+
+  override def getName()=name
+  override def getValue()=value
+}
