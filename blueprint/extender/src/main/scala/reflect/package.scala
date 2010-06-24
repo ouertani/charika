@@ -14,8 +14,6 @@ package net.dikka.charika.blueprint
 
 import scala.xml.Node
 import scala.xml.NodeSeq
-
-
 import org.osgi.service.blueprint.container._
 
 
