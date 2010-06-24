@@ -10,12 +10,14 @@
  *
  */
 package net.dikka.charika.blueprint
-package reflect.impl
+package reflect
 
-sealed trait Availability{
-  val intValue=1
+sealed trait Scope {
+  val scope:String
 }
-case object Mandatory extends Availability
-case object Optional extends Availability{
-   override val intValue=2
+case object Singleton extends Scope {
+override val scope="singleton"
+}
+case object Prototype extends Scope {
+override val  scope="prototype"
 }

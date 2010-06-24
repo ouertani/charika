@@ -1,5 +1,5 @@
 package net.dikka.charika.blueprint
-package reflect.impl
+package reflect
 
 import org.osgi.service.blueprint.reflect.BeanMetadata
 
@@ -7,19 +7,19 @@ trait TBeanMetadata extends BeanMetadata with TTarget with TComponentMetadata
 
 
 abstract class ABeanMetadata(classNmae:String,
-                              initMethod:String ,
-                              destroyMethod:String,
-                              beanArguments:List[TBeanArgument],
-                              beanProperties:List[TBeanProperty],
-                              factoryMethod:String,
-                              factoryComponent:TTarget,
-                              scope:Scope) extends TComponentMetadata {
+                             initMethod:String ,
+                             destroyMethod:String,
+                             beanArguments:List[TBeanArgument],
+                             beanProperties:List[TBeanProperty],
+                             factoryMethod:String,
+                             factoryComponent:TTarget,
+                             scope:Scope) extends TComponentMetadata {
 
 
 
 }
 
-case class IBeanMetadata(
+class BeanMetadataImpl(
   id :String ,
   activation:Activation ,
   dependsOns:List[String],
@@ -44,17 +44,6 @@ case class IBeanMetadata(
 }
 
 
-//class BeanParser extends ComponentParser [Bean] {
-//
-//  override def parseElement ( node:Node):Bean ={
-//
-//
-//    Bean( node \ "@id"  text,
-//         activation = node \ "@activation" text,
-//         scope = node \ "@scope" text ,
-//         node,
-//         node,
-//         node
-//    )
-//  }
-//}
+
+
+

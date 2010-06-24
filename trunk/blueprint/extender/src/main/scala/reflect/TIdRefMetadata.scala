@@ -1,5 +1,5 @@
 package net.dikka.charika.blueprint
-package reflect.impl
+package reflect
 
 import org.osgi.service.blueprint.reflect.IdRefMetadata
 

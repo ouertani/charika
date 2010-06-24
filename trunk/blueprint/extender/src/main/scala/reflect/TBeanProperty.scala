@@ -1,5 +1,6 @@
 package net.dikka.charika.blueprint
-package reflect.impl
+package reflect
+
 import org.osgi.service.blueprint.reflect.BeanProperty
 
 trait TBeanProperty extends BeanProperty

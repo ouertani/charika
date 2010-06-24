@@ -1,7 +1,8 @@
 package net.dikka.charika.blueprint
-package reflect.impl
+package reflect
 
-import reflect.impl.ServiceReferenceMetadata
+
+import org.osgi.service.blueprint.reflect.ServiceReferenceMetadata
 
 trait TServiceReferenceMetadata  extends ServiceReferenceMetadata with TComponentMetadata
 
@@ -9,4 +10,4 @@ case class ServiceReferenceMetadataImpl( availability : Availability,
                                         getInterface:String,
                                         componentName:String,
                                         getFilter:String,
-                                        getReferenceListeners:Seq[ReferenceListener] ) extends TServiceReferenceMetadata
+                                        getReferenceListeners:Seq[TReferenceListener] ) extends TServiceReferenceMetadata

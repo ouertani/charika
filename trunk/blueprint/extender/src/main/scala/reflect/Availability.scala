@@ -10,9 +10,12 @@
  *
  */
 package net.dikka.charika.blueprint
-package reflect.impl
+package reflect
 
-class Blueprint (
-                 defaultActivation:Activation=Eager,
-                 defaultTimeout:Int=300000,
-                 defaultAvailability:Availability = Mandatory )
+sealed trait Availability{
+  val intValue=1
+}
+case object Mandatory extends Availability
+case object Optional extends Availability{
+   override val intValue=2
+}
