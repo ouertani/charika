@@ -5,4 +5,6 @@ import org.osgi.service.blueprint.reflect.RefMetadata
 
 trait TRefMetadata extends RefMetadata with TTarget with TNonNullMetadata
 
-case class RefMetadataImpl(componentId:String) extends TRefMetadata
+class RefMetadata_(componentId:String) extends TRefMetadata {
+  override def getComponentId()=componentId
+}

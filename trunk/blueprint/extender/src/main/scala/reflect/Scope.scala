@@ -13,11 +13,11 @@ package net.dikka.charika.blueprint
 package reflect
 
 sealed trait Scope {
-  val scope:String
+  val stringValue:String
 }
 case object Singleton extends Scope {
-override val scope="singleton"
+override val stringValue="singleton"
 }
 case object Prototype extends Scope {
-override val  scope="prototype"
+override val  stringValue="prototype"
 }

@@ -5,6 +5,11 @@ import org.osgi.service.blueprint.reflect.ReferenceListener
 
 trait TReferenceListener extends ReferenceListener
 
-case class ReferenceListenerImpl(
+class ReferenceListener_(
   listenerComponent:TTarget,bindMethod:String,unbindMethod:String
-) extends TReferenceListener
+) extends TReferenceListener {
+
+  override def  getListenerComponent()=listenerComponent
+  override  def getBindMethod()=bindMethod
+  override def getUnbindMethod()=unbindMethod
+}
