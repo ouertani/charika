@@ -26,7 +26,7 @@ sealed class BeanArgument_ (value : TMetadata, valueType : String, index : Int) 
 
 
 
-class BeanArgumentBuilder extends TValidator {
+class BeanArgumentBuilder  {
   private [this] var  value : TMetadata=_
   private [this] var  valueType : String=_
   private [this] var index : Int=_
@@ -44,16 +44,5 @@ class BeanArgumentBuilder extends TValidator {
     this.index=index
     this
   }
-
-  def build()={
-    validate
-    val b:TBeanArgument= new BeanArgument_(value,valueType,index)
-    b
-  }
-  @throws(classOf[ComponentDefinitionException])
-  override def validate()={
-    
-  }
-
 
 }

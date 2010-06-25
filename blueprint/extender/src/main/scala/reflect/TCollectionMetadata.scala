@@ -28,23 +28,12 @@ sealed class CollectionMetadata_( collectionClass :Class[_],
 
 }
 
-trait CollectionMetadataBuilder extends TBuilderWithValidator[TCollectionMetadata] {
+trait CollectionMetadataBuilder {
   private [this] var collectionClass :Class[_]=_
   private [this] var valueType:String =_
   private [this] var values:List[TMetadata]=_
 
 
 
-  @throws(classOf[ComponentDefinitionException])
-  def validate() {
-      
-  }
-
-  @throws(classOf[ComponentDefinitionException])
-  abstract override def build() : TCollectionMetadata = {
-    new CollectionMetadata_(collectionClass,
-                            valueType,
-                            values)
-  }
 }
 
