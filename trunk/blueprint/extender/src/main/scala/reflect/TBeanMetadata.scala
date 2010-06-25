@@ -19,16 +19,19 @@ import scala.collection.JavaConversions._
 trait TBeanMetadata extends BeanMetadata with TTarget with TComponentMetadata
 
 
-class BeanMetadata_(
-  id :String , activation:Activation , dependsOns:List[String],
+
+sealed class BeanMetadata_(
+  id :String , 
+  activation:Activation,
+  dependsOns:List[String],
   className:String,
-                    initMethod:String ,
-                    destroyMethod:String,
-                    beanArguments:List[TBeanArgument],
-                    beanProperties:List[TBeanProperty],
-                    factoryMethod:String,
-                    factoryComponent:TTarget,
-                    scope:Scope) extends ComponentMetadata_(id , activation , dependsOns) with TBeanMetadata {
+  initMethod:String ,
+  destroyMethod:String,
+  beanArguments:List[TBeanArgument],
+  beanProperties:List[TBeanProperty],
+  factoryMethod:String,
+  factoryComponent:TTarget,
+  scope:Scope) extends ComponentMetadata_(id , activation , dependsOns) with TBeanMetadata {
 
   override def  getClassName()=className
   override def  getInitMethod()=initMethod
@@ -38,5 +41,85 @@ class BeanMetadata_(
   override def  getFactoryMethod()=factoryMethod
   override def  getFactoryComponent()=factoryComponent
   override def  getScope()=scope.stringValue
+
+ 
+}
+
+class BeanMetadataBuilder {
+  private [this] var id :String=null
+  private [this] var activation:Activation=Eager
+  private [this] var dependsOns:List[String]=List()
+  private [this] var className:String=null
+  private [this] var initMethod:String =null
+  private [this] var  destroyMethod:String=null
+  private [this] var  beanArguments:List[TBeanArgument]=List()
+  private [this] var  beanProperties:List[TBeanProperty]=List()
+  private [this] var factoryMethod:String=null
+  private [this] var factoryComponent:TTarget=null
+  private [this] var scope:Scope=Singleton
+
+  def withId(id :String) ={
+    this.id=id
+    this
+  }
+  def withActivation(activation:Activation) ={
+    this.activation=activation
+    this
+  }
+
+
+  def withDependsOns(dependsOns:List[String])={
+    this.dependsOns=dependsOns
+    this
+  }
+
+  
+  def withClassName(className:String)={
+    this.className=className
+    this
+  }
+  def withInitMethod( initMethod:String )={
+    this.initMethod=initMethod
+    this
+  }
+  def withDestroyMethod(destroyMethod:String)={
+    this.destroyMethod=destroyMethod
+    this
+  }
+  def withBeanArguments(beanArguments:List[TBeanArgument])={
+    this.beanArguments=beanArguments
+    this
+  }
+
+  def withBeanArgument(beanArgument:TBeanArgument)={
+    this.beanArguments = beanArguments:+beanArgument
+    this
+  }
+
+
+  def withBeanProperties(beanProperties:List[TBeanProperty])={
+    this.beanProperties=beanProperties
+    this
+  }
+
+   def withBeanProperty(beanProperty:TBeanProperty)={
+    this.beanProperties = this.beanProperties:+beanProperty
+    this
+  }
+
+
+  def withFactoryMethod(factoryMethod:String)={
+    this.factoryMethod=factoryMethod
+    this
+  }
+  def withFactoryComponent(factoryComponent:TTarget)={
+    this.factoryComponent=factoryComponent
+    this
+  }
+  def withScope(scope:Scope)={
+    this.scope=scope
+    this
+  }
+
 
 }

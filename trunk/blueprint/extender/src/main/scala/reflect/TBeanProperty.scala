@@ -18,8 +18,33 @@ trait TBeanProperty extends BeanProperty
 
 
 class BeanProperty_(name:String ,
-                         value : TMetadata ) extends TBeanProperty {
+                    value : TMetadata ) extends TBeanProperty {
 
   override def getName()=name
   override def getValue()=value
+}
+
+
+class BeanPropertyBuilder extends TValidator{
+  private [this] var name:String=_
+  private [this] var value : TMetadata=_
+
+
+
+  def withName( name:String)={
+    this.name=name
+    this
+  }
+  def withValue(value : TMetadata)={
+    this.value=value
+    this
+  }
+
+  override def validate(){
+    
+  }
+  def build(){
+    validate()
+
+  }
 }
