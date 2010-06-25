@@ -17,11 +17,19 @@ import scala.collection.JavaConversions._
 
 trait TCollectionMetadata extends CollectionMetadata with TNonNullMetadata
 
-class CollectionMetadata_( collectionClass :Class[_],
-                          valueType:String ,
-                          values:List[TMetadata]) extends TCollectionMetadata {
+sealed class CollectionMetadata_( collectionClass :Class[_],
+                                 valueType:String ,
+                                 values:List[TMetadata]) extends TCollectionMetadata {
 
   override def getCollectionClass()=collectionClass
   override def getValueType()=valueType
   override def getValues()=values
+
 }
+
+class CollectionMetadataBuilder {
+  private [this] var collectionClass :Class[_]=_
+  private [this] var valueType:String =_
+  private [this] var values:List[TMetadata]=_
+}
+

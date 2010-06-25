@@ -23,6 +23,17 @@ package object reflect{
     @throws(classOf[ComponentDefinitionException])
     def validate():Unit
   }
+  trait TBuilder[T] {
+    @throws(classOf[ComponentDefinitionException])
+    def build():T
+  }
+
+  trait TBuilderPattern[T] extends TBuilder[T] with TValidator {
+    override def build() : T ={
+      validate()
+      build()
+    }
+  }
   
 
 
