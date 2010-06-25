@@ -29,6 +29,7 @@ package object reflect{
   }
 
   trait TBuilderWithValidator[T] extends TBuilder[T] with TValidator {
+    @throws(classOf[ComponentDefinitionException])
     abstract override def build() : T ={
       validate()
       super.build()
