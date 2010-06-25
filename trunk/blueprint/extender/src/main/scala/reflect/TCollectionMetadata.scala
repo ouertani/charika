@@ -35,16 +35,16 @@ trait CollectionMetadataBuilder extends TBuilderWithValidator[TCollectionMetadat
 
 
 
-   @throws(classOf[ComponentDefinitionException])
-    def validate() {
+  @throws(classOf[ComponentDefinitionException])
+  def validate() {
       
-    }
+  }
 
-
- abstract override def build() : TCollectionMetadata = {
+  @throws(classOf[ComponentDefinitionException])
+  abstract override def build() : TCollectionMetadata = {
     new CollectionMetadata_(collectionClass,
-                                 valueType,
-                                 values)
+                            valueType,
+                            values)
   }
 }
 
