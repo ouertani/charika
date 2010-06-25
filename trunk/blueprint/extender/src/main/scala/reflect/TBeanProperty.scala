@@ -25,7 +25,7 @@ class BeanProperty_(name:String ,
 }
 
 
-class BeanPropertyBuilder extends TValidator{
+class BeanPropertyBuilder {
   private [this] var name:String=_
   private [this] var value : TMetadata=_
 
@@ -40,11 +40,5 @@ class BeanPropertyBuilder extends TValidator{
     this
   }
 
-  override def validate(){
-    
-  }
-  def build(){
-    validate()
-
-  }
+ 
 }

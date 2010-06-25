@@ -19,27 +19,6 @@ import org.osgi.service.blueprint.container._
 
 package object reflect{
 
-  trait TValidator {
-    @throws(classOf[ComponentDefinitionException])
-    def validate():Unit
-  }
-  trait TBuilder[T] {
-    @throws(classOf[ComponentDefinitionException])
-    def build():T
-  }
-
-  trait TBuilderWithValidator[T] extends TBuilder[T] with TValidator {
-    @throws(classOf[ComponentDefinitionException])
-    abstract override def build() : T ={
-      validate()
-      super.build()
-    }
-  }
-  
-
-
-  
-
 
   implicit def toOptionOfString(string :String):Option[String]= {
     if(string==null || string.isEmpty) None
