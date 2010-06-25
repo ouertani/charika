@@ -11,6 +11,7 @@
  */
 package net.dikka.charika.blueprint
 package reflect
+import org.osgi.service.blueprint.container.ComponentDefinitionException
 import org.osgi.service.blueprint.reflect._
 import scala.collection.JavaConversions._
 
@@ -27,9 +28,23 @@ sealed class CollectionMetadata_( collectionClass :Class[_],
 
 }
 
-class CollectionMetadataBuilder {
+trait CollectionMetadataBuilder extends TBuilderPattern[TCollectionMetadata] {
   private [this] var collectionClass :Class[_]=_
   private [this] var valueType:String =_
   private [this] var values:List[TMetadata]=_
+
+
+
+   @throws(classOf[ComponentDefinitionException])
+    def validate() {
+      
+    }
+
+
+ abstract override def build() : TCollectionMetadata = {
+    new CollectionMetadata_(collectionClass,
+                                 valueType,
+                                 values)
+  }
 }
 
