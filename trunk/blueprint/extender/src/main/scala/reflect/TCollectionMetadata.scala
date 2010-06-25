@@ -28,7 +28,7 @@ sealed class CollectionMetadata_( collectionClass :Class[_],
 
 }
 
-trait CollectionMetadataBuilder extends TBuilderPattern[TCollectionMetadata] {
+trait CollectionMetadataBuilder extends TBuilderWithValidator[TCollectionMetadata] {
   private [this] var collectionClass :Class[_]=_
   private [this] var valueType:String =_
   private [this] var values:List[TMetadata]=_
