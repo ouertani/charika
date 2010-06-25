@@ -28,7 +28,7 @@ package object reflect{
     def build():T
   }
 
-  trait TBuilderPattern[T] extends TBuilder[T] with TValidator {
+  trait TBuilderWithValidator[T] extends TBuilder[T] with TValidator {
     abstract override def build() : T ={
       validate()
       super.build()
