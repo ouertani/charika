@@ -17,9 +17,12 @@ import scala.xml.NodeSeq
 import org.osgi.service.blueprint.container._
 
 
-package object reflecttt{
+package object reflect{
 
- 
+  trait TValidator {
+    @throws(classOf[ComponentDefinitionException])
+    def validate():Unit
+  }
   
 
 
