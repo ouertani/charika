@@ -35,5 +35,25 @@ trait CollectionMetadataBuilder {
 
 
 
+  def withCollectionClass(collectionClass :Class[_]) ={
+    this.collectionClass=collectionClass
+    this
+  }
+
+
+
+  def withValueType(valueType:String)={
+    this.valueType= valueType
+    this
+  }
+  def withValues( values:List[TMetadata])={
+    this.values=values
+    this
+  }
+
+  def withValue(value: TMetadata)= {
+    this.values = values :+ value
+    this
+  }
 }
 
