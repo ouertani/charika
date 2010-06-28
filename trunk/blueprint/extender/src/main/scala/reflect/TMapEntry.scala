@@ -24,7 +24,7 @@ sealed class MapEntry_( key:TNonNullMetadata,
 }
 
 
-class MapEntryBuilder {
+class MapEntryBuilder extends     TBuilder[TMapEntry] {
   private [this] var  key:TNonNullMetadata=_
   private [this] var  value:TMetadata=_
 
@@ -36,5 +36,13 @@ class MapEntryBuilder {
   def withTMetadata(value:TMetadata)={
     this.value=value
     this
+  }
+
+  override def validate (){}
+
+
+  override def apply()={
+    new MapEntry_( key,
+                value)
   }
 }

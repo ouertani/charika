@@ -37,7 +37,7 @@ sealed class ReferenceMetadata_ (
   override def getTimeout()=timeOut
 }
 
-class ReferenceMetadataBuilder extends ComponentMetadataBuilder{ 
+class ReferenceMetadataBuilder extends ServiceReferenceMetadataBuilder  with   TBuilder[TReferenceMetadata]{
   private [this] var   timeOut:Long =_
 
 
@@ -50,6 +50,20 @@ class ReferenceMetadataBuilder extends ComponentMetadataBuilder{
   }
 
  
+  override def validate (){}
 
+
+  override def apply()={
+    new ReferenceMetadata_ (
+      id ,
+      activation,
+      dependsOns,
+      availability,
+      interface,
+      componentName,
+      filter,
+      referenceListeners,
+      timeOut)
+  }
   
 }

@@ -19,7 +19,7 @@ import org.osgi.service.blueprint.reflect.ServiceReferenceMetadata
 
 trait TServiceReferenceMetadata  extends ServiceReferenceMetadata with TComponentMetadata
 
-abstract class ServiceReferenceMetadata_ (
+class ServiceReferenceMetadata_ (
   id :String ,
   activation:Activation ,
   dependsOns:List[String],  
@@ -42,12 +42,15 @@ abstract class ServiceReferenceMetadata_ (
 }
 
 
-class ServiceReferenceMetadataBuilder extends ComponentMetadataBuilder {
-  private [this] var   availability : Availability=_
-  private [this] var   interface:String=_
-  private [this] var   componentName:String=_
-  private [this] var   filter:String=_
-  private [this] var   referenceListeners:Iterable[TReferenceListener]=_
+class ServiceReferenceMetadataBuilder extends ComponentMetadataBuilder  {
+
+  
+
+  protected [this] var   availability : Availability=_
+  protected [this] var   interface:String=_
+  protected [this] var   componentName:String=_
+  protected [this] var   filter:String=_
+  protected [this] var   referenceListeners:Iterable[TReferenceListener]=_
 
 
   def withAvailability(availability:Availability)={
@@ -71,5 +74,18 @@ class ServiceReferenceMetadataBuilder extends ComponentMetadataBuilder {
     this
   }
 
-  
+  def validate (){}
+
+
+  def apply()={
+    new ServiceReferenceMetadata_ (
+  id ,
+  activation,
+  dependsOns,
+  availability ,
+  interface,
+  componentName,
+  filter,
+  referenceListeners)
+  }
 }

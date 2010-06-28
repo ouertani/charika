@@ -23,11 +23,11 @@ abstract class ComponentMetadata_(id :String , activation:Activation , dependsOn
 
 
 }
-class ComponentMetadataBuilder {
+abstract class ComponentMetadataBuilder{
 
-  private [this] var id :String=_
-  private [this] var activation:Activation=_
-  private [this] var dependsOns:List[String]=_
+  protected [reflect] var id :String=_
+  protected [reflect] var activation:Activation=_
+  protected [reflect] var dependsOns:List[String]=_
 
   def withId(id :String )= {
     this.id=id
@@ -44,4 +44,9 @@ class ComponentMetadataBuilder {
     this.dependsOns=dependsOns :+dependsOn
     this
   }
+
+ 
+
+
+
 }
