@@ -22,7 +22,7 @@ sealed class ValueMetadata_( stringValue:String,
   override def getType()=tipe
 }
 
-class ValueMetadataBuilder extends  TFluentBuilder[TValueMetadata]{
+class ValueMetadataBuilder  {
   private [this] var stringValue:String=_
   private [this] var tipe:String=_
 
@@ -35,10 +35,10 @@ class ValueMetadataBuilder extends  TFluentBuilder[TValueMetadata]{
     this.tipe=tipe
     this
   }
-override def validate (){}
 
 
-  override def apply()={
+
+  def build()={
     new ValueMetadata_( stringValue,
                             tipe)
   }

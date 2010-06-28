@@ -28,39 +28,36 @@ sealed class CollectionMetadata_( collectionClass :Class[_],
 
 }
 
-class CollectionMetadataBuilder extends     TFluentBuilder[TCollectionMetadata]{
-  private [this] var  collectionClass :Class[_]=_
-  private [this] var valueType:String =_
-  private [this] var values:List[TMetadata]=_
+class CollectionMetadataBuilder {
+  private [this] var _collectionClass :Class[_]=_
+  private [this] var _valueType:String =_
+  private [this] var _values:List[TMetadata]=_
 
 
 
   def withCollectionClass(collectionClass :Class[_]) ={
-    this.collectionClass=collectionClass
+    this._collectionClass=collectionClass
     this
   }
 
   def withValueType(valueType:String)={
-    this.valueType= valueType
+    this._valueType= valueType
     this
   }
   def withValues( values:List[TMetadata])={
-    this.values=values
+    this._values=values
     this
   }
 
   def withValue(value: TMetadata)= {
-    this.values = values :+ value
+    this._values ::= value
     this
   }
 
-  override def validate (){}
-
-
-  override def apply()={
-    new CollectionMetadata_( collectionClass ,
-                                 valueType,
-                                 values)
+def build()={
+    new CollectionMetadata_(_collectionClass ,
+                                 _valueType,
+                                 _values)
   }
 }
 

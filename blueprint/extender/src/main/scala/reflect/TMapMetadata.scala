@@ -27,36 +27,36 @@ sealed class MapMetadata_(  keyType:String,
   override def getEntries()=entries
 }
 
-class MapMetadataBuilder  extends     TFluentBuilder[TMapMetadata]{
+class MapMetadataBuilder{
 
-  private [this] var  keyType:String=_
-  private [this] var valueType:String=_
-  private [this] var entries:List[TMapEntry]=_
+  private [this] var _keyType:String=_
+  private [this] var _valueType:String=_
+  private [this] var _entries:List[TMapEntry]=_
 
 
   def withKeyType(keyType:String)={
-    this.keyType=keyType
+    this._keyType=keyType
     this
   }
   def withValueType(valueType:String)={
-    this.valueType=valueType
+    this._valueType=valueType
     this
   }
   def withEntries(entries:List[TMapEntry])={
-    this.entries=entries
+    this._entries=entries
     this
   }
 
   def withEntry(entry:TMapEntry)={
-    this.entries=this.entries :+entry
+    this._entries::=entry
     this
   }
-  override def validate (){}
+ 
 
 
-  override def apply()={
-    new MapMetadata_(  keyType,
-                          valueType,
-                          entries)
+  def build()={
+    new MapMetadata_(_keyType,
+                          _valueType,
+                          _entries)
   }
 }

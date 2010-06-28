@@ -24,7 +24,7 @@ abstract class ComponentMetadata_(id :String , activation:Activation , dependsOn
 
 
 
-abstract class ComponentMetadataBuilder extends ABuilder with TFluentBuilder[TComponentMetadata]{
+abstract class ComponentMetadataBuilder extends ABuilder  {
   
   private [reflect] var _id :String=_
   private [reflect] var _activation:Activation=_

@@ -40,7 +40,7 @@ class ServiceMetadata_(
 }
 
 
-class ServiceMetadataBuilder extends /*ComponentMetadataBuilder with*/  TFluentBuilder[TServiceMetadata]{
+class ServiceMetadataBuilder {
 
 
   this : ComponentMetadataBuilder =>
@@ -87,10 +87,9 @@ class ServiceMetadataBuilder extends /*ComponentMetadataBuilder with*/  TFluentB
     this
   }
 
-  override def validate ():Unit={}
+ 
 
-
-  override def apply()={
+  def build={
     new ServiceMetadata_(
   _id ,
   _activation,

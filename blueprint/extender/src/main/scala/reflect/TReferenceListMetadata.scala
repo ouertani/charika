@@ -39,7 +39,7 @@ sealed class ReferenceListMetadata_ (
 }
 
 
-class ReferenceListMetadataBuilder extends /*ServiceReferenceMetadataBuilder with*/  TFluentBuilder[TReferenceListMetadata] {
+class ReferenceListMetadataBuilder {
   this:ServiceReferenceMetadataBuilder  with ComponentMetadataBuilder=>
   private [reflect] var  _memberType : MemberType=_
 
@@ -47,10 +47,10 @@ class ReferenceListMetadataBuilder extends /*ServiceReferenceMetadataBuilder wit
     _memberType=memberType
     this
   }
-  override def validate (){}
+  
 
 
-  override def apply()={
+  def build()={
     new ReferenceListMetadata_ (
       _id ,
       _activation,

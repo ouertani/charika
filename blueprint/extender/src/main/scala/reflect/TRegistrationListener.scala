@@ -29,7 +29,7 @@ sealed class RegistrationListener_ (
 }
 
 
-class RegistrationListenerBuilder extends  TFluentBuilder[TRegistrationListener] {
+class RegistrationListenerBuilder  {
 
   private [reflect] var _listenerComponent:TTarget=_
   private [reflect] var _registrationMethod:String=_
@@ -47,10 +47,10 @@ class RegistrationListenerBuilder extends  TFluentBuilder[TRegistrationListener]
     _unregistrationMethod=unregistrationMethod
     this
   }
-  override def validate (){}
+  
 
 
-  override def apply()={
+  def build={
     new RegistrationListener_ (
       _listenerComponent,
       _registrationMethod,
