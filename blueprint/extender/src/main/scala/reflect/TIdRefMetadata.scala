@@ -22,7 +22,7 @@ sealed class IdRefMetadata_(componentId:String) extends TIdRefMetadata {
 }
 
 
-class IdRefMetadataBuilder  extends     TBuilder[TIdRefMetadata]{
+class IdRefMetadataBuilder  extends     TFluentBuilder[TIdRefMetadata]{
   private [this] var componentId:String=_
 
   def withComponentId(componentId:String)={

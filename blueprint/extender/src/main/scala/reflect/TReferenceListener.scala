@@ -29,23 +29,24 @@ class ReferenceListener_(
 
 
 
-class ReferenceListenerBuilder extends    TBuilder[TReferenceListener]{
-  private [this] var  listenerComponent:TTarget=_
-  private [this] var bindMethod:String=_
-  private [this] var  unbindMethod:String=_
+class ReferenceListenerBuilder extends    TFluentBuilder[TReferenceListener]{
+  
+  private [reflect] var _listenerComponent:TTarget=_
+  private [reflect] var _bindMethod:String=_
+  private [reflect] var _unbindMethod:String=_
 
 
 
   def withListenerComponent  (listenerComponent:TTarget)={
-    this.listenerComponent=listenerComponent
+    _listenerComponent=listenerComponent
     this
   }
   def withBindMethod   (bindMethod:String)={
-    this.bindMethod=bindMethod
+   _bindMethod=bindMethod
     this
   }
   def withUnbindMethod   (unbindMethod:String)={
-    this.unbindMethod=unbindMethod
+    _unbindMethod=unbindMethod
     this
   }
   override def validate (){}
@@ -53,9 +54,9 @@ class ReferenceListenerBuilder extends    TBuilder[TReferenceListener]{
 
   override def apply()={
     new ReferenceListener_(
-      listenerComponent,
-      bindMethod,
-      unbindMethod
+      _listenerComponent,
+      _bindMethod,
+      _unbindMethod
     )
   }
 }

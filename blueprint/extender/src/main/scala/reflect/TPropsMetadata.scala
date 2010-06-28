@@ -23,7 +23,7 @@ sealed class PropsMetadata_( entries:List[TMapEntry]) extends TPropsMetadata {
   override def getEntries()= entries
 }
 
-class PropsMetadataBuilder  extends     TBuilder[TPropsMetadata]{
+class PropsMetadataBuilder  extends     TFluentBuilder[TPropsMetadata]{
   private [this] var entries:List[TMapEntry]=_
 
  def withEntries(entries:List[TMapEntry])={

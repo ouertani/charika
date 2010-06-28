@@ -29,22 +29,22 @@ sealed class RegistrationListener_ (
 }
 
 
-class RegistrationListenerBuilder extends  TBuilder[TRegistrationListener] {
+class RegistrationListenerBuilder extends  TFluentBuilder[TRegistrationListener] {
 
-  private [this] var    listenerComponent:TTarget=_
-  private [this] var  registrationMethod:String=_
-  private [this] var   unregistrationMethod:String=_
+  private [reflect] var _listenerComponent:TTarget=_
+  private [reflect] var _registrationMethod:String=_
+  private [reflect] var _unregistrationMethod:String=_
 
   def withListenerComponent(listenerComponent:TTarget)={
-    this.listenerComponent=listenerComponent
+    _listenerComponent=listenerComponent
     this
   }
   def withRegistrationMethod(registrationMethod:String)={
-    this.registrationMethod=registrationMethod
+    _registrationMethod=registrationMethod
     this
   }
   def withUnregistrationMethod(unregistrationMethod:String)={
-    this.unregistrationMethod=unregistrationMethod
+    _unregistrationMethod=unregistrationMethod
     this
   }
   override def validate (){}
@@ -52,8 +52,8 @@ class RegistrationListenerBuilder extends  TBuilder[TRegistrationListener] {
 
   override def apply()={
     new RegistrationListener_ (
-      listenerComponent,
-      registrationMethod,
-      unregistrationMethod)
+      _listenerComponent,
+      _registrationMethod,
+      _unregistrationMethod)
   }
 }

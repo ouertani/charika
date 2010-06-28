@@ -40,64 +40,66 @@ class ServiceMetadata_(
 }
 
 
-class ServiceMetadataBuilder extends ComponentMetadataBuilder with  TBuilder[TServiceMetadata]{
- 
-  private [this] var   serviceComponent:TTarget=_
-  private [this] var   interfaces:List[String]=_
-  private [this] var   autoExport:AutoExport=_
-  private [this] var   serviceProperties: List[TMapEntry]=_
-  private [this] var   ranking: Int=_
-  private [this] var   registrationListeners:Seq[TRegistrationListener]=_
+class ServiceMetadataBuilder extends /*ComponentMetadataBuilder with*/  TFluentBuilder[TServiceMetadata]{
+
+
+  this : ComponentMetadataBuilder =>
+  private [this] var   _serviceComponent:TTarget=_
+  private [this] var   _interfaces:List[String]=_
+  private [this] var   _autoExport:AutoExport=_
+  private [this] var   _serviceProperties: List[TMapEntry]=_
+  private [this] var   _ranking: Int=_
+  private [this] var   _registrationListeners:Seq[TRegistrationListener]=_
 
 
 
   def withServiceComponent (serviceComponent:TTarget)= {
-    this.serviceComponent=serviceComponent
+    _serviceComponent=serviceComponent
     this
   }
 
   def withInterfaces (interfaces:List[String])= {
-    this.interfaces=interfaces
+    _interfaces=interfaces
     this
   }
   def withInterfaces (interface:String)= {
-    this.interfaces=interfaces:+interface
+    _interfaces=_interfaces:+interface
     this
   }
   def withAutoExport (autoExport:AutoExport)= {
-    this.autoExport=autoExport
+    _autoExport=autoExport
     this
   }
   def withServiceProperties (serviceProperties: List[TMapEntry])= {
-    this.serviceProperties
+    _serviceProperties
     this
   }
   def withRanking (ranking: Int)= {
-    this.ranking=ranking
+    _ranking=ranking
     this
   }
   def withRegistrationListeners (registrationListeners:Seq[TRegistrationListener])= {
-    this.registrationListeners=registrationListeners
+    _registrationListeners=registrationListeners
     this
   }
   def withRegistrationListener (registrationListener:TRegistrationListener)= {
-    this.registrationListeners=registrationListeners:+registrationListener
+    _registrationListeners=_registrationListeners:+registrationListener
     this
   }
 
-  override def validate (){}
+  override def validate ():Unit={}
 
 
   override def apply()={
     new ServiceMetadata_(
-  id ,
-  activation,
-  dependsOns,
-  serviceComponent,
-  interfaces,
-  autoExport,
-  serviceProperties,
-  ranking,
-  registrationListeners )
+  _id ,
+  _activation,
+  _dependsOns,
+  _serviceComponent,
+  _interfaces,
+  _autoExport,
+  _serviceProperties,
+  _ranking,
+  _registrationListeners )
   }
 }

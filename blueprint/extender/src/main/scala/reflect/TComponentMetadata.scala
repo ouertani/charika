@@ -20,32 +20,48 @@ abstract class ComponentMetadata_(id :String , activation:Activation , dependsOn
   override def getId()=id
   override def getActivation()=activation.intValue
   override def getDependsOn()=dependsOns
-
-
 }
-abstract class ComponentMetadataBuilder{
 
-  protected [reflect] var id :String=_
-  protected [reflect] var activation:Activation=_
-  protected [reflect] var dependsOns:List[String]=_
+
+
+abstract class ComponentMetadataBuilder extends ABuilder with TFluentBuilder[TComponentMetadata]{
+  
+  private [reflect] var _id :String=_
+  private [reflect] var _activation:Activation=_
+  private [reflect] var _dependsOns:List[String]=_
+
 
   def withId(id :String )= {
-    this.id=id
-  }
-  def withActivation(activation:Activation)={
-    this.activation= activation
+    _id=id
     this
   }
+   def withActivation(activation:Activation):ComponentMetadataBuilder={
+     _activation=activation
+     this
+   }
+  def withActivation(activation:String):ComponentMetadataBuilder={
+    if((activation == null) || (activation isEmpty)){
+     withActivation( defaultActivation)
+    }
+    else {
+     activation match {
+       case "eager" =>  withActivation( Eager)
+       case "lazy" =>  withActivation( Lazy)
+       case e => error ( e +" invalid activation text")
+     }
+    }
+  
+  }
   def withDependsOns( dependsOns:List[String])={
-    this.dependsOns=dependsOns
+    _dependsOns=dependsOns
     this
   }
   def withDependsOn( dependsOn:String)={
-    this.dependsOns=dependsOns :+dependsOn
+    _dependsOns=_dependsOns :+dependsOn
     this
   }
 
- 
+
 
 
 

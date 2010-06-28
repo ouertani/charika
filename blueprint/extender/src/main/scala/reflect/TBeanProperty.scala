@@ -25,7 +25,7 @@ class BeanProperty_(name:String ,
 }
 
 
-class BeanPropertyBuilder extends     TBuilder[TBeanProperty] {
+class BeanPropertyBuilder extends     TFluentBuilder[TBeanProperty] {
   private [this] var name:String=_
   private [this] var value : TMetadata=_
 

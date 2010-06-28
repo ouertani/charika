@@ -42,35 +42,35 @@ class ServiceReferenceMetadata_ (
 }
 
 
-class ServiceReferenceMetadataBuilder extends ComponentMetadataBuilder  {
+class ServiceReferenceMetadataBuilder extends /*ComponentMetadataBuilder*/ TFluentBuilder[TServiceReferenceMetadata] {
 
-  
+  this:ComponentMetadataBuilder =>
 
-  protected [this] var   availability : Availability=_
-  protected [this] var   interface:String=_
-  protected [this] var   componentName:String=_
-  protected [this] var   filter:String=_
-  protected [this] var   referenceListeners:Iterable[TReferenceListener]=_
+  protected [reflect] var   _availability : Availability=_
+  protected [reflect] var   _interface:String=_
+  protected [reflect] var   _componentName:String=_
+  protected [reflect] var   _filter:String=_
+  protected [reflect] var   _referenceListeners:Iterable[TReferenceListener]=_
 
 
   def withAvailability(availability:Availability)={
-    this.availability=availability
+    _availability=availability
     this
   }
   def withInterface(interface:String)={
-    this.interface=interface
+    _interface=interface
     this
   }
   def withComponentName(componentName:String)={
-    this.componentName=componentName
+    _componentName=componentName
     this
   }
   def withFiler(filter :String)={
-    this.filter=filter
+    _filter=filter
     this
   }
   def withreerenceListeners( referenceListeners:Iterable[TReferenceListener])={
-    this.referenceListeners=referenceListeners
+    _referenceListeners=referenceListeners
     this
   }
 
@@ -79,13 +79,13 @@ class ServiceReferenceMetadataBuilder extends ComponentMetadataBuilder  {
 
   def apply()={
     new ServiceReferenceMetadata_ (
-  id ,
-  activation,
-  dependsOns,
-  availability ,
-  interface,
-  componentName,
-  filter,
-  referenceListeners)
+      _id ,
+      _activation,
+      _dependsOns,
+      _availability ,
+      _interface,
+      _componentName,
+      _filter,
+      _referenceListeners)
   }
 }
