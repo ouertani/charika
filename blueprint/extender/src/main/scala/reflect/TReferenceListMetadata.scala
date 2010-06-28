@@ -39,12 +39,27 @@ sealed class ReferenceListMetadata_ (
 }
 
 
-class ReferenceListMetadataBuilder extends ServiceReferenceMetadataBuilder {
+class ReferenceListMetadataBuilder extends ServiceReferenceMetadataBuilder with    TBuilder[TReferenceListMetadata] {
 
   private [this] var  memberType : MemberType=_
 
   def withMemberType(memberType : MemberType)= {
     this.memberType=memberType
     this
+  }
+  override def validate (){}
+
+
+  override def apply()={
+    new ReferenceListMetadata_ (
+      id ,
+      activation,
+      dependsOns,
+      availability,
+      interface,
+      componentName,
+      filter,
+      referenceListeners,
+      memberType)
   }
 }

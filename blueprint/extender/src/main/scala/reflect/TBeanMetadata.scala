@@ -45,7 +45,7 @@ sealed class BeanMetadata_(
  
 }
 
-class BeanMetadataBuilder  extends ComponentMetadataBuilder{
+class BeanMetadataBuilder  extends ComponentMetadataBuilder  with TBuilder[TBeanMetadata]{
  
   private [this] var className:String=null
   private [this] var initMethod:String =null
@@ -87,7 +87,7 @@ class BeanMetadataBuilder  extends ComponentMetadataBuilder{
     this
   }
 
-   def withBeanProperty(beanProperty:TBeanProperty)={
+  def withBeanProperty(beanProperty:TBeanProperty)={
     this.beanProperties = this.beanProperties:+beanProperty
     this
   }
@@ -104,6 +104,23 @@ class BeanMetadataBuilder  extends ComponentMetadataBuilder{
   def withScope(scope:Scope)={
     this.scope=scope
     this
+  }
+
+  override def validate (){}
+
+
+  override def apply()={
+    new BeanMetadata_( id ,
+                      activation,
+                      dependsOns,
+                      className,
+                      initMethod,
+                      destroyMethod,
+                      beanArguments,
+                      beanProperties,
+                      factoryMethod,
+                      factoryComponent,
+                      scope)
   }
 
 

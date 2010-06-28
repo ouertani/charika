@@ -25,7 +25,7 @@ class BeanProperty_(name:String ,
 }
 
 
-class BeanPropertyBuilder {
+class BeanPropertyBuilder extends     TBuilder[TBeanProperty] {
   private [this] var name:String=_
   private [this] var value : TMetadata=_
 
@@ -40,5 +40,11 @@ class BeanPropertyBuilder {
     this
   }
 
- 
+ override def validate (){}
+
+
+  override def apply()={
+    new BeanProperty_(name,
+                    value )
+  }
 }

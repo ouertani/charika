@@ -40,7 +40,7 @@ class ServiceMetadata_(
 }
 
 
-class ServiceMetadataBuilder extends ComponentMetadataBuilder{
+class ServiceMetadataBuilder extends ComponentMetadataBuilder with  TBuilder[TServiceMetadata]{
  
   private [this] var   serviceComponent:TTarget=_
   private [this] var   interfaces:List[String]=_
@@ -83,5 +83,21 @@ class ServiceMetadataBuilder extends ComponentMetadataBuilder{
   def withRegistrationListener (registrationListener:TRegistrationListener)= {
     this.registrationListeners=registrationListeners:+registrationListener
     this
+  }
+
+  override def validate (){}
+
+
+  override def apply()={
+    new ServiceMetadata_(
+  id ,
+  activation,
+  dependsOns,
+  serviceComponent,
+  interfaces,
+  autoExport,
+  serviceProperties,
+  ranking,
+  registrationListeners )
   }
 }

@@ -27,7 +27,7 @@ sealed class MapMetadata_(  keyType:String,
   override def getEntries()=entries
 }
 
-class MapMetadataBuilder{
+class MapMetadataBuilder  extends     TBuilder[TMapMetadata]{
 
   private [this] var  keyType:String=_
   private [this] var valueType:String=_
@@ -50,5 +50,13 @@ class MapMetadataBuilder{
   def withEntry(entry:TMapEntry)={
     this.entries=this.entries :+entry
     this
+  }
+  override def validate (){}
+
+
+  override def apply()={
+    new MapMetadata_(  keyType,
+                          valueType,
+                          entries)
   }
 }

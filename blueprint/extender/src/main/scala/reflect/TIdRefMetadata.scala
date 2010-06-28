@@ -22,11 +22,18 @@ sealed class IdRefMetadata_(componentId:String) extends TIdRefMetadata {
 }
 
 
-class IdRefMetadataBuilder {
+class IdRefMetadataBuilder  extends     TBuilder[TIdRefMetadata]{
   private [this] var componentId:String=_
 
   def withComponentId(componentId:String)={
     this.componentId=componentId
     this
+  }
+
+  override def validate (){}
+
+
+  override def apply()={
+    new IdRefMetadata_(componentId)
   }
 }

@@ -28,7 +28,7 @@ sealed class CollectionMetadata_( collectionClass :Class[_],
 
 }
 
-class CollectionMetadataBuilder {
+class CollectionMetadataBuilder extends     TBuilder[TCollectionMetadata]{
   private [this] var  collectionClass :Class[_]=_
   private [this] var valueType:String =_
   private [this] var values:List[TMetadata]=_
@@ -52,6 +52,15 @@ class CollectionMetadataBuilder {
   def withValue(value: TMetadata)= {
     this.values = values :+ value
     this
+  }
+
+  override def validate (){}
+
+
+  override def apply()={
+    new CollectionMetadata_( collectionClass ,
+                                 valueType,
+                                 values)
   }
 }
 
