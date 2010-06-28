@@ -52,7 +52,7 @@ object BeanMetadataBuilder{
 • factory-ref, factory-method
 """
 }
-class BeanMetadataBuilder  extends /*ComponentMetadataBuilder   with*/TFluentBuilder[TBeanMetadata]{
+class BeanMetadataBuilder   /*ComponentMetadataBuilder   with*/{
 
   this:ComponentMetadataBuilder =>
   private [reflect] var _className:Option[String]=None
@@ -114,8 +114,7 @@ class BeanMetadataBuilder  extends /*ComponentMetadataBuilder   with*/TFluentBui
     this
   }
 
-// override def validate ():Unit={}
-  override def validate (){
+ def validate (){
     if( this._scope == Prototype) {
       need(_destroyMethod isEmpty ,"The destroyMethod must not be set when the scope is prototype. ")
       need (this._activation != Eager ,"The activation must not be set to eager if the bean also has prototype scope.")
@@ -131,19 +130,19 @@ class BeanMetadataBuilder  extends /*ComponentMetadataBuilder   with*/TFluentBui
   }
 
 
-  override def apply()={
-    new BeanMetadata_( _id ,
-                      _activation,
-                      _dependsOns,
-                      _className,
-                      _initMethod,
-                      _destroyMethod,
-                      _beanArguments,
-                      _beanProperties,
-                      _factoryMethod,
-                      _factoryComponent,
-                      _scope)
-  }
+//  override def apply()={
+//    new BeanMetadata_( _id ,
+//                      _activation,
+//                      _dependsOns,
+//                      _className,
+//                      _initMethod,
+//                      _destroyMethod,
+//                      _beanArguments,
+//                      _beanProperties,
+//                      _factoryMethod,
+//                      _factoryComponent,
+//                      _scope)
+//  }
 
 
 //

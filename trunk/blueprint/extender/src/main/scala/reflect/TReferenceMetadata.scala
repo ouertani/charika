@@ -37,7 +37,7 @@ sealed class ReferenceMetadata_ (
   override def getTimeout()=timeOut
 }
 
-class ReferenceMetadataBuilder extends /* ServiceReferenceMetadataBuilder with */   TFluentBuilder[TReferenceMetadata]{
+class ReferenceMetadataBuilder {
   this :ServiceReferenceMetadataBuilder with ComponentMetadataBuilder =>
   private [reflect] var   _timeOut:Long =_
 
@@ -51,10 +51,9 @@ class ReferenceMetadataBuilder extends /* ServiceReferenceMetadataBuilder with *
   }
 
 
-  override def validate (){}
+ 
 
-
-  override def apply()={
+def build()={
     new ReferenceMetadata_ (
       _id ,
       _activation,

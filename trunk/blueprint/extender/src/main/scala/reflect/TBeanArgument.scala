@@ -33,31 +33,27 @@ sealed class BeanArgument_ (val value : TMetadata, val valueType : Option[String
 
 
 
-class BeanArgumentBuilder extends TFluentBuilder[TBeanArgument]  {
-  private [this] var value : TMetadata=_
-  private [this] var valueType : Option[String]=None
-  private [this] var index : Option[Int]=None
+class BeanArgumentBuilder   {
+  private [this] var _value : TMetadata=_
+  private [this] var _valueType : Option[String]=None
+  private [this] var _index : Option[Int]=None
 
 
   def withValue(value : TMetadata)={
-    this.value=value
+    this._value=value
     this
   }
   def withValuetype(valueType : String)={
-    this.valueType=valueType
+    this._valueType=valueType
     this
   }
   def withIndex(index : Int)={
-    this.index=index
+    this._index=index
     this
   }
 
-  override def validate (){   
-  }
-
  
-
-  override def apply()={
-    new BeanArgument_ (value, valueType , index )
+ def build()={
+    new BeanArgument_ (_value, _valueType , _index )
   }
 }

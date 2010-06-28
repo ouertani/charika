@@ -24,25 +24,21 @@ sealed class MapEntry_( key:TNonNullMetadata,
 }
 
 
-class MapEntryBuilder extends     TFluentBuilder[TMapEntry] {
-  private [this] var  key:TNonNullMetadata=_
-  private [this] var  value:TMetadata=_
+class MapEntryBuilder  {
+  private [this] var  _key:TNonNullMetadata=_
+  private [this] var  _value:TMetadata=_
 
 
   def withTNonNullMetadata(key:TNonNullMetadata)={
-    this.key=key
+    this._key=key
     this
   }
   def withTMetadata(value:TMetadata)={
-    this.value=value
+    this._value=value
     this
   }
-
-  override def validate (){}
-
-
-  override def apply()={
-    new MapEntry_( key,
-                value)
+def build()={
+    new MapEntry_( _key,
+                _value)
   }
 }

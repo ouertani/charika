@@ -22,18 +22,15 @@ sealed class IdRefMetadata_(componentId:String) extends TIdRefMetadata {
 }
 
 
-class IdRefMetadataBuilder  extends     TFluentBuilder[TIdRefMetadata]{
-  private [this] var componentId:String=_
+class IdRefMetadataBuilder   {
+  private [this] var _componentId:String=_
 
   def withComponentId(componentId:String)={
-    this.componentId=componentId
+    this._componentId=componentId
     this
   }
 
-  override def validate (){}
-
-
-  override def apply()={
-    new IdRefMetadata_(componentId)
+ def build()={
+    new IdRefMetadata_(_componentId)
   }
 }

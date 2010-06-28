@@ -42,7 +42,7 @@ class ServiceReferenceMetadata_ (
 }
 
 
-class ServiceReferenceMetadataBuilder extends /*ComponentMetadataBuilder*/ TFluentBuilder[TServiceReferenceMetadata] {
+class ServiceReferenceMetadataBuilder {
 
   this:ComponentMetadataBuilder =>
 
@@ -77,7 +77,7 @@ class ServiceReferenceMetadataBuilder extends /*ComponentMetadataBuilder*/ TFlue
  
 
 
-  def apply()={
+  def build={
     new ServiceReferenceMetadata_ (
       _id ,
       _activation,

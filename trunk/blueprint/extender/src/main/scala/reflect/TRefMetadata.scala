@@ -20,16 +20,16 @@ sealed class RefMetadata_(componentId:String) extends TRefMetadata {
   override def getComponentId()=componentId
 }
 
-class RefMetadataBuilder extends  TFluentBuilder[TRefMetadata]{
-  private [this] var componentId:String=_
+class RefMetadataBuilder  {
+  private [this] var _componentId:String=_
   def withcomponentId(componentId:String){
-    this.componentId=componentId
+    this._componentId=componentId
     this
   }
-  override def validate (){}
 
 
-  override def apply()={
-    new RefMetadata_(componentId)
+
+  def build()={
+    new RefMetadata_(_componentId)
   }
 }

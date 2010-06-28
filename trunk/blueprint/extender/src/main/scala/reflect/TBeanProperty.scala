@@ -25,26 +25,23 @@ class BeanProperty_(name:String ,
 }
 
 
-class BeanPropertyBuilder extends     TFluentBuilder[TBeanProperty] {
-  private [this] var name:String=_
-  private [this] var value : TMetadata=_
+class BeanPropertyBuilder  {
+  private [this] var _name:String=_
+  private [this] var _value : TMetadata=_
 
 
 
   def withName( name:String)={
-    this.name=name
+    this._name=name
     this
   }
   def withValue(value : TMetadata)={
-    this.value=value
+    this._value=value
     this
   }
 
- override def validate (){}
-
-
-  override def apply()={
-    new BeanProperty_(name,
-                    value )
+def build()={
+    new BeanProperty_(_name,
+                    _value )
   }
 }
