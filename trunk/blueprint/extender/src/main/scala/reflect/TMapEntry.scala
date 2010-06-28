@@ -24,7 +24,7 @@ sealed class MapEntry_( key:TNonNullMetadata,
 }
 
 
-class MapEntryBuilder extends     TBuilder[TMapEntry] {
+class MapEntryBuilder extends     TFluentBuilder[TMapEntry] {
   private [this] var  key:TNonNullMetadata=_
   private [this] var  value:TMetadata=_
 

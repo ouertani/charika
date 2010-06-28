@@ -14,6 +14,7 @@ package reflect
 
 import org.osgi.service.blueprint.reflect.BeanMetadata
 import scala.collection.JavaConversions._
+import scala.xml.Node
 
 
 trait TBeanMetadata extends BeanMetadata with TTarget with TComponentMetadata
@@ -51,101 +52,124 @@ object BeanMetadataBuilder{
 • factory-ref, factory-method
 """
 }
-class BeanMetadataBuilder  extends ComponentMetadataBuilder  with TBuilder[TBeanMetadata]{
- 
-  private [this] var className:Option[String]=None
-  private [this] var initMethod:Option[String] =None
-  private [this] var destroyMethod:Option[String]=None
-  private [this] var beanArguments:List[TBeanArgument]=List()
-  private [this] var beanProperties:List[TBeanProperty]=List()
-  private [this] var factoryMethod:Option[String]=None
-  private [this] var factoryComponent:TTarget=null
-  private [this] var scope:Scope=_
+class BeanMetadataBuilder  extends /*ComponentMetadataBuilder   with*/TFluentBuilder[TBeanMetadata]{
+
+  this:ComponentMetadataBuilder =>
+  private [reflect] var _className:Option[String]=None
+  private [reflect] var _initMethod:Option[String] =None
+  private [reflect] var _destroyMethod:Option[String]=None
+  private [reflect] var _beanArguments:List[TBeanArgument]=List()
+  private [reflect] var _beanProperties:List[TBeanProperty]=List()
+  private [reflect] var _factoryMethod:Option[String]=None
+  private [reflect] var _factoryComponent:TTarget=null
+  private [reflect] var _scope:Scope=_
 
 
 
   
   def withClassName(className:String)={
-    this.className=className
+    _className=className
     this
   }
   def withInitMethod( initMethod:String )={
-    this.initMethod=initMethod
+    _initMethod=initMethod
     this
   }
   def withDestroyMethod(destroyMethod:String)={
-    this.destroyMethod=destroyMethod
+    _destroyMethod=destroyMethod
     this
   }
   def withBeanArguments(beanArguments:List[TBeanArgument])={
-    this.beanArguments=beanArguments
+    _beanArguments=beanArguments
     this
   }
 
   def withBeanArgument(beanArgument:TBeanArgument)={
-    this.beanArguments = beanArguments:+beanArgument
+    _beanArguments = _beanArguments:+beanArgument
     this
   }
 
 
   def withBeanProperties(beanProperties:List[TBeanProperty])={
-    this.beanProperties=beanProperties
+    _beanProperties=beanProperties
     this
   }
 
   def withBeanProperty(beanProperty:TBeanProperty)={
-    this.beanProperties = this.beanProperties:+beanProperty
+    _beanProperties = _beanProperties:+beanProperty
     this
   }
 
 
   def withFactoryMethod(factoryMethod:String)={
-    this.factoryMethod=factoryMethod
+    _factoryMethod=factoryMethod
     this
   }
   def withFactoryComponent(factoryComponent:TTarget)={
-    this.factoryComponent=factoryComponent
+    _factoryComponent=factoryComponent
     this
   }
   def withScope(scope:Scope)={
-    this.scope=scope
+    _scope=scope
     this
   }
 
+// override def validate ():Unit={}
   override def validate (){
-    if(Prototype == scope) {
-      need(destroyMethod isEmpty ,"The destroyMethod must not be set when the scope is prototype. ")
-      need (activation != Eager ,"The activation must not be set to eager if the bean also has prototype scope.")
+    if( this._scope == Prototype) {
+      need(_destroyMethod isEmpty ,"The destroyMethod must not be set when the scope is prototype. ")
+      need (this._activation != Eager ,"The activation must not be set to eager if the bean also has prototype scope.")
     }
-    if(className isDefined) {
-      need (factoryComponent == null ,BeanMetadataBuilder.INVALID_COMBINATIONS)
+    if(_className isDefined) {
+      need (_factoryComponent == null ,BeanMetadataBuilder.INVALID_COMBINATIONS)
 
-      if(factoryComponent != null) {
-        need(factoryMethod isDefined,BeanMetadataBuilder.INVALID_COMBINATIONS)
+      if(_factoryComponent != null) {
+        need(_factoryMethod isDefined,BeanMetadataBuilder.INVALID_COMBINATIONS)
       }
     }
-    need((className isDefined) || (factoryComponent != null) ||( factoryMethod isDefined ),BeanMetadataBuilder.INVALID_COMBINATIONS )
+    need((_className isDefined) || (_factoryComponent != null) ||( _factoryMethod isDefined ),BeanMetadataBuilder.INVALID_COMBINATIONS )
   }
 
 
   override def apply()={
-    new BeanMetadata_( id ,
-                      activation,
-                      dependsOns,
-                      className,
-                      initMethod,
-                      destroyMethod,
-                      beanArguments,
-                      beanProperties,
-                      factoryMethod,
-                      factoryComponent,
-                      scope)
+    new BeanMetadata_( _id ,
+                      _activation,
+                      _dependsOns,
+                      _className,
+                      _initMethod,
+                      _destroyMethod,
+                      _beanArguments,
+                      _beanProperties,
+                      _factoryMethod,
+                      _factoryComponent,
+                      _scope)
   }
 
 
-
-  private [this] def validateArguments(){
-    val (indexed, notindexed ) =beanArguments span (_.index isDefined)
-  }
-
+//
+//  private [this] def validateArguments(){
+//    if(!(_beanArguments isEmpty)){
+//      val (indexed, notIndexed ) =_beanArguments span (_.index isDefined)
+//      need ((indexed isEmpty) ||( notIndexed isEmpty) ,"Either all arguments have a specified index or none have a specified index.")
+//      if(notIndexed isEmpty ) {
+//        indexed.map(x=>need (x.index.get >= 0 ,"If indexes are specified, they must be unique and run from 0..(n-1), where n is the number of arguments."))
+//        for ( i<- 0 to (indexed.size -1) ){
+//          need (indexed.find(_.index.get == i) isDefined,"If indexes are specified, they must be unique and run from 0..(n-1), where n is the number of arguments.")
+//        }
+//      }
+//    }
+//  }
 }
+
+//class BeanMetadataParser extends  AComponentParser[TBeanMetadata] {
+//
+//  override def  parseElement( node:Node):TBeanMetadata = {
+//    new BeanMetadataBuilder() .
+//    withId(node \ "@id").withScope(Prototype)
+////    withActivation("ds").
+//
+//  }
+   
+//}
+  
+

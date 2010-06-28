@@ -28,7 +28,7 @@ sealed class CollectionMetadata_( collectionClass :Class[_],
 
 }
 
-class CollectionMetadataBuilder extends     TBuilder[TCollectionMetadata]{
+class CollectionMetadataBuilder extends     TFluentBuilder[TCollectionMetadata]{
   private [this] var  collectionClass :Class[_]=_
   private [this] var valueType:String =_
   private [this] var values:List[TMetadata]=_

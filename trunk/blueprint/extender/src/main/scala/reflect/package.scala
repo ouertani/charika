@@ -30,7 +30,7 @@ package object reflect{
     case None =>null
   }
 
-  implicit def toString(node:scala.xml.NodeSeq):Option[String]=node.text
+  implicit def toString(node:scala.xml.NodeSeq):String=node.text
 
   implicit def toOptionOfInt(string : String):Option[Int]= {
     try {
@@ -93,9 +93,17 @@ package object reflect{
 
 
 
-  def need(b :Boolean, msg : String) {
+  def need(b :Boolean, msg : String):Unit={
     if(!b) throw new ComponentDefinitionException("Unknown element " + msg);
+   
+  }
+  def error( msg : String) : Nothing={
+   throw new ComponentDefinitionException("Unknown element " + msg);
   }
 
+
+  def  genId()={
+     -1;
+  }
 
 }

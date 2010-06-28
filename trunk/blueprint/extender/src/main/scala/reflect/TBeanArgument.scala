@@ -33,7 +33,7 @@ sealed class BeanArgument_ (val value : TMetadata, val valueType : Option[String
 
 
 
-class BeanArgumentBuilder extends TBuilder[TBeanArgument]  {
+class BeanArgumentBuilder extends TFluentBuilder[TBeanArgument]  {
   private [this] var value : TMetadata=_
   private [this] var valueType : Option[String]=None
   private [this] var index : Option[Int]=None
@@ -52,7 +52,7 @@ class BeanArgumentBuilder extends TBuilder[TBeanArgument]  {
     this
   }
 
-  override def validate (){
+  override def validate (){   
   }
 
  

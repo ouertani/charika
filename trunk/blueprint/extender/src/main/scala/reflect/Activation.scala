@@ -13,6 +13,7 @@ package net.dikka.charika.blueprint
 package reflect
 
 
+
 sealed trait Activation { val   intValue:Int  }
 case object Lazy extends Activation {val intValue=2 }
 case object Eager extends Activation{ val intValue=1}

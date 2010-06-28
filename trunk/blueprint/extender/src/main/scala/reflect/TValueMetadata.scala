@@ -22,7 +22,7 @@ sealed class ValueMetadata_( stringValue:String,
   override def getType()=tipe
 }
 
-class ValueMetadataBuilder extends  TBuilder[TValueMetadata]{
+class ValueMetadataBuilder extends  TFluentBuilder[TValueMetadata]{
   private [this] var stringValue:String=_
   private [this] var tipe:String=_
 

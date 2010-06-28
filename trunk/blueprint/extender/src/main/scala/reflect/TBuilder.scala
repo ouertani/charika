@@ -17,11 +17,16 @@ import org.osgi.service.blueprint.container.ComponentDefinitionException
 trait TBuilder[T] extends Function0[T] {
  
 
-  override def apply ():T={
-    validate
-    this.apply
-
-  }
+//  override def apply ():T={
+//    validate
+//    this.apply
+//
+//  }
+//  @throws(classOf[ComponentDefinitionException])
+//  def validate():Unit
+}
+trait TValidator [T] {
   @throws(classOf[ComponentDefinitionException])
   def validate():Unit
 }
+trait TFluentBuilder[T] extends TBuilder[T] with TValidator[T]

@@ -27,7 +27,7 @@ sealed class MapMetadata_(  keyType:String,
   override def getEntries()=entries
 }
 
-class MapMetadataBuilder  extends     TBuilder[TMapMetadata]{
+class MapMetadataBuilder  extends     TFluentBuilder[TMapMetadata]{
 
   private [this] var  keyType:String=_
   private [this] var valueType:String=_
