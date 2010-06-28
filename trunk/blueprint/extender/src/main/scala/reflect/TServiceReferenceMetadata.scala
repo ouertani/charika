@@ -19,7 +19,7 @@ import org.osgi.service.blueprint.reflect.ServiceReferenceMetadata
 
 trait TServiceReferenceMetadata  extends ServiceReferenceMetadata with TComponentMetadata
 
-class ServiceReferenceMetadata_ (
+abstract class ServiceReferenceMetadata_ (
   id :String ,
   activation:Activation ,
   dependsOns:List[String],  
@@ -27,9 +27,11 @@ class ServiceReferenceMetadata_ (
   interface:String,
   componentName:String,
   filter:String,
-  referenceListeners:Iterable[TReferenceListener] )
-  extends ComponentMetadata_ (id , activation, dependsOns)
-  with TServiceReferenceMetadata {
+  referenceListeners:Iterable[TReferenceListener]
+)extends ComponentMetadata_ (id ,
+                             activation,
+                             dependsOns)
+    with TServiceReferenceMetadata {
     
   
   override def getAvailability()=availability.intValue
@@ -37,4 +39,37 @@ class ServiceReferenceMetadata_ (
   override def getComponentName()=componentName
   override def getFilter()=filter
   override def getReferenceListeners()=referenceListeners
+}
+
+
+class ServiceReferenceMetadataBuilder extends ComponentMetadataBuilder {
+  private [this] var   availability : Availability=_
+  private [this] var   interface:String=_
+  private [this] var   componentName:String=_
+  private [this] var   filter:String=_
+  private [this] var   referenceListeners:Iterable[TReferenceListener]=_
+
+
+  def withAvailability(availability:Availability)={
+    this.availability=availability
+    this
+  }
+  def withInterface(interface:String)={
+    this.interface=interface
+    this
+  }
+  def withComponentName(componentName:String)={
+    this.componentName=componentName
+    this
+  }
+  def withFiler(filter :String)={
+    this.filter=filter
+    this
+  }
+  def withreerenceListeners( referenceListeners:Iterable[TReferenceListener])={
+    this.referenceListeners=referenceListeners
+    this
+  }
+
+  
 }

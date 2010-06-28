@@ -18,7 +18,7 @@ import scala.collection.Iterable
 trait TReferenceListMetadata extends ReferenceListMetadata with TServiceReferenceMetadata
 
 
-class ReferenceListMetadata_ (
+sealed class ReferenceListMetadata_ (
   id :String ,
   activation:Activation ,
   dependsOns:List[String],
@@ -36,4 +36,15 @@ class ReferenceListMetadata_ (
                                                             filter,
                                                             referenceListeners) with TReferenceListMetadata {
   override def getMemberType()=memberType.intValue
+}
+
+
+class ReferenceListMetadataBuilder extends ServiceReferenceMetadataBuilder {
+
+  private [this] var  memberType : MemberType=_
+
+  def withMemberType(memberType : MemberType)= {
+    this.memberType=memberType
+    this
+  }
 }

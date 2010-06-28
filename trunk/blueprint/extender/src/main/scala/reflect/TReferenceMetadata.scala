@@ -17,7 +17,7 @@ import org.osgi.service.blueprint.reflect.ReferenceMetadata
 trait TReferenceMetadata extends ReferenceMetadata with TTarget with TServiceReferenceMetadata
 
 
-class ReferenceMetadata_ (
+sealed class ReferenceMetadata_ (
   id :String ,
   activation:Activation ,
   dependsOns:List[String],  
@@ -37,3 +37,19 @@ class ReferenceMetadata_ (
   override def getTimeout()=timeOut
 }
 
+class ReferenceMetadataBuilder extends ComponentMetadataBuilder{ 
+  private [this] var   timeOut:Long =_
+
+
+
+ 
+
+  def withTimeOut (timeOut:Long)={
+    this.timeOut=timeOut
+    this
+  }
+
+ 
+
+  
+}

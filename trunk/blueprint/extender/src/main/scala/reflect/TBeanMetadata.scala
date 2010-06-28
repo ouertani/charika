@@ -45,10 +45,8 @@ sealed class BeanMetadata_(
  
 }
 
-class BeanMetadataBuilder {
-  private [this] var id :String=null
-  private [this] var activation:Activation=Eager
-  private [this] var dependsOns:List[String]=List()
+class BeanMetadataBuilder  extends ComponentMetadataBuilder{
+ 
   private [this] var className:String=null
   private [this] var initMethod:String =null
   private [this] var  destroyMethod:String=null
@@ -58,20 +56,7 @@ class BeanMetadataBuilder {
   private [this] var factoryComponent:TTarget=null
   private [this] var scope:Scope=Singleton
 
-  def withId(id :String) ={
-    this.id=id
-    this
-  }
-  def withActivation(activation:Activation) ={
-    this.activation=activation
-    this
-  }
 
-
-  def withDependsOns(dependsOns:List[String])={
-    this.dependsOns=dependsOns
-    this
-  }
 
   
   def withClassName(className:String)={

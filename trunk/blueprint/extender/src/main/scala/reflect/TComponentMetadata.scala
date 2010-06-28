@@ -20,4 +20,28 @@ abstract class ComponentMetadata_(id :String , activation:Activation , dependsOn
   override def getId()=id
   override def getActivation()=activation.intValue
   override def getDependsOn()=dependsOns
+
+
+}
+class ComponentMetadataBuilder {
+
+  private [this] var id :String=_
+  private [this] var activation:Activation=_
+  private [this] var dependsOns:List[String]=_
+
+  def withId(id :String )= {
+    this.id=id
+  }
+  def withActivation(activation:Activation)={
+    this.activation= activation
+    this
+  }
+  def withDependsOns( dependsOns:List[String])={
+    this.dependsOns=dependsOns
+    this
+  }
+  def withDependsOn( dependsOn:String)={
+    this.dependsOns=dependsOns :+dependsOn
+    this
+  }
 }
