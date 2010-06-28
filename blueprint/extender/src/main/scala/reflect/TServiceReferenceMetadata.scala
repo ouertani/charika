@@ -74,7 +74,7 @@ class ServiceReferenceMetadataBuilder extends /*ComponentMetadataBuilder*/ TFlue
     this
   }
 
-  def validate (){}
+ 
 
 
   def apply()={
