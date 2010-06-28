@@ -18,11 +18,37 @@ import scala.collection.JavaConversions._
 trait TMapMetadata extends MapMetadata with TNonNullMetadata
 
 
-class MapMetadata_(  keyType:String,
-                           valueType:String,
-                           entries:List[TMapEntry]
+sealed class MapMetadata_(  keyType:String,
+                          valueType:String,
+                          entries:List[TMapEntry]
 ) extends TMapMetadata {
   override def getKeyType()=keyType
   override def getValueType()=valueType
   override def getEntries()=entries
+}
+
+class MapMetadataBuilder{
+
+  private [this] var  keyType:String=_
+  private [this] var valueType:String=_
+  private [this] var entries:List[TMapEntry]=_
+
+
+  def withKeyType(keyType:String)={
+    this.keyType=keyType
+    this
+  }
+  def withValueType(valueType:String)={
+    this.valueType=valueType
+    this
+  }
+  def withEntries(entries:List[TMapEntry])={
+    this.entries=entries
+    this
+  }
+
+  def withEntry(entry:TMapEntry)={
+    this.entries=this.entries :+entry
+    this
+  }
 }

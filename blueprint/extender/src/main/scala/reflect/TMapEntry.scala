@@ -17,8 +17,24 @@ import org.osgi.service.blueprint.reflect.MapEntry
 trait TMapEntry extends MapEntry
 
 
-class MapEntry_( key:TNonNullMetadata,
+sealed class MapEntry_( key:TNonNullMetadata,
                 value:TMetadata) extends TMapEntry {
   override def getKey()=key
   override  def getValue() =value
+}
+
+
+class MapEntryBuilder {
+  private [this] var  key:TNonNullMetadata=_
+  private [this] var  value:TMetadata=_
+
+
+  def withTNonNullMetadata(key:TNonNullMetadata)={
+    this.key=key
+    this
+  }
+  def withTMetadata(value:TMetadata)={
+    this.value=value
+    this
+  }
 }

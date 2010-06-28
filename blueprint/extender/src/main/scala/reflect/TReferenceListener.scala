@@ -17,10 +17,36 @@ import org.osgi.service.blueprint.reflect.ReferenceListener
 trait TReferenceListener extends ReferenceListener
 
 class ReferenceListener_(
-  listenerComponent:TTarget,bindMethod:String,unbindMethod:String
+  listenerComponent:TTarget,
+  bindMethod:String,
+  unbindMethod:String
 ) extends TReferenceListener {
 
   override def  getListenerComponent()=listenerComponent
   override  def getBindMethod()=bindMethod
   override def getUnbindMethod()=unbindMethod
+}
+
+
+
+class ReferenceListenerBuilder {
+  private [this] var  listenerComponent:TTarget=_
+  private [this] var bindMethod:String=_
+  private [this] var  unbindMethod:String=_
+
+
+
+  def withListenerComponent  (listenerComponent:TTarget)={
+    this.listenerComponent=listenerComponent
+    this
+  }
+  def withBindMethod   (bindMethod:String)={
+    this.bindMethod=bindMethod
+    this
+  }
+  def withUnbindMethod   (unbindMethod:String)={
+    this.unbindMethod=unbindMethod
+    this
+  }
+
 }

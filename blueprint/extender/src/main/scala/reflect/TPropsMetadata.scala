@@ -19,6 +19,21 @@ import scala.collection.JavaConversions._
 
 trait TPropsMetadata extends PropsMetadata with TNonNullMetadata
 
-class PropsMetadata_( entries:List[TMapEntry]) extends TPropsMetadata {
+sealed class PropsMetadata_( entries:List[TMapEntry]) extends TPropsMetadata {
   override def getEntries()= entries
 }
+
+class PropsMetadataBuilder {
+  private [this] var entries:List[TMapEntry]=_
+
+ def withEntries(entries:List[TMapEntry])={
+    this.entries=entries
+    this
+  }
+
+  def withEntry(entry:TMapEntry)={
+    this.entries=this.entries :+entry
+    this
+  }
+}
+

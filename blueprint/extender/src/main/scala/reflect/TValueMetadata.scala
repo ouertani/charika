@@ -16,8 +16,25 @@ import org.osgi.service.blueprint.reflect.ValueMetadata
 
 trait TValueMetadata  extends ValueMetadata with TNonNullMetadata
 
-class ValueMetadata_( stringValue:String,
-                         tipe:String) extends TValueMetadata {
+sealed class ValueMetadata_( stringValue:String,
+                            tipe:String) extends TValueMetadata {
   override def  getStringValue()=stringValue
   override def getType()=tipe
+}
+
+class ValueMetadataBuilder {
+  private [this] var stringValue:String=_
+  private [this] var tipe:String=_
+
+
+  def withStringValue(stringValue:String)={
+    this.stringValue=stringValue
+    this
+  }
+  def withType(tipe:String)={
+    this.tipe=tipe
+    this
+  }
+
+
 }

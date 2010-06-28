@@ -19,11 +19,14 @@ trait TServiceMetadata extends ServiceMetadata with TComponentMetadata
 
 
 class ServiceMetadata_(
-  id :String , activation:Activation , dependsOns:List[String],
-  getServiceComponent:TTarget,
-  getInterfaces:List[String],
+  id :String , 
+  activation:Activation ,
+  dependsOns:List[String],
+  serviceComponent:TTarget,
+  interfaces:List[String],
   autoExport:AutoExport,
-  serviceProperties: List[TMapEntry],ranking: Int,
+  serviceProperties: List[TMapEntry],
+  ranking: Int,
   registrationListeners:Seq[TRegistrationListener] ) extends ComponentMetadata_(id  , activation, dependsOns) with TServiceMetadata {
 
 
@@ -34,4 +37,51 @@ class ServiceMetadata_(
   override def getServiceProperties()=serviceProperties
   override def getRanking()=ranking
   override def getRegistrationListeners()=registrationListeners
+}
+
+
+class ServiceMetadataBuilder extends ComponentMetadataBuilder{
+ 
+  private [this] var   serviceComponent:TTarget=_
+  private [this] var   interfaces:List[String]=_
+  private [this] var   autoExport:AutoExport=_
+  private [this] var   serviceProperties: List[TMapEntry]=_
+  private [this] var   ranking: Int=_
+  private [this] var   registrationListeners:Seq[TRegistrationListener]=_
+
+
+
+  def withServiceComponent (serviceComponent:TTarget)= {
+    this.serviceComponent=serviceComponent
+    this
+  }
+
+  def withInterfaces (interfaces:List[String])= {
+    this.interfaces=interfaces
+    this
+  }
+  def withInterfaces (interface:String)= {
+    this.interfaces=interfaces:+interface
+    this
+  }
+  def withAutoExport (autoExport:AutoExport)= {
+    this.autoExport=autoExport
+    this
+  }
+  def withServiceProperties (serviceProperties: List[TMapEntry])= {
+    this.serviceProperties
+    this
+  }
+  def withRanking (ranking: Int)= {
+    this.ranking=ranking
+    this
+  }
+  def withRegistrationListeners (registrationListeners:Seq[TRegistrationListener])= {
+    this.registrationListeners=registrationListeners
+    this
+  }
+  def withRegistrationListener (registrationListener:TRegistrationListener)= {
+    this.registrationListeners=registrationListeners:+registrationListener
+    this
+  }
 }

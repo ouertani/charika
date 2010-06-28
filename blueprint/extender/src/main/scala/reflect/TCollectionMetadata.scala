@@ -28,8 +28,8 @@ sealed class CollectionMetadata_( collectionClass :Class[_],
 
 }
 
-trait CollectionMetadataBuilder {
-  private [this] var collectionClass :Class[_]=_
+class CollectionMetadataBuilder {
+  private [this] var  collectionClass :Class[_]=_
   private [this] var valueType:String =_
   private [this] var values:List[TMetadata]=_
 
@@ -39,8 +39,6 @@ trait CollectionMetadataBuilder {
     this.collectionClass=collectionClass
     this
   }
-
-
 
   def withValueType(valueType:String)={
     this.valueType= valueType

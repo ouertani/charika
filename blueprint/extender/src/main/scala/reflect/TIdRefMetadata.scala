@@ -17,6 +17,16 @@ import org.osgi.service.blueprint.reflect.IdRefMetadata
 trait TIdRefMetadata extends IdRefMetadata with TNonNullMetadata
 
 
-class IdRefMetadata_(componentId:String) extends TIdRefMetadata {
+sealed class IdRefMetadata_(componentId:String) extends TIdRefMetadata {
   override def  getComponentId()=componentId
+}
+
+
+class IdRefMetadataBuilder {
+  private [this] var componentId:String=_
+
+  def withComponentId(componentId:String)={
+    this.componentId=componentId
+    this
+  }
 }
