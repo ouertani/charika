@@ -25,6 +25,10 @@ package object reflect{
     else Some(string)
   }
 
+  implicit def toString(op :Option[String])= op match {
+    case Some(x)=>x
+    case None =>null
+  }
 
   implicit def toString(node:scala.xml.NodeSeq):Option[String]=node.text
 

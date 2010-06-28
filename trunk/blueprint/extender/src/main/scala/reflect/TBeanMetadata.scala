@@ -44,17 +44,23 @@ sealed class BeanMetadata_(
 
  
 }
-
+object BeanMetadataBuilder{
+  val INVALID_COMBINATIONS="""The following combinations of arguments are valid, all other combinations are invalid:
+• className
+• className, factory-method
+• factory-ref, factory-method
+"""
+}
 class BeanMetadataBuilder  extends ComponentMetadataBuilder  with TBuilder[TBeanMetadata]{
  
-  private [this] var className:String=null
-  private [this] var initMethod:String =null
-  private [this] var  destroyMethod:String=null
+  private [this] var className:Option[String]=None
+  private [this] var initMethod:Option[String] =None
+  private [this] var  destroyMethod:Option[String]=None
   private [this] var  beanArguments:List[TBeanArgument]=List()
   private [this] var  beanProperties:List[TBeanProperty]=List()
-  private [this] var factoryMethod:String=null
+  private [this] var factoryMethod:Option[String]=None
   private [this] var factoryComponent:TTarget=null
-  private [this] var scope:Scope=Singleton
+  private [this] var scope:Scope=_
 
 
 
@@ -106,7 +112,20 @@ class BeanMetadataBuilder  extends ComponentMetadataBuilder  with TBuilder[TBean
     this
   }
 
-  override def validate (){}
+  override def validate (){
+    if(Prototype == scope) {
+      need(destroyMethod isEmpty ,"The destroyMethod must not be set when the scope is prototype. ")
+      need (activation != Eager ,"The activation must not be set to eager if the bean also has prototype scope.")
+    }
+    if(className isDefined) {
+      need (factoryComponent == null ,BeanMetadataBuilder.INVALID_COMBINATIONS)
+
+      if(factoryComponent != null) {
+        need(factoryMethod isDefined,BeanMetadataBuilder.INVALID_COMBINATIONS)
+      }
+    }
+    need((className isDefined) || (factoryComponent != null) ||( factoryMethod isDefined ),BeanMetadataBuilder.INVALID_COMBINATIONS )
+  }
 
 
   override def apply()={
