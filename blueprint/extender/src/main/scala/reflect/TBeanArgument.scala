@@ -16,21 +16,27 @@ import org.osgi.service.blueprint.container.ComponentDefinitionException
 import org.osgi.service.blueprint.reflect.BeanArgument
 
 
-trait TBeanArgument extends BeanArgument 
+trait TBeanArgument extends BeanArgument {
+
+  val index : Option[Int]
+  val value : TMetadata
+  val valueType : Option[String]
+
+}
 
 
-sealed class BeanArgument_ (value : TMetadata, valueType : String, index : Int) extends TBeanArgument {
+sealed class BeanArgument_ (val value : TMetadata, val valueType : Option[String],val index : Option[Int]) extends TBeanArgument {
   override def getValue()=value
   override def getValueType()=valueType
-  override def getIndex()=index
+  override def getIndex()=index getOrElse (-1)
 }
 
 
 
 class BeanArgumentBuilder extends TBuilder[TBeanArgument]  {
-  private [this] var  value : TMetadata=_
-  private [this] var  valueType : String=_
-  private [this] var index : Int=_
+  private [this] var value : TMetadata=_
+  private [this] var valueType : Option[String]=None
+  private [this] var index : Option[Int]=None
 
 
   def withValue(value : TMetadata)={
@@ -46,8 +52,10 @@ class BeanArgumentBuilder extends TBuilder[TBeanArgument]  {
     this
   }
 
-  override def validate (){}
+  override def validate (){
+  }
 
+ 
 
   override def apply()={
     new BeanArgument_ (value, valueType , index )

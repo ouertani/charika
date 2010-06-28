@@ -24,12 +24,12 @@ sealed class BeanMetadata_(
   id :String , 
   activation:Activation,
   dependsOns:List[String],
-  className:String,
-  initMethod:String ,
-  destroyMethod:String,
+  className:Option[String],
+  initMethod:Option[String] ,
+  destroyMethod:Option[String],
   beanArguments:List[TBeanArgument],
   beanProperties:List[TBeanProperty],
-  factoryMethod:String,
+  factoryMethod:Option[String],
   factoryComponent:TTarget,
   scope:Scope) extends ComponentMetadata_(id , activation , dependsOns) with TBeanMetadata {
 
@@ -55,9 +55,9 @@ class BeanMetadataBuilder  extends ComponentMetadataBuilder  with TBuilder[TBean
  
   private [this] var className:Option[String]=None
   private [this] var initMethod:Option[String] =None
-  private [this] var  destroyMethod:Option[String]=None
-  private [this] var  beanArguments:List[TBeanArgument]=List()
-  private [this] var  beanProperties:List[TBeanProperty]=List()
+  private [this] var destroyMethod:Option[String]=None
+  private [this] var beanArguments:List[TBeanArgument]=List()
+  private [this] var beanProperties:List[TBeanProperty]=List()
   private [this] var factoryMethod:Option[String]=None
   private [this] var factoryComponent:TTarget=null
   private [this] var scope:Scope=_
@@ -142,5 +142,10 @@ class BeanMetadataBuilder  extends ComponentMetadataBuilder  with TBuilder[TBean
                       scope)
   }
 
+
+
+  private [this] def validateArguments(){
+    val (indexed, notindexed ) =beanArguments span (_.index isDefined)
+  }
 
 }
