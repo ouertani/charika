@@ -38,8 +38,8 @@ trait TBeanArgumentParser {
     override def  apply( node:Node):TBeanArgument = {
       val metadata = new MetadataParser()(node)
       new BeanArgumentBuilder()
-      .withValueType(node \ TYPE_ATTRIBUTE text)
-      .withIndex(node \ INDEX_ATTRIBUTE text)
+      .withValueType(node << TYPE_ATTRIBUTE )
+      .withIndex(node << INDEX_ATTRIBUTE )
       .withValue(metadata)    ()
     }
   }

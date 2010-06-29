@@ -27,9 +27,9 @@ trait TMetadataParser {
 
     def  apply(node:Node):  TMetadata= {
 
-//      val ref = node.attribute(REF_ATTRIBUTE)
-//      val value = node.attribute(VALUE_ATTRIBUTE)
-//      val child = node.child
+      val ref = node.attribute(REF_ATTRIBUTE)
+      val value = node.attribute(VALUE_ATTRIBUTE)
+      val child = node.child
 
 
       error("")

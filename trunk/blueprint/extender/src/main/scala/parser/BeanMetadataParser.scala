@@ -39,12 +39,12 @@ trait TBeanMetadataParser {
 
       beanMetadataBuilder.
       withComponentMetadata(componentMetadata)
-      .withClassName(node \ CLASS_ATTRIBUTE text)
-      .withFactoryMethod(node \ FACTORY_METHOD_ATTRIBUTE text)
+      .withClassName(node << CLASS_ATTRIBUTE )
+      .withFactoryMethod(node << FACTORY_METHOD_ATTRIBUTE )
       .withFactoryComponent(refMetadata )
-      .withInitMethod(node \ INIT_METHOD_ATTRIBUTE text)
-      .withDestroyMethod(node \ DESTROY_METHOD_ATTRIBUTE text)
-      .withScope(node \ SCOPE_ATTRIBUTE text)
+      .withInitMethod(node << INIT_METHOD_ATTRIBUTE )
+      .withDestroyMethod(node << DESTROY_METHOD_ATTRIBUTE )
+      .withScope(node << SCOPE_ATTRIBUTE )
       .withBeanProperties  (parseProperties(node) toList)
       .withBeanArguments (parseArguments(node) toList)     ()
 
