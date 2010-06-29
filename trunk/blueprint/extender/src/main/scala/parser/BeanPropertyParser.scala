@@ -27,7 +27,7 @@ trait TBeanPropertyParser {
       val metadata = metadataParser(node)
 
       beanPropertyBuilder
-      .withName(node \ NAME_ATTRIBUTE text)
+      .withName(node << NAME_ATTRIBUTE )
       .withValue(metadata)    ()
     }
   }
