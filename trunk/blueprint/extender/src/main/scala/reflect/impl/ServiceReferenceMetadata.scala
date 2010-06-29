@@ -1,0 +1,26 @@
+package net.dikka.charika.blueprint
+package reflect.impl
+
+import reflect._
+import scala.collection.JavaConversions._
+class ServiceReferenceMetadata (
+  id :String ,
+  activation:Activation ,
+  dependsOns:List[String],
+  availability : Availability,
+  interface:String,
+  componentName:String,
+  filter:String,
+  referenceListeners:Iterable[TReferenceListener]
+)extends ComponentMetadata (id ,
+                             activation,
+                             dependsOns)
+    with TServiceReferenceMetadata {
+
+
+  override def getAvailability()=availability.intValue
+  override def getInterface() =interface
+  override def getComponentName()=componentName
+  override def getFilter()=filter
+  override def getReferenceListeners()=referenceListeners
+}
