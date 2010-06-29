@@ -35,16 +35,16 @@ trait TBeanMetadataParser {
 
 
       val componentMetadata:TComponentMetadata = new ComponentMetadataParser()(node)
-      val refMetadata:TRefMetadata =refMetadataBuilder.withcomponentId(node \ "@factory-ref" text) ()
+      val refMetadata:TRefMetadata =refMetadataBuilder.withcomponentId(node \ FACTORY_REF_ATTRIBUTE text) ()
 
       beanMetadataBuilder.
       withComponentMetadata(componentMetadata)
-      .withClassName(node \ "@className" text)
-      .withFactoryMethod(node \ "@factory-method" text)
+      .withClassName(node \ CLASS_ATTRIBUTE text)
+      .withFactoryMethod(node \ FACTORY_METHOD_ATTRIBUTE text)
       .withFactoryComponent(refMetadata )
-      .withInitMethod(node \ "@init-method" text)
-      .withDestroyMethod(node \ "@destroy-method" text)
-      .withScope(node \ "@scope" text)
+      .withInitMethod(node \ INIT_METHOD_ATTRIBUTE text)
+      .withDestroyMethod(node \ DESTROY_METHOD_ATTRIBUTE text)
+      .withScope(node \ SCOPE_ATTRIBUTE text)
       .withBeanProperties  (parseProperties(node) toList)
       .withBeanArguments (parseArguments(node) toList)     ()
 
