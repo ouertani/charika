@@ -18,9 +18,9 @@ import reflect.impl._
 class ComponentMetadataBuilder extends TDefault  {
 
 
-  protected [this] var _id :String=_
-  protected [this] var _activation:Activation=_
-  protected [this] var _dependsOns:List[String]=_
+  final protected [this] var _id :String=_
+  final protected [this] var _activation:Activation=_
+  final protected [this] var _dependsOns:List[String]=_
 
 
 

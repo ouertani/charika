@@ -15,9 +15,9 @@ import reflect._
 import reflect.impl._
 class ReferenceListenerBuilder {
 
-  private [this] var _listenerComponent:TTarget=_
-  private [this] var _bindMethod:String=_
-  private [this] var _unbindMethod:String=_
+  final protected [this] var _listenerComponent:TTarget=_
+  final protected [this] var _bindMethod:String=_
+  final protected [this] var _unbindMethod:String=_
 
 
 

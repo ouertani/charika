@@ -14,8 +14,8 @@ package builder
 import reflect._
 import reflect.impl._
 class MapEntryBuilder  {
-  private [this] var  _key:TNonNullMetadata=_
-  private [this] var  _value:TMetadata=_
+  final protected [this] var  _key:TNonNullMetadata=_
+  final protected [this] var  _value:TMetadata=_
 
 
   def withTNonNullMetadata(key:TNonNullMetadata)={

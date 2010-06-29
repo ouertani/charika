@@ -16,7 +16,7 @@ import reflect._
 import reflect.impl._
 class ReferenceListMetadataBuilder {
   this:ServiceReferenceMetadataBuilder  with ComponentMetadataBuilder=>
-  private [this] var  _memberType : MemberType=_
+  final protected [this] var  _memberType : MemberType=_
 
   def withMemberType(memberType : MemberType)= {
     _memberType=memberType

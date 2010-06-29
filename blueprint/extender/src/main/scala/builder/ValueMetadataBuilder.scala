@@ -14,8 +14,8 @@ package builder
 import reflect._
 import reflect.impl._
 class ValueMetadataBuilder  {
-  private [this] var stringValue:String=_
-  private [this] var tipe:String=_
+  final protected [this] var stringValue:String=_
+  final protected [this] var tipe:String=_
 
 
   def withStringValue(stringValue:String)={

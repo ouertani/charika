@@ -15,9 +15,9 @@ import reflect._
 import reflect.impl._
 
 class CollectionMetadataBuilder {
-  private [this] var _collectionClass :Class[_]=_
-  private [this] var _valueType:String =_
-  private [this] var _values:List[TMetadata]=_
+  final protected [this] var _collectionClass :Class[_]=_
+  final protected [this] var _valueType:String =_
+  final protected [this] var _values:List[TMetadata]=_
 
 
 

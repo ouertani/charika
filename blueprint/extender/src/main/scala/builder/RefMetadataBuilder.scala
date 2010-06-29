@@ -14,7 +14,7 @@ package builder
 import reflect._
 import reflect.impl._
 class RefMetadataBuilder  {
-  private [this] var _componentId:String=_
+  final protected [this] var _componentId:String=_
 
   def withcomponentId(componentId:String)={
     this._componentId=componentId

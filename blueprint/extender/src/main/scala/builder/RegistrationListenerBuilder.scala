@@ -11,13 +11,14 @@
  */
 package net.dikka.charika.blueprint
 package builder
+
 import reflect._
 import reflect.impl._
 class RegistrationListenerBuilder  {
 
-  private [this] var _listenerComponent:TTarget=_
-  private [this] var _registrationMethod:String=_
-  private [this] var _unregistrationMethod:String=_
+  final protected [this] var _listenerComponent:TTarget=_
+  final protected [this] var _registrationMethod:String=_
+  final protected [this] var _unregistrationMethod:String=_
 
   def withListenerComponent(listenerComponent:TTarget)={
     _listenerComponent=listenerComponent
