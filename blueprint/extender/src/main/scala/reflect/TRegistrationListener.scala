@@ -16,44 +16,6 @@ import org.osgi.service.blueprint.reflect.RegistrationListener
 
 trait TRegistrationListener extends RegistrationListener
 
-sealed class RegistrationListener_ (
-  listenerComponent:TTarget, 
-  registrationMethod:String,
-  unregistrationMethod:String
-)extends TRegistrationListener {
-
-  override def getListenerComponent()=listenerComponent
-  override def getRegistrationMethod()=registrationMethod
-  override def getUnregistrationMethod()=unregistrationMethod
-
-}
 
 
-class RegistrationListenerBuilder  {
 
-  private [reflect] var _listenerComponent:TTarget=_
-  private [reflect] var _registrationMethod:String=_
-  private [reflect] var _unregistrationMethod:String=_
-
-  def withListenerComponent(listenerComponent:TTarget)={
-    _listenerComponent=listenerComponent
-    this
-  }
-  def withRegistrationMethod(registrationMethod:String)={
-    _registrationMethod=registrationMethod
-    this
-  }
-  def withUnregistrationMethod(unregistrationMethod:String)={
-    _unregistrationMethod=unregistrationMethod
-    this
-  }
-  
-
-
-  def build={
-    new RegistrationListener_ (
-      _listenerComponent,
-      _registrationMethod,
-      _unregistrationMethod)
-  }
-}

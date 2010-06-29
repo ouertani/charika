@@ -30,6 +30,8 @@ package object reflect{
     case None =>null
   }
 
+ 
+
   implicit def toString(node:scala.xml.NodeSeq):String=node.text
 
   implicit def toOptionOfInt(string : String):Option[Int]= {

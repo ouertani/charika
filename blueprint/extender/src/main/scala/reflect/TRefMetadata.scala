@@ -15,21 +15,3 @@ package reflect
 import org.osgi.service.blueprint.reflect.RefMetadata
 
 trait TRefMetadata extends RefMetadata with TTarget with TNonNullMetadata
-
-sealed class RefMetadata_(componentId:String) extends TRefMetadata {
-  override def getComponentId()=componentId
-}
-
-class RefMetadataBuilder  {
-  private [this] var _componentId:String=_
-  def withcomponentId(componentId:String){
-    this._componentId=componentId
-    this
-  }
-
-
-
-  def build()={
-    new RefMetadata_(_componentId)
-  }
-}

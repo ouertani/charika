@@ -18,29 +18,3 @@ import org.osgi.service.blueprint.reflect.PropsMetadata
 import scala.collection.JavaConversions._
 
 trait TPropsMetadata extends PropsMetadata with TNonNullMetadata
-
-sealed class PropsMetadata_( entries:List[TMapEntry]) extends TPropsMetadata {
-  override def getEntries()= entries
-}
-
-class PropsMetadataBuilder {
-  private [this] var _entries:List[TMapEntry]=_
-
- def withEntries(entries:List[TMapEntry])={
-    this._entries=entries
-    this
-  }
-
-  def withEntry(entry:TMapEntry)={
-    this._entries::=entry
-    this
-  }
-
- 
-
-
- def build()={
-    new PropsMetadata_( _entries)
-  }
-}
-
