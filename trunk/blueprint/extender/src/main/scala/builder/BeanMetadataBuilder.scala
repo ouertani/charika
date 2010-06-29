@@ -23,18 +23,15 @@ import reflect.impl._
 
 class BeanMetadataBuilder  {
 
-  private [this] var _componentMetadata: TComponentMetadata=_
-  private [this] var _className:Option[String]=None
-  private [this] var _initMethod:Option[String] =None
-  private [this] var _destroyMethod:Option[String]=None
-  private [this] var _beanArguments:List[TBeanArgument]=List()
-  private [this] var _beanProperties:List[TBeanProperty]=List()
-  private [this] var _factoryMethod:Option[String]=None
-  private [this] var _factoryComponent:TTarget=null
-  private [this] var _scope:Scope=_
-
-
-
+  final protected [this] var _componentMetadata: TComponentMetadata=_
+  final protected [this] var _className:Option[String]=None
+  final protected [this] var _initMethod:Option[String] =None
+  final protected [this] var _destroyMethod:Option[String]=None
+  final protected [this] var _beanArguments:List[TBeanArgument]=List()
+  final protected [this] var _beanProperties:List[TBeanProperty]=List()
+  final protected [this] var _factoryMethod:Option[String]=None
+  final protected [this] var _factoryComponent:TTarget=null
+  final protected [this] var _scope:Scope=_
 
 
   def withComponentMetadata(componentMetadata: TComponentMetadata)={

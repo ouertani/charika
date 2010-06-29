@@ -22,11 +22,11 @@ class ServiceReferenceMetadataBuilder {
 
   this:ComponentMetadataBuilder =>
 
-  protected [this] var   _availability : Availability=_
-  protected [this] var   _interface:String=_
-  protected [this] var   _componentName:String=_
-  protected [this] var   _filter:String=_
-  protected [this] var   _referenceListeners:Iterable[TReferenceListener]=_
+  final protected [this] var   _availability : Availability=_
+  final protected [this] var   _interface:String=_
+  final protected [this] var   _componentName:String=_
+  final protected [this] var   _filter:String=_
+  final protected [this] var   _referenceListeners:Iterable[TReferenceListener]=_
 
 
   def withAvailability(availability:Availability)={

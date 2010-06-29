@@ -15,9 +15,9 @@ import reflect._
 import reflect.impl._
 class MapMetadataBuilder{
 
-  private [this] var _keyType:String=_
-  private [this] var _valueType:String=_
-  private [this] var _entries:List[TMapEntry]=_
+  final protected [this] var _keyType:String=_
+  final protected [this] var _valueType:String=_
+  final protected [this] var _entries:List[TMapEntry]=_
 
 
   def withKeyType(keyType:String)={

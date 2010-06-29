@@ -19,9 +19,9 @@ import reflect.impl.BeanArgument
 
 
 class BeanArgumentBuilder   {
-  private [this] var _value : TMetadata=_
-  private [this] var _valueType : Option[String]=None
-  private [this] var _index : Option[Int]=None
+  final protected [this] var _value : TMetadata=_
+  final protected [this] var _valueType : Option[String]=None
+  final protected [this] var _index : Option[Int]=None
 
 
   def withValue(value : TMetadata)={

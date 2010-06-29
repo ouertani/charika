@@ -17,8 +17,8 @@ import reflect.impl.BeanProperty
 import reflect._
 import reflect.impl._
 class BeanPropertyBuilder  {
-  private [this] var _name:String=_
-  private [this] var _value : TMetadata=_
+  final protected [this] var _name:String=_
+  final protected [this] var _value : TMetadata=_
 
 
 

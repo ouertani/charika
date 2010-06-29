@@ -11,15 +11,12 @@
  */
 package net.dikka.charika.blueprint
 package builder
+
 import reflect._
 import reflect.impl._
 class ReferenceMetadataBuilder {
   this :ServiceReferenceMetadataBuilder with ComponentMetadataBuilder =>
-  private [this] var   _timeOut:Long =_
-
-
-
-
+  final protected [this] var   _timeOut:Long =_
 
   def withTimeOut (timeOut:Long)={
     _timeOut=timeOut
