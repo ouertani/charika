@@ -51,8 +51,8 @@ package object parser{
   val  NAME_ATTRIBUTE = "name";
   val  ID_ATTRIBUTE = "id";
   val  CLASS_ATTRIBUTE = "class";
-  val  INDEX_ATTRIBUTE = "index";
-  val  TYPE_ATTRIBUTE = "type";
+  val  INDEX_ATTRIBUTE = "@index";
+  val  TYPE_ATTRIBUTE = "@type";
   val  VALUE_ATTRIBUTE = "value";
   val  VALUE_REF_ATTRIBUTE = "value-ref";
   val  KEY_ATTRIBUTE = "key";
