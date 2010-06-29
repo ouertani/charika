@@ -25,6 +25,7 @@ trait TBeanPropertyParser {
  
     override def  apply( node:Node):TBeanProperty = {
       val metadata = metadataParser(node)
+
       beanPropertyBuilder
       .withName(node \ NAME_ATTRIBUTE text)
       .withValue(metadata)    ()
