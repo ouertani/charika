@@ -18,8 +18,6 @@ package net.dikka.charika.blueprint
 package parser
 
 
-
-import reflect.Constants._
 import reflect._
 import builder._
 import scala.xml.Node
@@ -38,8 +36,6 @@ trait TBeanMetadataParser {
 
       val componentMetadata:TComponentMetadata = new ComponentMetadataParser()(node)
       val refMetadata:TRefMetadata =refMetadataBuilder.withcomponentId(node \ "@factory-ref" text) ()
-
-//    val beanArgumentParser:TBeanArgumentParser= new BeanArgumentBuilder()
 
       beanMetadataBuilder.
       withComponentMetadata(componentMetadata)
