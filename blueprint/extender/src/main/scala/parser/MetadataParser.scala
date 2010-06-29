@@ -18,21 +18,23 @@ import reflect._
 import builder._
 import scala.xml.Node
 
-class MetadataParser  extends  Function1[Node,TMetadata] {
+
+trait TMetadataParser {
+  val metadataParser:MetadataParser
+  
+  class MetadataParser  extends  Function1[Node,TMetadata] {
 
 
-  def  apply(node:Node):  TMetadata= {
+    def  apply(node:Node):  TMetadata= {
 
-    val ref = node.attribute(REF_ATTRIBUTE)
-    val value = node.attribute(VALUE_ATTRIBUTE)
-    val child = node.child
-
-
+      val ref = node.attribute(REF_ATTRIBUTE)
+      val value = node.attribute(VALUE_ATTRIBUTE)
+      val child = node.child
 
 
-
-     error("")
+      error("")
 
 
     }
+  }
 }

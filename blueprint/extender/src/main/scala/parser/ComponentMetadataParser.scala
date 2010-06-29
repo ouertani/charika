@@ -13,18 +13,23 @@
 package net.dikka.charika.blueprint
 package parser
 
-import builder.ComponentMetadataBuilder
+import builder._
 import reflect._
 import scala.xml.Node
 
+trait TComponentMetadataParser {
+  this :TComponentMetadataBuilder=>
 
-class ComponentMetadataParser extends  Function1[Node,TComponentMetadata] {
- override def  apply( node:Node) :TComponentMetadata = new  ComponentMetadataBuilder()
-  .withId(node \ "@id" text)
-  .withActivation(node \ "@activation" text)
-  .withDependsOns(node \ "@depends-on" text)
-  .build
+  val componentMetadataParser:ComponentMetadataParser
+  
+  class ComponentMetadataParser extends  Function1[Node,TComponentMetadata] {
+    override def  apply( node:Node) :TComponentMetadata = componentMetadataBuilder
+    .withId(node \ "@id" text)
+    .withActivation(node \ "@activation" text)
+    .withDependsOns(node \ "@depends-on" text)
+    .build
 
 
 
+  }
 }

@@ -14,29 +14,36 @@ package builder
 
 import reflect._
 import reflect.impl._
-class ReferenceMetadataBuilder {
-  this :ServiceReferenceMetadataBuilder with ComponentMetadataBuilder =>
-  final protected [this] var   _timeOut:Long =_
 
-  def withTimeOut (timeOut:Long)={
-    _timeOut=timeOut
-    this
+trait TReferenceMetadataBuilder{
+  
+  this :TServiceReferenceMetadataBuilder with TComponentMetadataBuilder =>
+  val builder:ReferenceMetadataBuilder
+
+  class ReferenceMetadataBuilder {
+    this :ServiceReferenceMetadataBuilder with ComponentMetadataBuilder =>
+    final protected [this] var   _timeOut:Long =_
+
+    def withTimeOut (timeOut:Long)={
+      _timeOut=timeOut
+      this
+    }
+
+
+
+
+    def build()={
+      new ReferenceMetadata (
+        _id ,
+        _activation,
+        _dependsOns,
+        _availability,
+        _interface,
+        _componentName,
+        _filter,
+        _referenceListeners,
+        _timeOut)
+    }
+
   }
-
-
-
-
-def build()={
-    new ReferenceMetadata (
-      _id ,
-      _activation,
-      _dependsOns,
-      _availability,
-      _interface,
-      _componentName,
-      _filter,
-      _referenceListeners,
-      _timeOut)
-  }
-
 }

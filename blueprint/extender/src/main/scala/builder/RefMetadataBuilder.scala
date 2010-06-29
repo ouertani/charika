@@ -11,17 +11,21 @@
  */
 package net.dikka.charika.blueprint
 package builder
+
 import reflect._
 import reflect.impl._
-class RefMetadataBuilder  {
-  final protected [this] var _componentId:String=_
+trait TRefMetadataBuilder{
+  val refMetadataBuilder:RefMetadataBuilder
+  class RefMetadataBuilder  {
+    final protected [this] var _componentId:String=_
 
-  def withcomponentId(componentId:String)={
-    this._componentId=componentId
-    this
-  }
+    def withcomponentId(componentId:String)={
+      this._componentId=componentId
+      this
+    }
 
-  def apply()={
-    new RefMetadata(_componentId)
+    def apply()={
+      new RefMetadata(_componentId)
+    }
   }
 }

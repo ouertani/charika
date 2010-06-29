@@ -11,38 +11,42 @@
  */
 package net.dikka.charika.blueprint
 package builder
+
 import reflect._
 import reflect.impl._
-class MapMetadataBuilder{
+trait TMapMetadataBuilder {
+  val builder:MapMetadataBuilder
+  class MapMetadataBuilder{
 
-  final protected [this] var _keyType:String=_
-  final protected [this] var _valueType:String=_
-  final protected [this] var _entries:List[TMapEntry]=_
-
-
-  def withKeyType(keyType:String)={
-    this._keyType=keyType
-    this
-  }
-  def withValueType(valueType:String)={
-    this._valueType=valueType
-    this
-  }
-  def withEntries(entries:List[TMapEntry])={
-    this._entries=entries
-    this
-  }
-
-  def withEntry(entry:TMapEntry)={
-    this._entries::=entry
-    this
-  }
+    final protected [this] var _keyType:String=_
+    final protected [this] var _valueType:String=_
+    final protected [this] var _entries:List[TMapEntry]=_
 
 
+    def withKeyType(keyType:String)={
+      this._keyType=keyType
+      this
+    }
+    def withValueType(valueType:String)={
+      this._valueType=valueType
+      this
+    }
+    def withEntries(entries:List[TMapEntry])={
+      this._entries=entries
+      this
+    }
 
-  def build()={
-    new MapMetadata(_keyType,
-                          _valueType,
-                          _entries)
+    def withEntry(entry:TMapEntry)={
+      this._entries::=entry
+      this
+    }
+
+
+
+    def build()={
+      new MapMetadata(_keyType,
+                      _valueType,
+                      _entries)
+    }
   }
 }
