@@ -21,8 +21,8 @@ trait TBeanMetadata extends BeanMetadata with TTarget with TComponentMetadata
 
 
 
-sealed class BeanMetadata_(
-  id :String , 
+class BeanMetadata_(
+  id :String ,
   activation:Activation,
   dependsOns:List[String],
   className:Option[String],
@@ -52,9 +52,11 @@ object BeanMetadataBuilder{
 • factory-ref, factory-method
 """
 }
-class BeanMetadataBuilder   /*ComponentMetadataBuilder   with*/{
 
-  this:ComponentMetadataBuilder =>
+
+class BeanMetadataBuilder /*extends ComponentMetadataBuilder*/ {
+
+  private [reflect] var _componentMetadata: TComponentMetadata=_
   private [reflect] var _className:Option[String]=None
   private [reflect] var _initMethod:Option[String] =None
   private [reflect] var _destroyMethod:Option[String]=None
@@ -66,11 +68,18 @@ class BeanMetadataBuilder   /*ComponentMetadataBuilder   with*/{
 
 
 
+  def withComponentMetadata(componentMetadata: TComponentMetadata)={
+    _componentMetadata=componentMetadata
+    this
+  }
   
   def withClassName(className:String)={
     _className=className
     this
   }
+
+ 
+
   def withInitMethod( initMethod:String )={
     _initMethod=initMethod
     this
@@ -114,10 +123,10 @@ class BeanMetadataBuilder   /*ComponentMetadataBuilder   with*/{
     this
   }
 
- def validate (){
+  def validate (){
     if( this._scope == Prototype) {
       need(_destroyMethod isEmpty ,"The destroyMethod must not be set when the scope is prototype. ")
-      need (this._activation != Eager ,"The activation must not be set to eager if the bean also has prototype scope.")
+      need (_componentMetadata.activation != Eager ,"The activation must not be set to eager if the bean also has prototype scope.")
     }
     if(_className isDefined) {
       need (_factoryComponent == null ,BeanMetadataBuilder.INVALID_COMBINATIONS)
@@ -130,45 +139,49 @@ class BeanMetadataBuilder   /*ComponentMetadataBuilder   with*/{
   }
 
 
-//  override def apply()={
-//    new BeanMetadata_( _id ,
-//                      _activation,
-//                      _dependsOns,
-//                      _className,
-//                      _initMethod,
-//                      _destroyMethod,
-//                      _beanArguments,
-//                      _beanProperties,
-//                      _factoryMethod,
-//                      _factoryComponent,
-//                      _scope)
-//  }
+  def build()={
+    new BeanMetadata_( _componentMetadata.id ,
+                      _componentMetadata.activation,
+                      _componentMetadata.dependsOns,
+                      _className,
+                      _initMethod,
+                      _destroyMethod,
+                      _beanArguments,
+                      _beanProperties,
+                      _factoryMethod,
+                      _factoryComponent,
+                      _scope)
+  }
 
 
-//
-//  private [this] def validateArguments(){
-//    if(!(_beanArguments isEmpty)){
-//      val (indexed, notIndexed ) =_beanArguments span (_.index isDefined)
-//      need ((indexed isEmpty) ||( notIndexed isEmpty) ,"Either all arguments have a specified index or none have a specified index.")
-//      if(notIndexed isEmpty ) {
-//        indexed.map(x=>need (x.index.get >= 0 ,"If indexes are specified, they must be unique and run from 0..(n-1), where n is the number of arguments."))
-//        for ( i<- 0 to (indexed.size -1) ){
-//          need (indexed.find(_.index.get == i) isDefined,"If indexes are specified, they must be unique and run from 0..(n-1), where n is the number of arguments.")
-//        }
-//      }
-//    }
-//  }
+
+  private [this] def validateArguments(){
+    if(!(_beanArguments isEmpty)){
+      val (indexed, notIndexed ) =_beanArguments span (_.index isDefined)
+      need ((indexed isEmpty) ||( notIndexed isEmpty) ,"Either all arguments have a specified index or none have a specified index.")
+      if(notIndexed isEmpty ) {
+        indexed.map(x=>need (x.index.get >= 0 ,"If indexes are specified, they must be unique and run from 0..(n-1), where n is the number of arguments."))
+        for ( i<- 0 to (indexed.size -1) ){
+          need (indexed.find(_.index.get == i) isDefined,"If indexes are specified, they must be unique and run from 0..(n-1), where n is the number of arguments.")
+        }
+      }
+    }
+  }
 }
 
-//class BeanMetadataParser extends  AComponentParser[TBeanMetadata] {
-//
-//  override def  parseElement( node:Node):TBeanMetadata = {
-//    new BeanMetadataBuilder() .
-//    withId(node \ "@id").withScope(Prototype)
-////    withActivation("ds").
-//
-//  }
+class BeanMetadataParser extends  ComponentMetadataParser {
+
+  override def  apply( node:Node):TBeanMetadata = {
+
+   val componentMetadata:TComponentMetadata = new ComponentMetadataParser()(node)
+
+
+    new BeanMetadataBuilder().withComponentMetadata(componentMetadata).build
+
+
+
+  }
    
-//}
+}
   
 
