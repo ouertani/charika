@@ -15,6 +15,6 @@ package reflect
 
 import scala.xml.Node
 
-abstract class AComponentParser [T] {
-  def  parseElement( node:Node):T
+abstract class AComponentParser extends Function1[Node,Any]   {
+//  def  parseElement[T]( node:Node):T
 }
