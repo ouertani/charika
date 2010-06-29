@@ -11,23 +11,28 @@
  */
 package net.dikka.charika.blueprint
 package builder
+
 import reflect._
 import reflect.impl._
-class MapEntryBuilder  {
-  final protected [this] var  _key:TNonNullMetadata=_
-  final protected [this] var  _value:TMetadata=_
+trait TMapEntryBuilder {
+  val builder:MapEntryBuilder
+  
+  class MapEntryBuilder  {
+    final protected [this] var  _key:TNonNullMetadata=_
+    final protected [this] var  _value:TMetadata=_
 
 
-  def withTNonNullMetadata(key:TNonNullMetadata)={
-    this._key=key
-    this
-  }
-  def withTMetadata(value:TMetadata)={
-    this._value=value
-    this
-  }
-def build()={
-    new MapEntry( _key,
-                _value)
+    def withTNonNullMetadata(key:TNonNullMetadata)={
+      this._key=key
+      this
+    }
+    def withTMetadata(value:TMetadata)={
+      this._value=value
+      this
+    }
+    def build()={
+      new MapEntry( _key,
+                   _value)
+    }
   }
 }

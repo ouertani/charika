@@ -14,31 +14,34 @@ package builder
 
 import reflect._
 import reflect.impl._
-class RegistrationListenerBuilder  {
+trait TRegistrationListenerBuilder {
+  val builder:RegistrationListenerBuilder
+  class RegistrationListenerBuilder  {
 
-  final protected [this] var _listenerComponent:TTarget=_
-  final protected [this] var _registrationMethod:String=_
-  final protected [this] var _unregistrationMethod:String=_
+    final protected [this] var _listenerComponent:TTarget=_
+    final protected [this] var _registrationMethod:String=_
+    final protected [this] var _unregistrationMethod:String=_
 
-  def withListenerComponent(listenerComponent:TTarget)={
-    _listenerComponent=listenerComponent
-    this
-  }
-  def withRegistrationMethod(registrationMethod:String)={
-    _registrationMethod=registrationMethod
-    this
-  }
-  def withUnregistrationMethod(unregistrationMethod:String)={
-    _unregistrationMethod=unregistrationMethod
-    this
-  }
+    def withListenerComponent(listenerComponent:TTarget)={
+      _listenerComponent=listenerComponent
+      this
+    }
+    def withRegistrationMethod(registrationMethod:String)={
+      _registrationMethod=registrationMethod
+      this
+    }
+    def withUnregistrationMethod(unregistrationMethod:String)={
+      _unregistrationMethod=unregistrationMethod
+      this
+    }
 
 
 
-  def build={
-    new RegistrationListener (
-      _listenerComponent,
-      _registrationMethod,
-      _unregistrationMethod)
+    def build={
+      new RegistrationListener (
+        _listenerComponent,
+        _registrationMethod,
+        _unregistrationMethod)
+    }
   }
 }

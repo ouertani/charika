@@ -11,8 +11,11 @@
  */
 package net.dikka.charika.blueprint
 package builder
+
 import reflect._
 import reflect.impl._
+trait TPropsMetadataBuilder {
+  val builder:PropsMetadataBuilder
 class PropsMetadataBuilder {
   final protected [this] var _entries:List[TMapEntry]=_
 
@@ -32,4 +35,5 @@ class PropsMetadataBuilder {
  def build()={
     new PropsMetadata( _entries)
   }
+}
 }

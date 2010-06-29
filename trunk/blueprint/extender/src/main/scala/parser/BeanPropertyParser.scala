@@ -17,12 +17,17 @@ import reflect._
 import builder._
 import scala.xml.Node
 
-class BeanPropertyParser extends  Function1[Node,TBeanProperty]{
+trait TBeanPropertyParser {
+  this :TMetadataParser with TBeanPropertyBuilder=>
+  val beanPropertyParser :BeanPropertyParser
+  
+  class BeanPropertyParser extends  Function1[Node,TBeanProperty]{
  
     override def  apply( node:Node):TBeanProperty = {
-    val metadata = new MetadataParser()(node)
-    new BeanPropertyBuilder()
-    .withName(node \ NAME_ATTRIBUTE text)
-    .withValue(metadata)    ()
+      val metadata = metadataParser(node)
+      beanPropertyBuilder
+      .withName(node \ NAME_ATTRIBUTE text)
+      .withValue(metadata)    ()
+    }
   }
 }

@@ -14,35 +14,40 @@ package builder
 import reflect._
 import reflect.impl._
 
-class CollectionMetadataBuilder {
-  final protected [this] var _collectionClass :Class[_]=_
-  final protected [this] var _valueType:String =_
-  final protected [this] var _values:List[TMetadata]=_
+
+trait TCollectionMetadataBuilder {
+  val builder:CollectionMetadataBuilder
+  
+  class CollectionMetadataBuilder {
+    final protected [this] var _collectionClass :Class[_]=_
+    final protected [this] var _valueType:String =_
+    final protected [this] var _values:List[TMetadata]=_
 
 
 
-  def withCollectionClass(collectionClass :Class[_]) ={
-    this._collectionClass=collectionClass
-    this
-  }
+    def withCollectionClass(collectionClass :Class[_]) ={
+      this._collectionClass=collectionClass
+      this
+    }
 
-  def withValueType(valueType:String)={
-    this._valueType= valueType
-    this
-  }
-  def withValues( values:List[TMetadata])={
-    this._values=values
-    this
-  }
+    def withValueType(valueType:String)={
+      this._valueType= valueType
+      this
+    }
+    def withValues( values:List[TMetadata])={
+      this._values=values
+      this
+    }
 
-  def withValue(value: TMetadata)= {
-    this._values ::= value
-    this
-  }
+    def withValue(value: TMetadata)= {
+      this._values ::= value
+      this
+    }
 
-def build()={
-    new CollectionMetadata(_collectionClass ,
-                                 _valueType,
-                                 _values)
+    def build()={
+      new CollectionMetadata(_collectionClass ,
+                             _valueType,
+                             _values)
+    }
   }
 }
