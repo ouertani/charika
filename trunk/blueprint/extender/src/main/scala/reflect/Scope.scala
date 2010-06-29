@@ -16,8 +16,8 @@ sealed trait Scope {
   val stringValue:String
 }
 case object Singleton extends Scope {
-override val stringValue="singleton"
+  override val stringValue="singleton"
 }
 case object Prototype extends Scope {
-override val  stringValue="prototype"
+  override val  stringValue="prototype"
 }

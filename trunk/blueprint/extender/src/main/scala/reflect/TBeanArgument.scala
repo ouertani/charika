@@ -12,8 +12,9 @@
 package net.dikka.charika.blueprint
 package reflect
 
-import org.osgi.service.blueprint.container.ComponentDefinitionException
+
 import org.osgi.service.blueprint.reflect.BeanArgument
+
 
 
 trait TBeanArgument extends BeanArgument {
@@ -25,35 +26,3 @@ trait TBeanArgument extends BeanArgument {
 }
 
 
-sealed class BeanArgument_ (val value : TMetadata, val valueType : Option[String],val index : Option[Int]) extends TBeanArgument {
-  override def getValue()=value
-  override def getValueType()=valueType
-  override def getIndex()=index getOrElse (-1)
-}
-
-
-
-class BeanArgumentBuilder   {
-  private [this] var _value : TMetadata=_
-  private [this] var _valueType : Option[String]=None
-  private [this] var _index : Option[Int]=None
-
-
-  def withValue(value : TMetadata)={
-    this._value=value
-    this
-  }
-  def withValuetype(valueType : String)={
-    this._valueType=valueType
-    this
-  }
-  def withIndex(index : Int)={
-    this._index=index
-    this
-  }
-
- 
- def build()={
-    new BeanArgument_ (_value, _valueType , _index )
-  }
-}
