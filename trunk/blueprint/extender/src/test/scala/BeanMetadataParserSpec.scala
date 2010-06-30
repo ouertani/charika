@@ -75,8 +75,8 @@ class BeanMetadataParserSpec extends SpecificationWithJUnit with Mockito {
       <argument value="arg2" />
               </bean>
 
-    val arg1 = new  BeanArgument(new ValueMetadata("arg1",None), None,Some(-1))
-    val arg2 = new  BeanArgument(new ValueMetadata("arg2",None), None,Some(-1))
+    val arg1 =  BeanArgument(new ValueMetadata("arg1",None), None,Some(-1))
+    val arg2 =  BeanArgument(new ValueMetadata("arg2",None), None)
     val destBean = new BeanMetadata(
       "id" ,
       Eager,
