@@ -110,21 +110,29 @@ package object parser{
     override val componentMetadataParser:ComponentMetadataParser = new ComponentMetadataParser()
   }
 
-  trait BeanArgumentParserComponent extends TMetadataParser with TBeanArgumentBuilder {
+  trait BeanArgumentParserComponent extends TBeanArgumentParser with TMetadataParser with TBeanArgumentBuilder {
+    override val beanArgumentParser :BeanArgumentParser= new BeanArgumentParser()
     override val beanArgumentBuilder:BeanArgumentBuilder = new BeanArgumentBuilder()
     override val metadataParser:MetadataParser = new MetadataParser()
   }
 
-  trait BeanPropertyComponent extends TMetadataParser with TBeanPropertyBuilder {
+  trait BeanPropertyComponent extends TBeanPropertyParser with TMetadataParser with TBeanPropertyBuilder {
+    override val beanPropertyParser :BeanPropertyParser= new BeanPropertyParser()
     override val beanPropertyBuilder :BeanPropertyBuilder = new BeanPropertyBuilder()
     override  val metadataParser:MetadataParser = new MetadataParser()
   }
 
 
-  object BeanMetadataParserComponent extends  BeanPropertyComponent with BeanArgumentParserComponent  with TBeanMetadataBuilder with TRefMetadataBuilder  with  ComponentMetadataComponent{
+
+  object BeanMetadataParserComponent extends TBeanMetadataParser                                      
+                                        with BeanPropertyComponent
+                                        with BeanArgumentParserComponent
+                                        with ComponentMetadataComponent
+                                        with TBeanMetadataBuilder
+                                        with TRefMetadataBuilder{
     override val beanMetadataBuilder:BeanMetadataBuilder = new BeanMetadataBuilder()
     override val refMetadataBuilder:RefMetadataBuilder = new RefMetadataBuilder()
     override val componentMetadataParser:ComponentMetadataParser = new ComponentMetadataParser()
-
+    override val beanMetadataParser :BeanMetadataParser =new BeanMetadataParser()
   }
 }

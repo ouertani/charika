@@ -15,7 +15,7 @@ package reflect.impl
 import reflect._
 import scala.collection.JavaConversions._
 
-class BeanMetadata(
+ class BeanMetadata(
   id :String ,
   activation:Activation,
   dependsOns:List[String],
