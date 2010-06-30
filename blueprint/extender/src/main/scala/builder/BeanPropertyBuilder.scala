@@ -21,7 +21,7 @@ trait TBeanPropertyBuilder {
 
   val beanPropertyBuilder :BeanPropertyBuilder
   
-  class BeanPropertyBuilder  {
+  class BeanPropertyBuilder extends Function0[TBeanProperty] {
     final protected [this] var _name:String=_
     final protected [this] var _value : TMetadata=_
 

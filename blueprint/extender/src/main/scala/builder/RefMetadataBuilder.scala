@@ -14,9 +14,13 @@ package builder
 
 import reflect._
 import reflect.impl._
+
 trait TRefMetadataBuilder{
+  
   val refMetadataBuilder:RefMetadataBuilder
-  class RefMetadataBuilder  {
+
+  class RefMetadataBuilder extends Function0[TRefMetadata] {
+    
     final protected [this] var _componentId:String=_
 
     def withcomponentId(componentId:String)={

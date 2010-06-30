@@ -15,9 +15,9 @@ package builder
 import reflect._
 import reflect.impl._
 trait TMapEntryBuilder {
-  val builder:MapEntryBuilder
+  val mapEntryBuilder:MapEntryBuilder
   
-  class MapEntryBuilder  {
+  class MapEntryBuilder  extends Function0[TMapEntry] {
     final protected [this] var  _key:TNonNullMetadata=_
     final protected [this] var  _value:TMetadata=_
 
@@ -30,7 +30,7 @@ trait TMapEntryBuilder {
       this._value=value
       this
     }
-    def build()={
+    def apply()={
       new MapEntry( _key,
                    _value)
     }

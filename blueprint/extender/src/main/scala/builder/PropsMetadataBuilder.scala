@@ -15,8 +15,10 @@ package builder
 import reflect._
 import reflect.impl._
 trait TPropsMetadataBuilder {
-  val builder:PropsMetadataBuilder
-class PropsMetadataBuilder {
+  val propsMetadataBuilder:PropsMetadataBuilder
+  
+class PropsMetadataBuilder extends Function0[TPropsMetadata] {
+  
   final protected [this] var _entries:List[TMapEntry]=_
 
  def withEntries(entries:List[TMapEntry])={
@@ -29,10 +31,7 @@ class PropsMetadataBuilder {
     this
   }
 
-
-
-
- def build()={
+ def apply()={
     new PropsMetadata( _entries)
   }
 }

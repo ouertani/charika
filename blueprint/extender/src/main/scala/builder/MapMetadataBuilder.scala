@@ -15,8 +15,9 @@ package builder
 import reflect._
 import reflect.impl._
 trait TMapMetadataBuilder {
-  val builder:MapMetadataBuilder
-  class MapMetadataBuilder{
+  val mapMetadataBuilder:MapMetadataBuilder
+  
+  class MapMetadataBuilder extends Function0[TMapMetadata]{
 
     final protected [this] var _keyType:String=_
     final protected [this] var _valueType:String=_
@@ -43,7 +44,7 @@ trait TMapMetadataBuilder {
 
 
 
-    def build()={
+    def apply()={
       new MapMetadata(_keyType,
                       _valueType,
                       _entries)

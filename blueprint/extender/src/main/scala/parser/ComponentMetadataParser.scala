@@ -26,8 +26,7 @@ trait TComponentMetadataParser {
     override def  apply( node:Node) :TComponentMetadata = componentMetadataBuilder
     .withId(node << ID_ATTRIBUTE )
     .withActivation(node << ACTIVATION_ATTRIBUTE )
-    .withDependsOns(node << DEPENDS_ON_ATTRIBUTE )
-    .build
+    .withDependsOns(node << DEPENDS_ON_ATTRIBUTE ) ()
 
 
 

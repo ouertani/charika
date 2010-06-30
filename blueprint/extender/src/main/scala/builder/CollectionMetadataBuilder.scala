@@ -11,14 +11,16 @@
  */
 package net.dikka.charika.blueprint
 package builder
+
 import reflect._
 import reflect.impl._
 
 
 trait TCollectionMetadataBuilder {
-  val builder:CollectionMetadataBuilder
+
+  val collectionMetadataBuilder:CollectionMetadataBuilder
   
-  class CollectionMetadataBuilder {
+  class CollectionMetadataBuilder extends Function0[TCollectionMetadata]{
     final protected [this] var _collectionClass :Class[_]=_
     final protected [this] var _valueType:String =_
     final protected [this] var _values:List[TMetadata]=_
@@ -44,7 +46,7 @@ trait TCollectionMetadataBuilder {
       this
     }
 
-    def build()={
+    def apply()={
       new CollectionMetadata(_collectionClass ,
                              _valueType,
                              _values)

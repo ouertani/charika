@@ -17,12 +17,12 @@ import reflect._
 import reflect.impl._
 import scala.collection.JavaConversions._
 
-trait TServiceMetadataBuilder{
+trait TServiceMetadataBuilder{ this : TComponentMetadataBuilder =>
 
-  this : TComponentMetadataBuilder =>
-  val builder:ServiceMetadataBuilder
+ 
+  val serviceMetadataBuilder:ServiceMetadataBuilder
   
-  class ServiceMetadataBuilder {
+  class ServiceMetadataBuilder extends Function0[TServiceMetadata]{
 
 
     this : ComponentMetadataBuilder =>
@@ -71,7 +71,7 @@ trait TServiceMetadataBuilder{
 
 
 
-    def build={
+    def apply={
       new ServiceMetadata(
         _id ,
         _activation,

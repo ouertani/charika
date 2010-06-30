@@ -15,10 +15,13 @@ package builder
 import reflect._
 import reflect.impl._
 
-trait TReferenceListMetadataBuilder{
-  this:TServiceReferenceMetadataBuilder  with TComponentMetadataBuilder=>
+trait TReferenceListMetadataBuilder
+extends Function0[TReferenceListMetadata]
+{this:TServiceReferenceMetadataBuilder  with TComponentMetadataBuilder=>
   
-  val builder:ReferenceListMetadataBuilder
+  
+  
+  val referenceListMetadataBuilder:ReferenceListMetadataBuilder
 
   class ReferenceListMetadataBuilder   {
     this:ServiceReferenceMetadataBuilder  with ComponentMetadataBuilder=>
@@ -33,7 +36,7 @@ trait TReferenceListMetadataBuilder{
 
 
 
-    def build()={
+    def apply()={
       new ReferenceListMetadata (
         _id ,
         _activation,
