@@ -35,7 +35,7 @@
         <scala.version>2.8.0.RC6</scala.version>
         <osgi.version>4.2.0</osgi.version>
         <pax-exam.version>1.2.0</pax-exam.version>
-        <specs.artifactId>specs_2.8.0.RC5</specs.artifactId>
+        <specs.artifactId>specs_2.8.0.RC6</specs.artifactId>
         <mockito-all.version>1.8.5</mockito-all.version>
     </properties>
 

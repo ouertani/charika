@@ -16,7 +16,17 @@ import org.osgi.service.blueprint.reflect.BeanMetadata
 
 
 
-trait TBeanMetadata extends BeanMetadata with TTarget with TComponentMetadata
+trait TBeanMetadata extends BeanMetadata with TTarget with TComponentMetadata {
+
+  val className:Option[String]
+  val initMethod:Option[String]
+  val destroyMethod:Option[String]
+  val beanArguments:Seq[TBeanArgument]
+  val beanProperties:Seq[TBeanProperty]
+  val factoryMethod:Option[String]
+  val factoryComponent:Option[TTarget]
+  val scope:Scope
+}
 
 
 

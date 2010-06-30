@@ -16,11 +16,12 @@ import org.specs.SpecificationWithJUnit
 import org.specs.mock.Mockito
 import  net.dikka.charika.blueprint.parser
 import  net.dikka.charika.blueprint.reflect.impl._
+
 import  net.dikka.charika.blueprint.reflect._
 
 class BeanMetadataParserSpec extends SpecificationWithJUnit with Mockito {
 
-
+val srcBean =   BeanMetadataParserComponent.beanMetadataParser
 
   """simple""" in {
 
@@ -28,7 +29,7 @@ class BeanMetadataParserSpec extends SpecificationWithJUnit with Mockito {
               </bean>
 
 
-    val srcBean =   BeanMetadataParserComponent.beanMetadataParser
+    
 
 
    
@@ -44,10 +45,11 @@ class BeanMetadataParserSpec extends SpecificationWithJUnit with Mockito {
       List(),
       List(),
       None,
-      null,
+      None,
       Singleton)
 
-    srcBean mustEqual destBean
+  
+    srcBean (xml) mustEqual destBean
   }
 
  

@@ -15,17 +15,17 @@ package reflect.impl
 import reflect._
 import scala.collection.JavaConversions._
 
- class BeanMetadata(
-  id :String ,
-  activation:Activation,
-  dependsOns:List[String],
+case class BeanMetadata(
+ override val id :String ,
+ override val activation:Activation,
+ override val dependsOns:List[String],
   className:Option[String],
   initMethod:Option[String] ,
   destroyMethod:Option[String],
-  beanArguments:List[TBeanArgument],
-  beanProperties:List[TBeanProperty],
+  beanArguments:Seq[TBeanArgument],
+  beanProperties:Seq[TBeanProperty],
   factoryMethod:Option[String],
-  factoryComponent:TTarget,
+  factoryComponent:Option[TTarget],
   scope:Scope) extends ComponentMetadata(id , activation , dependsOns) with TBeanMetadata {
 
   override def  getClassName()=className
@@ -34,7 +34,7 @@ import scala.collection.JavaConversions._
   override def  getArguments()=beanArguments
   override def  getProperties()=beanProperties
   override def  getFactoryMethod()=factoryMethod
-  override def  getFactoryComponent()=factoryComponent
+  override def  getFactoryComponent()=factoryComponent getOrElse null
   override def  getScope()=scope.stringValue
 
 

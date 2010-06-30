@@ -26,10 +26,10 @@ trait TBeanMetadataBuilder {
     final protected [this] var _className:Option[String]=None
     final protected [this] var _initMethod:Option[String] =None
     final protected [this] var _destroyMethod:Option[String]=None
-    final protected [this] var _beanArguments:List[TBeanArgument]=List()
-    final protected [this] var _beanProperties:List[TBeanProperty]=List()
+    final protected [this] var _beanArguments:Seq[TBeanArgument]=List()
+    final protected [this] var _beanProperties:Seq[TBeanProperty]=List()
     final protected [this] var _factoryMethod:Option[String]=None
-    final protected [this] var _factoryComponent:TTarget=null
+    final protected [this] var _factoryComponent:Option[TTarget]=null
     final protected [this] var _scope:Scope=_
 
 
@@ -53,7 +53,7 @@ trait TBeanMetadataBuilder {
       _destroyMethod=destroyMethod
       this
     }
-    def withBeanArguments(beanArguments:List[TBeanArgument])={
+    def withBeanArguments(beanArguments:Seq[TBeanArgument])={
       _beanArguments=beanArguments
       this
     }
@@ -64,7 +64,7 @@ trait TBeanMetadataBuilder {
     }
 
 
-    def withBeanProperties(beanProperties:List[TBeanProperty])={
+    def withBeanProperties(beanProperties:Seq[TBeanProperty])={
       _beanProperties=beanProperties
       this
     }
@@ -79,7 +79,7 @@ trait TBeanMetadataBuilder {
       _factoryMethod=factoryMethod
       this
     }
-    def withFactoryComponent(factoryComponent:TTarget)={
+    def withFactoryComponent(factoryComponent:Option[TTarget])={
       _factoryComponent=factoryComponent
       this
     }
