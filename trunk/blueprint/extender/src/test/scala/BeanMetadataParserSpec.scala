@@ -21,7 +21,7 @@ import  net.dikka.charika.blueprint.reflect._
 
 class BeanMetadataParserSpec extends SpecificationWithJUnit with Mockito {
 
-val srcBean =   BeanMetadataParserComponent.beanMetadataParser
+  val srcBean =   BeanMetadataParserComponent.beanMetadataParser
 
   """simple""" in {
 
@@ -45,13 +45,13 @@ val srcBean =   BeanMetadataParserComponent.beanMetadataParser
   }
 
 
-   """simple2""" in {
+  """one args""" in {
 
     val xml = <bean id="id" class="clazz">
-        <argument value="arg" />
+      <argument value="arg" />
               </bean>
 
-   val arg1 = new  BeanArgument(new ValueMetadata("arg",None), None,Some(-1))
+    val arg1 = new  BeanArgument(new ValueMetadata("arg",None), None,Some(-1))
     val destBean = new BeanMetadata(
       "id" ,
       Eager,
@@ -68,5 +68,28 @@ val srcBean =   BeanMetadataParserComponent.beanMetadataParser
     srcBean (xml) mustEqual destBean
   }
  
-    
+  """two args""" in {
+
+    val xml = <bean id="id" class="clazz">
+      <argument value="arg1" />
+      <argument value="arg2" />
+              </bean>
+
+    val arg1 = new  BeanArgument(new ValueMetadata("arg1",None), None,Some(-1))
+    val arg2 = new  BeanArgument(new ValueMetadata("arg2",None), None,Some(-1))
+    val destBean = new BeanMetadata(
+      "id" ,
+      Eager,
+      List(),
+      Option("clazz"),
+      None ,
+      None,
+      List(arg1,arg2),
+      List(),
+      None,
+      None,
+      Singleton)
+
+    srcBean (xml) mustEqual destBean
+  }
 }
