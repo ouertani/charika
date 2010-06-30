@@ -19,7 +19,7 @@ import reflect.impl.BeanArgument
 
 trait TBeanArgumentBuilder {
 
-  val builder:BeanArgumentBuilder
+  val beanArgumentBuilder:BeanArgumentBuilder
 
   class BeanArgumentBuilder  extends Function0[TBeanArgument]  {
     final protected [this] var _value : TMetadata=_

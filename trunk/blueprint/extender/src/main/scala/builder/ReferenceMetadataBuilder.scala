@@ -15,12 +15,13 @@ package builder
 import reflect._
 import reflect.impl._
 
-trait TReferenceMetadataBuilder{
+trait TReferenceMetadataBuilder{this :TServiceReferenceMetadataBuilder with TComponentMetadataBuilder =>
   
-  this :TServiceReferenceMetadataBuilder with TComponentMetadataBuilder =>
-  val builder:ReferenceMetadataBuilder
+  
+  val referenceMetadataBuilder:ReferenceMetadataBuilder
 
-  class ReferenceMetadataBuilder {
+  class ReferenceMetadataBuilder  extends Function0[TReferenceMetadata] {
+
     this :ServiceReferenceMetadataBuilder with ComponentMetadataBuilder =>
     final protected [this] var   _timeOut:Long =_
 
@@ -32,7 +33,7 @@ trait TReferenceMetadataBuilder{
 
 
 
-    def build()={
+    def apply()={
       new ReferenceMetadata (
         _id ,
         _activation,

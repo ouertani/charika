@@ -20,7 +20,7 @@ trait TComponentMetadataBuilder {
 
   val componentMetadataBuilder:ComponentMetadataBuilder
   
-  class ComponentMetadataBuilder extends TDefault  {
+  class ComponentMetadataBuilder  extends Function0[TComponentMetadata]{ this : TDefault =>
 
 
     final protected [this] var _id :String=_
@@ -67,7 +67,7 @@ trait TComponentMetadataBuilder {
       this
     }
 
-    def build():TComponentMetadata ={
+    def apply()={
       new ComponentMetadata(_id,_activation,_dependsOns)
     }
 

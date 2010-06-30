@@ -15,8 +15,10 @@ package builder
 import reflect._
 import reflect.impl._
 trait TRegistrationListenerBuilder {
-  val builder:RegistrationListenerBuilder
-  class RegistrationListenerBuilder  {
+
+  val registrationListenerBuilder:RegistrationListenerBuilder
+
+  class RegistrationListenerBuilder  extends Function0[TRegistrationListener] {
 
     final protected [this] var _listenerComponent:TTarget=_
     final protected [this] var _registrationMethod:String=_
@@ -37,7 +39,7 @@ trait TRegistrationListenerBuilder {
 
 
 
-    def build={
+    def apply={
       new RegistrationListener (
         _listenerComponent,
         _registrationMethod,

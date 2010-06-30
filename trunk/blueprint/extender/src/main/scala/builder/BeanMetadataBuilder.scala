@@ -20,7 +20,8 @@ trait TBeanMetadataBuilder {
 
 
   val beanMetadataBuilder:BeanMetadataBuilder
-  class BeanMetadataBuilder  {
+  
+  class BeanMetadataBuilder  extends Function0[TBeanMetadata]  {
 
     final protected [this] var _componentMetadata: TComponentMetadata=_
     final protected [this] var _className:Option[String]=None

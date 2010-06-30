@@ -14,10 +14,12 @@ package builder
 
 import reflect._
 import reflect.impl._
+
 trait TReferenceListenerBuilder {
 
-  val builder:ReferenceListenerBuilder
-  class ReferenceListenerBuilder {
+  val referenceListenerBuilder:ReferenceListenerBuilder
+
+  class ReferenceListenerBuilder extends Function0[TReferenceListener]{
 
     final protected [this] var _listenerComponent:TTarget=_
     final protected [this] var _bindMethod:String=_
@@ -37,7 +39,7 @@ trait TReferenceListenerBuilder {
       _unbindMethod=unbindMethod
       this
     }
-    def build()={
+    def apply()={
       new ReferenceListener(
         _listenerComponent,
         _bindMethod,

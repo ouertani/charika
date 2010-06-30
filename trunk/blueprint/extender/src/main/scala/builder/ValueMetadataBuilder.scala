@@ -17,8 +17,10 @@ import reflect.impl._
 
 
 trait TValueMetadataBuilder {
-  val builder:ValueMetadataBuilder
-  class ValueMetadataBuilder  {
+  val valueMetadataBuilder:ValueMetadataBuilder
+  
+  class ValueMetadataBuilder extends Function0[TValueMetadata] {
+    
     final protected [this] var stringValue:String=_
     final protected [this] var tipe:String=_
 
@@ -34,7 +36,7 @@ trait TValueMetadataBuilder {
 
 
 
-    def build()={
+    def apply()={
       new ValueMetadata( stringValue,
                         tipe)
     }
