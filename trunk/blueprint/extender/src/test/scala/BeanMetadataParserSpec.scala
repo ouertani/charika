@@ -9,14 +9,14 @@
  *   Slim Ouertani   - initial API and implementation
  *
  */
-package net.dikka.charika.blueprint.extender.impl
+package net.dikka.charika.blueprint
 package parser
 
 import org.specs.SpecificationWithJUnit
 import org.specs.mock.Mockito
 import  net.dikka.charika.blueprint.extender.impl.beans._
 
-class BeanParserSpec extends SpecificationWithJUnit with Mockito {
+class BeanMetadataParserSpec extends SpecificationWithJUnit with Mockito {
 
 
 

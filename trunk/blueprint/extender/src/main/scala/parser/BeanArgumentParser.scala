@@ -13,15 +13,13 @@ package net.dikka.charika.blueprint
 package parser
 
 
-
-
 import reflect._
 import builder._
 import scala.xml.Node
 
-trait TBeanArgumentParser {
+trait TBeanArgumentParser { this : TMetadataParser with TBeanArgumentBuilder=>
 
-  this : TMetadataParser with TBeanArgumentBuilder=>
+ 
   val beanArgumentParser :BeanArgumentParser
   
   class BeanArgumentParser  extends Function1[Node,TBeanArgument]  {

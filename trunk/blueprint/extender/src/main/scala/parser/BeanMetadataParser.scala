@@ -24,7 +24,11 @@ import scala.xml.Node
 
 
 trait TBeanMetadataParser {
-  this : TBeanMetadataBuilder with TRefMetadataBuilder with TBeanArgumentParser with TBeanPropertyParser with  TComponentMetadataParser=>
+  this : TBeanArgumentParser 
+  with TBeanPropertyParser
+  with TComponentMetadataParser
+  with TBeanMetadataBuilder
+  with TRefMetadataBuilder   =>
 
   val beanMetadataParser :BeanMetadataParser
   

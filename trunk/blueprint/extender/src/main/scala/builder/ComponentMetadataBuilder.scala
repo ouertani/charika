@@ -16,7 +16,7 @@ import reflect._
 import reflect.impl._
 
 
-trait TComponentMetadataBuilder {
+trait TComponentMetadataBuilder { this : TDefault =>
 
   val componentMetadataBuilder:ComponentMetadataBuilder
   

@@ -14,6 +14,8 @@ package net.dikka.charika.blueprint
 
 import scala.xml.Node
 import scala.xml.NodeSeq
+import builder._
+import reflect._
 import org.osgi.service.blueprint.container._
 
 
@@ -98,7 +100,31 @@ package object parser{
 
   class RichNode (node: Node){
 
-   def <<(att : String) =  node \ ("@"+att) text
+    def <<(att : String) =  node \ ("@"+att) text
   }
- 
+
+
+  trait ComponentMetadataComponent extends TComponentMetadataParser with TComponentMetadataBuilder with TDefault {
+
+    override val componentMetadataBuilder:ComponentMetadataBuilder = new ComponentMetadataBuilder() with TDefault
+    override val componentMetadataParser:ComponentMetadataParser = new ComponentMetadataParser()
+  }
+
+  trait BeanArgumentParserComponent extends TMetadataParser with TBeanArgumentBuilder {
+    override val beanArgumentBuilder:BeanArgumentBuilder = new BeanArgumentBuilder()
+    override val metadataParser:MetadataParser = new MetadataParser()
+  }
+
+  trait BeanPropertyComponent extends TMetadataParser with TBeanPropertyBuilder {
+    override val beanPropertyBuilder :BeanPropertyBuilder = new BeanPropertyBuilder()
+    override  val metadataParser:MetadataParser = new MetadataParser()
+  }
+
+
+  object BeanMetadataParserComponent extends  BeanPropertyComponent with BeanArgumentParserComponent  with TBeanMetadataBuilder with TRefMetadataBuilder  with  ComponentMetadataComponent{
+    override val beanMetadataBuilder:BeanMetadataBuilder = new BeanMetadataBuilder()
+    override val refMetadataBuilder:RefMetadataBuilder = new RefMetadataBuilder()
+    override val componentMetadataParser:ComponentMetadataParser = new ComponentMetadataParser()
+
+  }
 }

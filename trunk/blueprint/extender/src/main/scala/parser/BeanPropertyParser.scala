@@ -17,8 +17,8 @@ import reflect._
 import builder._
 import scala.xml.Node
 
-trait TBeanPropertyParser {
-  this :TMetadataParser with TBeanPropertyBuilder=>
+trait TBeanPropertyParser {this :TMetadataParser with TBeanPropertyBuilder=>
+  
   val beanPropertyParser :BeanPropertyParser
   
   class BeanPropertyParser extends  Function1[Node,TBeanProperty]{
