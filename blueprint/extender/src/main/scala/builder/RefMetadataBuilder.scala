@@ -21,7 +21,7 @@ trait TRefMetadataBuilder{
 
   class RefMetadataBuilder extends Function0[TRefMetadata] {
     
-    final protected [this] var _componentId:String=_
+    final protected [this] var _componentId:Option[String]=None
 
     def withcomponentId(componentId:String)={
       this._componentId=componentId

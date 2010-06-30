@@ -38,8 +38,12 @@ trait TBeanMetadataParser {
 
 
 
-      val componentMetadata:TComponentMetadata = new ComponentMetadataParser()(node)
-      val refMetadata:TRefMetadata =refMetadataBuilder.withcomponentId(node \ FACTORY_REF_ATTRIBUTE text) ()
+      val componentMetadata:TComponentMetadata = componentMetadataParser(node)
+     // val refMetadata:TRefMetadata = refMetadataBuilder.withcomponentId(node << FACTORY_REF_ATTRIBUTE ) ()
+
+      
+      val refMetadata:Option[TRefMetadata] = if (node.attribute(FACTORY_REF_ATTRIBUTE).isEmpty) None else refMetadataBuilder.withcomponentId(node <<< FACTORY_REF_ATTRIBUTE ) ()
+     
 
       beanMetadataBuilder.
       withComponentMetadata(componentMetadata)
@@ -49,8 +53,8 @@ trait TBeanMetadataParser {
       .withInitMethod(node << INIT_METHOD_ATTRIBUTE )
       .withDestroyMethod(node << DESTROY_METHOD_ATTRIBUTE )
       .withScope(node << SCOPE_ATTRIBUTE )
-      .withBeanProperties  (parseProperties(node) toList)
-      .withBeanArguments (parseArguments(node) toList)     ()
+      .withBeanProperties  (parseProperties(node) )
+      .withBeanArguments (parseArguments(node) )     ()
 
 
 
@@ -58,10 +62,10 @@ trait TBeanMetadataParser {
     }
 
     def parseArguments(node : Node)={
-      for( elem <-  node \ ARGUMENT_ELEMENT) yield beanArgumentParser (node)
+      for( elem <-  node \ ARGUMENT_ELEMENT) yield beanArgumentParser (node) 
     }
     def parseProperties(node : Node) = {
-      for( elem <-  node \ PROPERTY_ELEMENT) yield beanPropertyParser (node)
+      for( elem <-  node \ PROPERTY_ELEMENT) yield beanPropertyParser (node) 
     }
 
   }

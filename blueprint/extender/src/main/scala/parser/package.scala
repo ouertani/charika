@@ -101,6 +101,8 @@ package object parser{
   class RichNode (node: Node){
 
     def <<(att : String) =  node \ ("@"+att) text
+
+    def <<<(att : String) = if(node.attribute(att) isDefined) Some (<< (att)) else None
   }
 
 

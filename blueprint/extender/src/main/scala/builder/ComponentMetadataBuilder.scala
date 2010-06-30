@@ -25,7 +25,7 @@ trait TComponentMetadataBuilder { this : TDefault =>
 
     final protected [this] var _id :String=_
     final protected [this] var _activation:Activation=_
-    final protected [this] var _dependsOns:List[String]=_
+    final protected [this] var _dependsOns:List[String]=List()
 
 
 
