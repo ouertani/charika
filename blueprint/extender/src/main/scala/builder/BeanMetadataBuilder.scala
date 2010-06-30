@@ -18,7 +18,6 @@ import reflect.impl._
 
 trait TBeanMetadataBuilder {
 
-
   val beanMetadataBuilder:BeanMetadataBuilder
   
   class BeanMetadataBuilder  extends Function0[TBeanMetadata]  {

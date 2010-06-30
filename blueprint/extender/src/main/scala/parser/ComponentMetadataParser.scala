@@ -17,8 +17,8 @@ import builder._
 import reflect._
 import scala.xml.Node
 
-trait TComponentMetadataParser {
-  this :TComponentMetadataBuilder=>
+trait TComponentMetadataParser { this :TComponentMetadataBuilder=>
+ 
 
   val componentMetadataParser:ComponentMetadataParser
   
