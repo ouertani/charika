@@ -27,14 +27,6 @@ val srcBean =   BeanMetadataParserComponent.beanMetadataParser
 
     val xml = <bean id="id" class="clazz">      
               </bean>
-
-
-    
-
-
-   
-
-
     val destBean = new BeanMetadata(
       "id" ,
       Eager,
@@ -52,6 +44,32 @@ val srcBean =   BeanMetadataParserComponent.beanMetadataParser
     srcBean (xml) mustEqual destBean
   }
 
+
+   """simple2""" in {
+
+    val xml = <bean id="id" class="clazz">
+        <argument value="arg" />
+              </bean>
+
+   val arg1 = new  BeanArgument(new ValueMetadata("arg",None), None,Some(-1))
+    val destBean = new BeanMetadata(
+      "id" ,
+      Eager,
+      List(),
+      Option("clazz"),
+      None ,
+      None,
+      List(arg1),
+      List(),
+      None,
+      None,
+      Singleton)
+
+println (srcBean (xml) beanArguments )
+println(destBean beanArguments)
+
+    srcBean (xml) mustEqual destBean
+  }
  
     
 }

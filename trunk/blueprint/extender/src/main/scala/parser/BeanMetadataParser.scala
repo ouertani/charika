@@ -62,10 +62,10 @@ trait TBeanMetadataParser {
     }
 
     def parseArguments(node : Node)={
-      for( elem <-  node \ ARGUMENT_ELEMENT) yield beanArgumentParser (node) 
+      for( elem <-  node \ ARGUMENT_ELEMENT) yield beanArgumentParser (elem)
     }
     def parseProperties(node : Node) = {
-      for( elem <-  node \ PROPERTY_ELEMENT) yield beanPropertyParser (node) 
+      for( elem <-  node \ PROPERTY_ELEMENT) yield beanPropertyParser (elem)
     }
 
   }
