@@ -14,7 +14,7 @@ package reflect.impl
 
 import reflect._
 
-case class BeanArgument (val value : TMetadata, val valueType : Option[String],val index : Option[Int])
+case class BeanArgument (val value : TMetadata, val valueType : Option[String],val index : Option[Int]=Some(-1))
 extends TBeanArgument {
   override def getValue()=value
   override def getValueType()=valueType
