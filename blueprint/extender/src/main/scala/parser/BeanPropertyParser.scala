@@ -23,7 +23,8 @@ trait TBeanPropertyParser {this :TMetadataParser with TBeanPropertyBuilder=>
   
   class BeanPropertyParser extends  Function1[Node,TBeanProperty]{
  
-    override def  apply( node:Node):TBeanProperty = {
+    override def  apply( node:Node):TBeanProperty = {    
+      
       val metadata = metadataParser(node)
 
       beanPropertyBuilder

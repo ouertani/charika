@@ -14,9 +14,9 @@ package reflect.impl
 
 import reflect._
 
-class BeanProperty(name:String ,
+case class BeanProperty(name:Option[String] ,
                     value : TMetadata ) extends TBeanProperty {
 
-  override def getName()=name
+  override def getName()=name.get
   override def getValue()=value
 }
