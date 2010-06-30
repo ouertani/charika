@@ -17,7 +17,7 @@ import reflect.impl._
 
 trait TRefMetadataBuilder{
   
-  val refMetadataBuilder:RefMetadataBuilder
+  val refMetadataBuilder:RefMetadataBuilder = new RefMetadataBuilder()
 
   class RefMetadataBuilder extends Function0[TRefMetadata] {
     

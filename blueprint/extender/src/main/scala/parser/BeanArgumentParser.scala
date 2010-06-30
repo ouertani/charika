@@ -24,7 +24,7 @@ trait TBeanArgumentParser { this : TMetadataParser with TBeanArgumentBuilder=>
   
   class BeanArgumentParser  extends Function1[Node,TBeanArgument]  {
     implicit def toInt(index:String) :Int={
-      if(index ==null ){ -1}
+      if((index ==null) || (index isEmpty) ){ -1}
       else {
         try {
           Int.unbox(index)
@@ -34,6 +34,7 @@ trait TBeanArgumentParser { this : TMetadataParser with TBeanArgumentBuilder=>
       }
     }
     override def  apply( node:Node):TBeanArgument = {
+     
       val metadata = metadataParser(node)
       beanArgumentBuilder
       .withValueType(node << TYPE_ATTRIBUTE )

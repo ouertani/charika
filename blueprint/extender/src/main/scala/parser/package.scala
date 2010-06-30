@@ -107,18 +107,17 @@ package object parser{
 
 
   trait ComponentMetadataComponent extends TComponentMetadataParser with TComponentMetadataBuilder with TDefault {
-
     override val componentMetadataBuilder:ComponentMetadataBuilder = new ComponentMetadataBuilder() with TDefault
     override val componentMetadataParser:ComponentMetadataParser = new ComponentMetadataParser()
   }
 
-  trait BeanArgumentParserComponent extends TBeanArgumentParser with TMetadataParser with TBeanArgumentBuilder {
+  trait BeanArgumentParserComponent extends TBeanArgumentParser with TMetadataParser with TValueMetadataParser with TDelegateParser with TBeanArgumentBuilder with TValueMetadataBuilder with TRefMetadataBuilder  {
     override val beanArgumentParser :BeanArgumentParser= new BeanArgumentParser()
     override val beanArgumentBuilder:BeanArgumentBuilder = new BeanArgumentBuilder()
     override val metadataParser:MetadataParser = new MetadataParser()
   }
 
-  trait BeanPropertyComponent extends TBeanPropertyParser with TMetadataParser with TBeanPropertyBuilder {
+  trait BeanPropertyComponent extends TBeanPropertyParser with TMetadataParser with TValueMetadataParser  with TDelegateParser with TBeanPropertyBuilder with TValueMetadataBuilder with TRefMetadataBuilder{
     override val beanPropertyParser :BeanPropertyParser= new BeanPropertyParser()
     override val beanPropertyBuilder :BeanPropertyBuilder = new BeanPropertyBuilder()
     override  val metadataParser:MetadataParser = new MetadataParser()
@@ -137,4 +136,8 @@ package object parser{
     override val componentMetadataParser:ComponentMetadataParser = new ComponentMetadataParser()
     override val beanMetadataParser :BeanMetadataParser =new BeanMetadataParser()
   }
+
+
+   def xor(x: Boolean, y: Boolean, z : Boolean): Boolean = (x || y || z ) && !(x && y) && !(x && z) && !(y && z) && ! (x && y && z)
+
 }
