@@ -65,9 +65,6 @@ val srcBean =   BeanMetadataParserComponent.beanMetadataParser
       None,
       Singleton)
 
-println (srcBean (xml) beanArguments )
-println(destBean beanArguments)
-
     srcBean (xml) mustEqual destBean
   }
  
