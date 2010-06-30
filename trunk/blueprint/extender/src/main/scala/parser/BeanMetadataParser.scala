@@ -55,10 +55,6 @@ trait TBeanMetadataParser {
       .withScope(node << SCOPE_ATTRIBUTE )
       .withBeanProperties  (parseProperties(node) )
       .withBeanArguments (parseArguments(node) )     ()
-
-
-
-
     }
 
     def parseArguments(node : Node)={

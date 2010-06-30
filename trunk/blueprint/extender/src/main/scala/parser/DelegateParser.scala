@@ -23,12 +23,14 @@ import scala.xml._
 trait TDelegateParser {
 
   val delegateParser:DelegateParser=new DelegateParser()
-  val delegates = Map (BEAN_ELEMENT ->BeanMetadataParserComponent.beanMetadataParser)
+  val delegates = Map (
+    BEAN_ELEMENT  ->BeanMetadataParserComponent.beanMetadataParser ,
+    VALUE_ELEMENT -> ValueMetadataParserComponent.valueMetadataParser)
   
-  class DelegateParser extends  Function1[Node,Option[TMetadata]]{
+  class DelegateParser extends  Function1[NodeSeq,Option[TMetadata]]{
    
 
-    def apply ( node:Node):Option[TMetadata] ={
+    def apply ( node:NodeSeq):Option[TMetadata] ={
 
       for(n <- node \ "_") {
 
@@ -39,6 +41,7 @@ trait TDelegateParser {
           }
         }else {
           //TODO
+          println("TODO DELEAGATE "+ n.label)
           None
         }
 

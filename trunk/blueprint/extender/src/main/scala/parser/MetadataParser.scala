@@ -18,31 +18,36 @@ package parser
 
 import reflect._
 import builder._
-import scala.xml.Node
+import scala.xml._
 
 
-trait TMetadataParser { this:TDelegateParser with TValueMetadataParser with TRefMetadataBuilder =>
+trait TMetadataParser { this:TDelegateParser with TValueMetadataBuilder with TRefMetadataBuilder =>
   val metadataParser:MetadataParser= new MetadataParser()
   
-  class MetadataParser  extends  Function1[Node,TMetadata] {
+  class MetadataParser  extends  Function1[ Node,TMetadata] {
 
 
     def  apply(node:Node):  TMetadata= {
 
-      println (node)
+     
       val ref = node <<< REF_ATTRIBUTE
       val value = node <<< VALUE_ATTRIBUTE
-      val child = node.child \ "_"
+      val child = node \ "_"
       var p:Option[TMetadata]=None
-      
-      if(child isDefined){
-        p =delegateParser (node)
-      }
-      val b= xor(ref isDefined,value isDefined ,p isDefined)
 
+
+      if((child isDefined)  && !( child.isEmpty) ){
+     
+        val n:Node =child.head
+        
+        p =(delegates.get(n label)) get (n)        
+        
+      }
+     
+   val b = true //TODO TO BE FIXED
       if(b) {
         if( ref isDefined) refMetadataBuilder.withcomponentId(node << REF_ATTRIBUTE) ()
-        if( value isDefined) valueMetadataParser(node)
+        else if( value isDefined) valueMetadataBuilder.withStringValue(node << VALUE_ATTRIBUTE).withType(node << TYPE_ATTRIBUTE) ()
        else p get
        
       }else {

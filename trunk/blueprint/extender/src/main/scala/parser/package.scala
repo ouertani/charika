@@ -117,16 +117,18 @@ package object parser{
     override val metadataParser:MetadataParser = new MetadataParser()
   }
 
-  trait BeanPropertyComponent extends TBeanPropertyParser with TMetadataParser with TValueMetadataParser  with TDelegateParser with TBeanPropertyBuilder with TValueMetadataBuilder with TRefMetadataBuilder{
+  trait BeanPropertyParserComponent extends TBeanPropertyParser with TMetadataParser with TValueMetadataParser  with TDelegateParser with TBeanPropertyBuilder with TValueMetadataBuilder with TRefMetadataBuilder{
     override val beanPropertyParser :BeanPropertyParser= new BeanPropertyParser()
     override val beanPropertyBuilder :BeanPropertyBuilder = new BeanPropertyBuilder()
-    override  val metadataParser:MetadataParser = new MetadataParser()
+    override val metadataParser:MetadataParser = new MetadataParser()
   }
 
-
+  object ValueMetadataParserComponent extends TValueMetadataParser with TValueMetadataBuilder {
+     
+  }
 
   object BeanMetadataParserComponent extends TBeanMetadataParser                                      
-                                        with BeanPropertyComponent
+                                        with BeanPropertyParserComponent
                                         with BeanArgumentParserComponent
                                         with ComponentMetadataComponent
                                         with TBeanMetadataBuilder
@@ -138,6 +140,6 @@ package object parser{
   }
 
 
-   def xor(x: Boolean, y: Boolean, z : Boolean): Boolean = (x || y || z ) && !(x && y) && !(x && z) && !(y && z) && ! (x && y && z)
+  def xor(x: Boolean, y: Boolean, z : Boolean): Boolean = (x || y || z ) && !(x && y) && !(x && z) && !(y && z) && ! (x && y && z)
 
 }
