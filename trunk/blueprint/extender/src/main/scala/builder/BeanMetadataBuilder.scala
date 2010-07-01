@@ -29,7 +29,7 @@ trait TBeanMetadataBuilder {
     final protected [this] var _beanArguments:Seq[TBeanArgument]=List()
     final protected [this] var _beanProperties:Seq[TBeanProperty]=List()
     final protected [this] var _factoryMethod:Option[String]=None
-    final protected [this] var _factoryComponent:Option[TTarget]=null
+    final protected [this] var _factoryComponent:Option[TTarget]=None
     final protected [this] var _scope:Scope=_
 
 
@@ -108,20 +108,18 @@ trait TBeanMetadataBuilder {
         need (_componentMetadata.activation != Eager ,"The activation must not be set to eager if the bean also has prototype scope.")
       }
       if(_className isDefined) {
-        need (_factoryComponent == null ,BeanMetadataBuilder.INVALID_COMBINATIONS)
+        need (_factoryComponent isEmpty ,BeanMetadataBuilder.INVALID_COMBINATIONS)
 
-        if(_factoryComponent != null) {
+        if(_factoryComponent isDefined) {
           need(_factoryMethod isDefined,BeanMetadataBuilder.INVALID_COMBINATIONS)
         }
       }
-      need((_className isDefined) || (_factoryComponent != null) ||( _factoryMethod isDefined ),BeanMetadataBuilder.INVALID_COMBINATIONS )
+      need((_className isDefined) || (_factoryComponent isDefined) ||( _factoryMethod isDefined ),BeanMetadataBuilder.INVALID_COMBINATIONS )
     }
 
     def apply()={
-      build
-    }
-
-    def build()={
+      validate 
+      validateArguments
       new BeanMetadata( _componentMetadata.id ,
                        _componentMetadata.activation,
                        _componentMetadata.dependsOns,

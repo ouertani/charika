@@ -15,9 +15,11 @@ package parser
 import org.specs.SpecificationWithJUnit
 import org.specs.mock.Mockito
 import  net.dikka.charika.blueprint.parser
-import  net.dikka.charika.blueprint.reflect.impl._
+
 
 import  net.dikka.charika.blueprint.reflect._
+import  net.dikka.charika.blueprint.reflect.impl._
+import  org.osgi.service.blueprint.container._
 
 class BeanMetadataParserSpec extends SpecificationWithJUnit with Mockito {
 
@@ -53,7 +55,7 @@ class BeanMetadataParserSpec extends SpecificationWithJUnit with Mockito {
       <argument value="arg" />
               </bean>
 
-    val arg1 = new  BeanArgument(new ValueMetadata("arg",None), None,Some(-1))
+    val arg1 = new  BeanArgument(new ValueMetadata("arg",None), None,None)
     val destBean = new BeanMetadata(
       "id" ,
       Eager,
@@ -69,7 +71,7 @@ class BeanMetadataParserSpec extends SpecificationWithJUnit with Mockito {
 
     srcBean (xml) mustEqual destBean
   }
- 
+
   """two args""" in {
 
     val xml = <bean id="id" class="clazz">
@@ -77,7 +79,7 @@ class BeanMetadataParserSpec extends SpecificationWithJUnit with Mockito {
       <argument value="arg2" />
               </bean>
 
-    val arg1 =  BeanArgument(new ValueMetadata("arg1",None), None,Some(-1))
+    val arg1 =  BeanArgument(new ValueMetadata("arg1",None), None,None)
     val arg2 =  BeanArgument(new ValueMetadata("arg2",None), None)
     val destBean = new BeanMetadata(
       "id" ,
@@ -104,8 +106,7 @@ class BeanMetadataParserSpec extends SpecificationWithJUnit with Mockito {
               </bean>
 
     val props = BeanProperty("pName",new ValueMetadata("10","type1"))
-    val destBean = new BeanMetadata(
-      "id" ,
+    val destBean = new BeanMetadata( "id" ,
       Eager,
       List(),
       Option("clazz"),
@@ -117,20 +118,20 @@ class BeanMetadataParserSpec extends SpecificationWithJUnit with Mockito {
       None,
       Singleton)
 
- 
+
 
     srcBean (xml) mustEqual destBean
   }
 
 
-  """complext args""" in {
+  """complex args""" in {
 
     val xml =  <bean id="id" class="clazz" >
       <argument><value type="t1">v1</value></argument>
       <argument value="v2" />
                </bean>
 
-    val arg1 =  BeanArgument(new ValueMetadata("v1","t1"), None,Some(-1))
+    val arg1 =  BeanArgument(new ValueMetadata("v1","t1"), None,None)
     val arg2 =  BeanArgument(new ValueMetadata("v2",None), None)
     val destBean = new BeanMetadata(
       "id" ,
@@ -155,7 +156,7 @@ class BeanMetadataParserSpec extends SpecificationWithJUnit with Mockito {
     val xml =     <bean id="id" class="clazz">
       <argument><null/></argument>
                   </bean>
-    val arg1 =   BeanArgument(TNullMetadata.NILL, None,Some(-1)) 
+    val arg1 =   BeanArgument(TNullMetadata.NILL, None,None)
     val destBean = new BeanMetadata(
       "id" ,
       Eager,
@@ -186,8 +187,8 @@ class BeanMetadataParserSpec extends SpecificationWithJUnit with Mockito {
        <null/>
       </property>
                   </bean>
-    val arg1 =   BeanArgument(TNullMetadata.NILL, None,Some(-1))
-     val arg2 =  BeanArgument(new ValueMetadata("v1","t1"), None,Some(-1))
+    val arg1 =   BeanArgument(TNullMetadata.NILL, None,None)
+    val arg2 =  BeanArgument(new ValueMetadata("v1","t1"), None,None)
     val arg3 =  BeanArgument(new ValueMetadata("v2",None), None)
     val props1 = BeanProperty("pName",new ValueMetadata("10","type1"))
     val props2 = BeanProperty("pName",TNullMetadata.NILL)
@@ -207,6 +208,75 @@ class BeanMetadataParserSpec extends SpecificationWithJUnit with Mockito {
     srcBean (xml) mustEqual destBean
   }
 
-    
 
+
+
+  """failed constructor full""" in {
+
+    val xml =     <bean id="id" class="clazz" factory-method = "fm" factory-ref = "fr">
+                  </bean>
+
+
+    srcBean (xml) must throwA[ComponentDefinitionException]
+  }
+  
+    """failed constructor empty""" in {
+
+    val xml =     <bean id="id" >
+                  </bean>
+
+
+    srcBean (xml) must throwA[ComponentDefinitionException]
+  }
+
+   """failed constructor invalid combination""" in {
+
+    val xml =    <bean id="id" class="clazz" factory-ref = "fr">
+                  </bean>
+
+
+    srcBean (xml) must throwA[ComponentDefinitionException]
+  }
+
+
+   """valid args """ in {
+
+    val xml =  <bean id="id" class="clazz" >
+      <argument index="1"><value type="t1" >v1</value></argument>
+      <argument value="v2" index="0"/>
+               </bean>
+
+   srcBean (xml) mustNot throwA[ComponentDefinitionException]
+  }
+
+
+
+   """invalid args gap""" in {
+
+    val xml =  <bean id="id" class="clazz" >
+      <argument index="0"><value type="t1" >v1</value></argument>
+      <argument value="v2" index="2"/>
+               </bean>
+
+   srcBean (xml) must throwA[ComponentDefinitionException]
+  }
+
+     """invalid args  start""" in {
+
+    val xml =  <bean id="id" class="clazz" >
+      <argument index="1"><value type="t1" >v1</value></argument>
+      <argument value="v2" index="2"/>
+               </bean>
+
+   srcBean (xml) must throwA[ComponentDefinitionException]
+  }
+   """invalid args  negatif value """ in {
+
+    val xml =  <bean id="id" class="clazz" >
+      <argument index="-1"><value type="t1" >v1</value></argument>
+      <argument value="v2" index="0"/>
+               </bean>
+
+   srcBean (xml) must throwA[ComponentDefinitionException]
+  }
 }

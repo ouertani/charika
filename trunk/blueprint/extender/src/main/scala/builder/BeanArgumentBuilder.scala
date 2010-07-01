@@ -35,7 +35,7 @@ trait TBeanArgumentBuilder {
       this._valueType=valueType
       this
     }
-    def withIndex(index : Int)={
+    def withIndex(index : Option[Int])={
       this._index=index
       this
     }
