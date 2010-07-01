@@ -21,38 +21,36 @@ import builder._
 import scala.xml._
 
 
-trait TMetadataParser { this: TValueMetadataBuilder with TRefMetadataBuilder =>
-  val metadataParser:MetadataParser= new MetadataParser()
 
-  class MetadataParser  extends  Function1[ Node,TMetadata] {
+class MetadataParser  extends  Function1[ Node,TMetadata] {
+//  this: ValueMetadataBuilder with RefMetadataBuilder =>
 
-
-    def  apply(node:Node):  TMetadata= {
+  def  apply(node:Node):  TMetadata= {
       
-      val ref = node <<< REF_ATTRIBUTE
-      val value = node <<< VALUE_ATTRIBUTE
-      val child = node \ "_"
-      var p:Option[TMetadata]=None
+    val ref = node <<< REF_ATTRIBUTE
+    val value = node <<< VALUE_ATTRIBUTE
+    val child = node \ "_"
+    var p:Option[TMetadata]=None
 
 
-      if((child isDefined)  && !( child.isEmpty) ){
+    if((child isDefined)  && !( child.isEmpty) ){
      
-        val n:Node =child.head       
-        p =(parsers.get(n label)) get (n)
+      val n:Node =child.head
+      p =(parsers.get(n label)) get (n)
         
-      }
+    }
      
-   val b = true //TODO TO BE FIXED
-      if(b) {
-        if( ref isDefined) refMetadataBuilder.withcomponentId(node << REF_ATTRIBUTE) ()
-        else if( value isDefined) valueMetadataBuilder.withStringValue(node << VALUE_ATTRIBUTE).withType(node << TYPE_ATTRIBUTE) ()
-        else p get
+    val b = true //TODO TO BE FIXED
+    if(b) {
+      if( ref isDefined) new RefMetadataBuilder().withcomponentId(node << REF_ATTRIBUTE) ()
+      else if( value isDefined) new ValueMetadataBuilder().withStringValue(node << VALUE_ATTRIBUTE).withType(node << TYPE_ATTRIBUTE) ()
+      else p get
        
-      }else {
-        error("MetadataParser Error ---------- TO BE FIXED ---------------\n")
-      }
+    }else {
+      error("MetadataParser Error ---------- TO BE FIXED ---------------\n")
+    }
       
 
-    }
   }
 }
+

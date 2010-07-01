@@ -17,11 +17,7 @@ import reflect._
 import reflect.impl._
 import scala.collection.JavaConversions._
 
-trait TServiceReferenceMetadataBuilder { this:TComponentMetadataBuilder =>
 
- 
-  
-  val serviceReferenceMetadataBuilder:ServiceReferenceMetadataBuilder
   
   class ServiceReferenceMetadataBuilder extends Function0[TServiceReferenceMetadata] {
 
@@ -70,4 +66,4 @@ trait TServiceReferenceMetadataBuilder { this:TComponentMetadataBuilder =>
         _referenceListeners)
     }
   }
-}
+

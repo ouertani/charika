@@ -16,9 +16,7 @@ import reflect._
 import reflect.impl._
 
 
-trait TCollectionMetadataBuilder {
 
-  val collectionMetadataBuilder:CollectionMetadataBuilder
   
   class CollectionMetadataBuilder extends Function0[TCollectionMetadata]{
     final protected [this] var _collectionClass :Class[_]=_
@@ -52,4 +50,3 @@ trait TCollectionMetadataBuilder {
                              _values)
     }
   }
-}

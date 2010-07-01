@@ -16,9 +16,7 @@ import reflect._
 import reflect.impl._
 
 
-trait TValueMetadataBuilder {
-  
-  val valueMetadataBuilder:ValueMetadataBuilder= new ValueMetadataBuilder()
+
   
   class ValueMetadataBuilder extends Function0[TValueMetadata] {
     
@@ -43,4 +41,3 @@ trait TValueMetadataBuilder {
     }
 
   }
-}

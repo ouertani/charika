@@ -15,8 +15,7 @@ package builder
 import reflect._
 import reflect.impl._
 
-trait TIdRefMetadataBuilder {
-  val idRefMetadataBuilder:IdRefMetadataBuilder
+
   
   class IdRefMetadataBuilder extends Function0[TIdRefMetadata]  {
     final protected [this] var _componentId:String=_
@@ -30,4 +29,3 @@ trait TIdRefMetadataBuilder {
       new IdRefMetadata(_componentId)
     }
   }
-}

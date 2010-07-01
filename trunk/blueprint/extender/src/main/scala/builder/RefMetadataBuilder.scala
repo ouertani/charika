@@ -15,9 +15,7 @@ package builder
 import reflect._
 import reflect.impl._
 
-trait TRefMetadataBuilder{
-  
-  val refMetadataBuilder:RefMetadataBuilder = new RefMetadataBuilder()
+
 
   class RefMetadataBuilder extends Function0[TRefMetadata] {
     
@@ -32,4 +30,3 @@ trait TRefMetadataBuilder{
       new RefMetadata(_componentId)
     }
   }
-}

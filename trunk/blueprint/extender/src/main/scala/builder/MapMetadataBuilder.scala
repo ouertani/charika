@@ -14,8 +14,7 @@ package builder
 
 import reflect._
 import reflect.impl._
-trait TMapMetadataBuilder {
-  val mapMetadataBuilder:MapMetadataBuilder
+
   
   class MapMetadataBuilder extends Function0[TMapMetadata]{
 
@@ -50,4 +49,4 @@ trait TMapMetadataBuilder {
                       _entries)
     }
   }
-}
+

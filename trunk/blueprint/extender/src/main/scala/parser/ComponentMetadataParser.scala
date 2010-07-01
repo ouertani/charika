@@ -17,13 +17,10 @@ import builder._
 import reflect._
 import scala.xml.Node
 
-trait TComponentMetadataParser { this :TComponentMetadataBuilder=>
- 
-
-  val componentMetadataParser:ComponentMetadataParser
   
   class ComponentMetadataParser extends  Function1[Node,TComponentMetadata] {
-    override def  apply( node:Node) :TComponentMetadata = componentMetadataBuilder
+ 
+    override def  apply( node:Node) :TComponentMetadata = new ComponentMetadataBuilder()
     .withId(node << ID_ATTRIBUTE )
     .withActivation(node << ACTIVATION_ATTRIBUTE )
     .withDependsOns(node << DEPENDS_ON_ATTRIBUTE ) ()
@@ -31,4 +28,3 @@ trait TComponentMetadataParser { this :TComponentMetadataBuilder=>
 
 
   }
-}

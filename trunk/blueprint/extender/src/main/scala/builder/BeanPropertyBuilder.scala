@@ -17,9 +17,6 @@ import reflect._
 import reflect.impl._
 
 
-trait TBeanPropertyBuilder {
-
-  val beanPropertyBuilder :BeanPropertyBuilder
   
   class BeanPropertyBuilder extends Function0[TBeanProperty] {
     final protected [this] var _name:String=_
@@ -41,4 +38,3 @@ trait TBeanPropertyBuilder {
                        _value )
     }
   }
-}

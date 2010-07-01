@@ -15,9 +15,7 @@ package builder
 import reflect._
 import reflect.impl._
 
-trait TDefaultBuilder {
-  
-  val defaultBuilder:DefaultBuilder=new DefaultBuilder()
+
   
   class DefaultBuilder extends Function0[TDefault]{
     
@@ -70,4 +68,4 @@ trait TDefaultBuilder {
       Default(_defaultActivation,_defaultTimeout,_defaultAvailability)
     }
   }
-}
+

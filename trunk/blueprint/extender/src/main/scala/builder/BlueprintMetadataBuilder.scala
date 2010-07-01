@@ -5,9 +5,6 @@ package builder
 import reflect._
 import reflect.impl._
 
-trait TBlueprintMetadataBuilder {
-  val blueprintMetadataBuilder : BlueprintMetadataBuilder
-  //TODO Convertor
   
   class BlueprintMetadataBuilder extends Function0[TBlueprintMetadata] {
     private [this] var _default:TDefault=_
@@ -31,4 +28,4 @@ trait TBlueprintMetadataBuilder {
       BlueprintMetadata(_default,_metadatas)
     }
   }
-}
+

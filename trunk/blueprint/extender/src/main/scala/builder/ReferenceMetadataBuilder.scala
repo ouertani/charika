@@ -15,13 +15,9 @@ package builder
 import reflect._
 import reflect.impl._
 
-trait TReferenceMetadataBuilder{this :TServiceReferenceMetadataBuilder with TComponentMetadataBuilder =>
-  
-  
-  val referenceMetadataBuilder:ReferenceMetadataBuilder
+
 
   class ReferenceMetadataBuilder  extends Function0[TReferenceMetadata] {
-
     this :ServiceReferenceMetadataBuilder with ComponentMetadataBuilder =>
     final protected [this] var   _timeOut:Long =_
 
@@ -47,4 +43,3 @@ trait TReferenceMetadataBuilder{this :TServiceReferenceMetadataBuilder with TCom
     }
 
   }
-}
