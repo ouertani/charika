@@ -106,6 +106,7 @@ package object parser{
   }
 
 
+
   trait ComponentMetadataComponent extends TComponentMetadataParser with TComponentMetadataBuilder with TDefault {
     override val componentMetadataBuilder:ComponentMetadataBuilder = new ComponentMetadataBuilder() with TDefault
     override val componentMetadataParser:ComponentMetadataParser = new ComponentMetadataParser()
@@ -122,7 +123,7 @@ package object parser{
     override val beanPropertyBuilder :BeanPropertyBuilder = new BeanPropertyBuilder()
     override val metadataParser:MetadataParser = new MetadataParser()
   }
-
+  object NullMetadataParserComponent extends TNullMetadataParser
   object ValueMetadataParserComponent extends TValueMetadataParser with TValueMetadataBuilder {
      
   }
