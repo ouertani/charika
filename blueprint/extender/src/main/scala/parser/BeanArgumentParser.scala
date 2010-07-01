@@ -23,11 +23,11 @@ trait TBeanArgumentParser { this : TMetadataParser with TBeanArgumentBuilder=>
   val beanArgumentParser :BeanArgumentParser
   
   class BeanArgumentParser  extends Function1[Node,TBeanArgument]  {
-    implicit def toInt(index:String) :Int={
-      if((index ==null) || (index isEmpty) ){ -1}
+    implicit def toInt(index:String) : Option[Int]={
+      if((index ==null) || (index isEmpty) ){None}
       else {
         try {
-          Int.unbox(index)
+         Some( Integer.parseInt(index) )
         }catch {
           case _ => error ("invalid index "+ index)
         }
@@ -38,7 +38,7 @@ trait TBeanArgumentParser { this : TMetadataParser with TBeanArgumentBuilder=>
       val metadata = metadataParser(node)
       beanArgumentBuilder
       .withValueType(node << TYPE_ATTRIBUTE )
-      .withIndex(node << INDEX_ATTRIBUTE )
+      .withIndex(toInt(node << INDEX_ATTRIBUTE ))
       .withValue(metadata)    ()
     }
   }
