@@ -16,13 +16,14 @@ import reflect._
 import reflect.impl._
 
 
-trait TComponentMetadataBuilder { this : TDefault =>
+trait TComponentMetadataBuilder { 
 
   val componentMetadataBuilder:ComponentMetadataBuilder
   
-  class ComponentMetadataBuilder  extends Function0[TComponentMetadata]{ this : TDefault =>
+  class ComponentMetadataBuilder  extends Function0[TComponentMetadata]{ 
 
 
+    final protected [this] var _default:TDefault=new Default
     final protected [this] var _id :String=_
     final protected [this] var _activation:Activation=_
     final protected [this] var _dependsOns:List[String]=List()
@@ -39,7 +40,7 @@ trait TComponentMetadataBuilder { this : TDefault =>
     }
     def withActivation(activation:String):ComponentMetadataBuilder={
       if((activation == null) || (activation isEmpty)){
-        withActivation( defaultActivation)
+        withActivation( _default.defaultActivation)
       }
       else {
         activation match {

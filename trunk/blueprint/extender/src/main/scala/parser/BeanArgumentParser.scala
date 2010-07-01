@@ -23,22 +23,13 @@ trait TBeanArgumentParser { this : TMetadataParser with TBeanArgumentBuilder=>
   val beanArgumentParser :BeanArgumentParser
   
   class BeanArgumentParser  extends Function1[Node,TBeanArgument]  {
-    implicit def toInt(index:String) : Option[Int]={
-      if((index ==null) || (index isEmpty) ){None}
-      else {
-        try {
-         Some( Integer.parseInt(index) )
-        }catch {
-          case _ => error ("invalid index "+ index)
-        }
-      }
-    }
+ 
     override def  apply( node:Node):TBeanArgument = {
      
       val metadata = metadataParser(node)
       beanArgumentBuilder
       .withValueType(node << TYPE_ATTRIBUTE )
-      .withIndex(toInt(node << INDEX_ATTRIBUTE ))
+      .withIndex(node << INDEX_ATTRIBUTE )
       .withValue(metadata)    ()
     }
   }

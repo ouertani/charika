@@ -35,11 +35,26 @@ trait TBeanArgumentBuilder {
       this._valueType=valueType
       this
     }
-    def withIndex(index : Option[Int])={
-      this._index=index
+//    def withIndex(index : Option[Int])={
+//      this._index=index
+//      this
+//    }
+
+
+    private def toInt(index:String) : Option[Int]={
+      if((index ==null) || (index isEmpty) ){None}
+      else {
+        try {
+         Some( Integer.parseInt(index) )
+        }catch {
+          case _ => error ("invalid index "+ index)
+        }
+      }
+    }
+    def withIndex(index : String)={
+      this._index=toInt(index)
       this
     }
-
 
     def apply()={
       new BeanArgument (_value, _valueType , _index )
