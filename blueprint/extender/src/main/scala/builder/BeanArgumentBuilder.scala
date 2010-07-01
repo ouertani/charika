@@ -22,9 +22,9 @@ trait TBeanArgumentBuilder {
   val beanArgumentBuilder:BeanArgumentBuilder
 
   class BeanArgumentBuilder  extends Function0[TBeanArgument]  {
-    final protected [this] var _value : TMetadata=_
-    final protected [this] var _valueType : Option[String]=None
-    final protected [this] var _index : Option[Int]=None
+    final private [this] var _value : TMetadata=_
+    final private [this] var _valueType : Option[String]=None
+    final private [this] var _index : Option[Int]=None
 
 
     def withValue(value : TMetadata)={

@@ -24,7 +24,7 @@ trait TDefaultParser { this : TDefaultBuilder =>
    override def  apply( node:Node):TDefault = {
 
      
-
+println(node+"________________________________________")
       defaultBuilder
       .withDefaultActivation(node << DEFAULT_ACTIVATION_ATTRIBUTE)
       .withDefaultAvailability(node << DEFAULT_AVAILABILITY_ATTRIBUTE)

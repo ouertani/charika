@@ -21,6 +21,10 @@ import org.osgi.service.blueprint.container._
 
 package object parser{
 
+
+   
+
+
   val BLUEPRINT_NAMESPACE = "http://www.osgi.org/xmlns/blueprint/v1.0.0";
   val  BLUEPRINT_ELEMENT = "blueprint";
   val  DESCRIPTION_ELEMENT = "description";
@@ -91,6 +95,12 @@ package object parser{
   val  USE_SERVICE_REFERENCE = "service-reference";
 
 
+   val parsers = Map (
+    BEAN_ELEMENT  -> BeanMetadataParserComponent.beanMetadataParser ,
+    VALUE_ELEMENT -> ValueMetadataParserComponent.valueMetadataParser,
+    NULL_ELEMENT  -> NullMetadataParserComponent.nullMetadataParser)
+
+
   def error( msg : String) : Nothing={
     throw new ComponentDefinitionException("Unknown element " + msg);
   }
@@ -111,13 +121,13 @@ package object parser{
     override val componentMetadataParser:ComponentMetadataParser = new ComponentMetadataParser()
   }
 
-  trait BeanArgumentParserComponent extends TBeanArgumentParser with TMetadataParser with TValueMetadataParser with TDelegateParser with TBeanArgumentBuilder with TValueMetadataBuilder with TRefMetadataBuilder  {
+  trait BeanArgumentParserComponent extends TBeanArgumentParser with TMetadataParser with TValueMetadataParser  with TBeanArgumentBuilder with TValueMetadataBuilder with TRefMetadataBuilder  {
     override val beanArgumentParser :BeanArgumentParser= new BeanArgumentParser()
     override val beanArgumentBuilder:BeanArgumentBuilder = new BeanArgumentBuilder()
     override val metadataParser:MetadataParser = new MetadataParser()
   }
 
-  trait BeanPropertyParserComponent extends TBeanPropertyParser with TMetadataParser with TValueMetadataParser  with TDelegateParser with TBeanPropertyBuilder with TValueMetadataBuilder with TRefMetadataBuilder{
+  trait BeanPropertyParserComponent extends TBeanPropertyParser with TMetadataParser with TValueMetadataParser with TBeanPropertyBuilder with TValueMetadataBuilder with TRefMetadataBuilder{
     override val beanPropertyParser :BeanPropertyParser= new BeanPropertyParser()
     override val beanPropertyBuilder :BeanPropertyBuilder = new BeanPropertyBuilder()
     override val metadataParser:MetadataParser = new MetadataParser()
@@ -139,7 +149,7 @@ package object parser{
     override val beanMetadataParser :BeanMetadataParser =new BeanMetadataParser()
   }
 
-  object DelegateParserComponent extends TDelegateParser
+  
 
 
   def xor(x: Boolean, y: Boolean, z : Boolean): Boolean = (x || y || z ) && !(x && y) && !(x && z) && !(y && z) && ! (x && y && z)
