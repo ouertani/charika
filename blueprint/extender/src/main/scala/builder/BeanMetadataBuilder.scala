@@ -97,7 +97,7 @@ trait TBeanMetadataBuilder {
         scope match {
           case "singleton" =>  withScope( Singleton)
           case "prototype" =>  withScope( Prototype)
-          case e => error ( e +" invalid activation text")
+          case e => error ( e +" invalid scope text")
         }
       }
     }

@@ -33,8 +33,9 @@ trait TDelegateParser {
 
     def apply ( node:NodeSeq):Option[TMetadata] ={
 
+      
       for(n <- node \ "_") {
-
+        
         if(BLUEPRINT_NAMESPACE == n.namespace ) {
           delegates.get(n.label) match {
             case Some(p) => p (n)

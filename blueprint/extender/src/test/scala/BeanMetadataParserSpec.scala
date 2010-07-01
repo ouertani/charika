@@ -27,7 +27,7 @@ class BeanMetadataParserSpec extends SpecificationWithJUnit with Mockito {
 
   """simple""" in {
 
-    val xml = <bean id="id" class="clazz">      
+    val xml = <bean id="id" class="clazz">
               </bean>
     val destBean = BeanMetadata(
       "id" ,
@@ -43,9 +43,9 @@ class BeanMetadataParserSpec extends SpecificationWithJUnit with Mockito {
       Singleton)
 
 
-  
+
     srcBean (xml) mustEqual destBean
- 
+
   }
 
 
@@ -219,7 +219,7 @@ class BeanMetadataParserSpec extends SpecificationWithJUnit with Mockito {
 
     srcBean (xml) must throwA[ComponentDefinitionException]
   }
-  
+
     """failed constructor empty""" in {
 
     val xml =     <bean id="id" >
