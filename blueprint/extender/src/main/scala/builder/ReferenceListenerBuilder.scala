@@ -15,9 +15,7 @@ package builder
 import reflect._
 import reflect.impl._
 
-trait TReferenceListenerBuilder {
 
-  val referenceListenerBuilder:ReferenceListenerBuilder
 
   class ReferenceListenerBuilder extends Function0[TReferenceListener]{
 
@@ -47,4 +45,4 @@ trait TReferenceListenerBuilder {
       )
     }
   }
-}
+

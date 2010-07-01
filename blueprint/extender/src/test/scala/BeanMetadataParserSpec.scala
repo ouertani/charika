@@ -23,7 +23,7 @@ import  org.osgi.service.blueprint.container._
 
 class BeanMetadataParserSpec extends SpecificationWithJUnit with Mockito {
 
-  val srcBean =   BeanMetadataParserComponent.beanMetadataParser
+  val srcBean =   new BeanMetadataParser()
 
   """simple""" in {
 

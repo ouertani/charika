@@ -17,11 +17,10 @@ import reflect.TBeanArgument
 import reflect.TMetadata
 import reflect.impl.BeanArgument
 
-trait TBeanArgumentBuilder {
 
-  val beanArgumentBuilder:BeanArgumentBuilder
 
   class BeanArgumentBuilder  extends Function0[TBeanArgument]  {
+    
     final private [this] var _value : TMetadata=_
     final private [this] var _valueType : Option[String]=None
     final private [this] var _index : Option[Int]=None
@@ -35,12 +34,6 @@ trait TBeanArgumentBuilder {
       this._valueType=valueType
       this
     }
-//    def withIndex(index : Option[Int])={
-//      this._index=index
-//      this
-//    }
-
-
     private def toInt(index:String) : Option[Int]={
       if((index ==null) || (index isEmpty) ){None}
       else {
@@ -60,4 +53,4 @@ trait TBeanArgumentBuilder {
       new BeanArgument (_value, _valueType , _index )
     }
   }
-}
+

@@ -7,16 +7,15 @@ import reflect._
 import builder._
 import scala.xml.Node
 
-trait TBlueprintMetadataParser {this :TDefaultParser with TBlueprintMetadataBuilder =>
 
-  val blueprintMetadataParser:BlueprintMetadataParser = new BlueprintMetadataParser()
 
 
   class BlueprintMetadataParser extends  Function1[Node,TBlueprintMetadata]{
-    
+//    this :DefaultParser with BlueprintMetadataBuilder =>
+
     override def apply( node:Node):TBlueprintMetadata = {
-      val default= defaultParser(node)
-      val d=   blueprintMetadataBuilder.withDefault(default)
+      val default= new DefaultParser () (node)
+      val d=   new BlueprintMetadataBuilder().withDefault(default)
 
 
       for(n <- node \ "_") {
@@ -41,4 +40,4 @@ trait TBlueprintMetadataParser {this :TDefaultParser with TBlueprintMetadataBuil
 
   }
 
-}
+

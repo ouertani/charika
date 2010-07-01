@@ -16,9 +16,7 @@ import reflect._
 import reflect.impl._
 
 
-trait TComponentMetadataBuilder { 
 
-  val componentMetadataBuilder:ComponentMetadataBuilder
   
   class ComponentMetadataBuilder  extends Function0[TComponentMetadata]{ 
 
@@ -73,4 +71,3 @@ trait TComponentMetadataBuilder {
     }
 
   }
-}

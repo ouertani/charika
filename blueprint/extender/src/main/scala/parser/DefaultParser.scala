@@ -16,19 +16,15 @@ package parser
 import reflect._
 import builder._
 import scala.xml.Node
-trait TDefaultParser { this : TDefaultBuilder =>
 
-  val defaultParser:DefaultParser= new DefaultParser()
+
   class DefaultParser extends  Function1[Node,TDefault]{
-
+//this : DefaultBuilder =>
    override def  apply( node:Node):TDefault = {
-
-     
-println(node+"________________________________________")
-      defaultBuilder
+      new DefaultBuilder()
       .withDefaultActivation(node << DEFAULT_ACTIVATION_ATTRIBUTE)
       .withDefaultAvailability(node << DEFAULT_AVAILABILITY_ATTRIBUTE)
       .withDefaultTimeout(node << DEFAULT_TIMEOUT_ATTRIBUTE) ()
     }
   }
-}
+

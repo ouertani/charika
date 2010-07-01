@@ -23,46 +23,46 @@ import builder._
 import scala.xml.Node
 
 
-trait TBeanMetadataParser {
-  this : TBeanArgumentParser 
-  with TBeanPropertyParser
-  with TComponentMetadataParser
-  with TBeanMetadataBuilder
-  with TRefMetadataBuilder   =>
-
-  val beanMetadataParser :BeanMetadataParser
   
-  class BeanMetadataParser extends  Function1[Node,TBeanMetadata] {
-
-    override def  apply( node:Node):TBeanMetadata = {
+class BeanMetadataParser extends  Function1[Node,TBeanMetadata] {
 
 
+//                            this : BeanArgumentParser
+//                            with BeanPropertyParser
+//                            with ComponentMetadataParser
+//                            with BeanMetadataBuilder
+//                            with RefMetadataBuilder   =>
 
-      val componentMetadata:TComponentMetadata = componentMetadataParser(node)
-     // val refMetadata:TRefMetadata = refMetadataBuilder.withcomponentId(node << FACTORY_REF_ATTRIBUTE ) ()
+
+  override def  apply( node:Node):TBeanMetadata = {
+
+
+
+    val componentMetadata:TComponentMetadata = new  ComponentMetadataParser() (node)
+    // val refMetadata:TRefMetadata = refMetadataBuilder.withcomponentId(node << FACTORY_REF_ATTRIBUTE ) ()
 
       
-      val refMetadata:Option[TRefMetadata] = if (node.attribute(FACTORY_REF_ATTRIBUTE).isEmpty) None else refMetadataBuilder.withcomponentId(node <<< FACTORY_REF_ATTRIBUTE ) ()
+    val refMetadata:Option[TRefMetadata] = if (node.attribute(FACTORY_REF_ATTRIBUTE).isEmpty) None else 
+      new RefMetadataBuilder().withcomponentId(node <<< FACTORY_REF_ATTRIBUTE ) ()
      
 
-      beanMetadataBuilder.
-      withComponentMetadata(componentMetadata)
-      .withClassName(node << CLASS_ATTRIBUTE )
-      .withFactoryMethod(node << FACTORY_METHOD_ATTRIBUTE )
-      .withFactoryComponent(refMetadata )
-      .withInitMethod(node << INIT_METHOD_ATTRIBUTE )
-      .withDestroyMethod(node << DESTROY_METHOD_ATTRIBUTE )
-      .withScope(node << SCOPE_ATTRIBUTE )
-      .withBeanProperties  (parseProperties(node) )
-      .withBeanArguments (parseArguments(node) )     ()
-    }
-
-    def parseArguments(node : Node)={
-      for( elem <-  node \ ARGUMENT_ELEMENT) yield beanArgumentParser (elem)
-    }
-    def parseProperties(node : Node) = {
-      for( elem <-  node \ PROPERTY_ELEMENT) yield beanPropertyParser (elem)
-    }
-
+    new BeanMetadataBuilder().
+    withComponentMetadata(componentMetadata)
+    .withClassName(node << CLASS_ATTRIBUTE )
+    .withFactoryMethod(node << FACTORY_METHOD_ATTRIBUTE )
+    .withFactoryComponent(refMetadata )
+    .withInitMethod(node << INIT_METHOD_ATTRIBUTE )
+    .withDestroyMethod(node << DESTROY_METHOD_ATTRIBUTE )
+    .withScope(node << SCOPE_ATTRIBUTE )
+    .withBeanProperties  (parseProperties(node) )
+    .withBeanArguments (parseArguments(node) )     ()
   }
+
+  def parseArguments(node : Node)={
+    for( elem <-  node \ ARGUMENT_ELEMENT) yield  new BeanArgumentParser () (elem)
+  }
+  def parseProperties(node : Node) = {
+    for( elem <-  node \ PROPERTY_ELEMENT) yield new BeanPropertyParser () (elem)
+  }
+
 }

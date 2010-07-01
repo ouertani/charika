@@ -14,9 +14,8 @@ package builder
 
 import reflect._
 import reflect.impl._
-trait TRegistrationListenerBuilder {
 
-  val registrationListenerBuilder:RegistrationListenerBuilder
+
 
   class RegistrationListenerBuilder  extends Function0[TRegistrationListener] {
 
@@ -46,4 +45,4 @@ trait TRegistrationListenerBuilder {
         _unregistrationMethod)
     }
   }
-}
+

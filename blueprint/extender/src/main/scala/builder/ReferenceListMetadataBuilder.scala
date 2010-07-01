@@ -15,16 +15,10 @@ package builder
 import reflect._
 import reflect.impl._
 
-trait TReferenceListMetadataBuilder
-extends Function0[TReferenceListMetadata]
-{this:TServiceReferenceMetadataBuilder  with TComponentMetadataBuilder=>
-  
-  
-  
-  val referenceListMetadataBuilder:ReferenceListMetadataBuilder
 
-  class ReferenceListMetadataBuilder   {
-    this:ServiceReferenceMetadataBuilder  with ComponentMetadataBuilder=>
+
+  class ReferenceListMetadataBuilder extends Function0[TReferenceListMetadata]  {
+       this:ServiceReferenceMetadataBuilder  with ComponentMetadataBuilder=>
 
     final protected [this] var  _memberType : MemberType=_
     final protected [this] var _serviceReferenceMetadataBuilder:ServiceReferenceMetadataBuilder=_
@@ -49,4 +43,3 @@ extends Function0[TReferenceListMetadata]
         _memberType)
     }
   }
-}

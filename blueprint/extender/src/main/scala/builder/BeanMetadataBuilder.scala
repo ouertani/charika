@@ -16,9 +16,7 @@ import reflect._
 import reflect.impl._
 
 
-trait TBeanMetadataBuilder {
 
-  val beanMetadataBuilder:BeanMetadataBuilder
   
   class BeanMetadataBuilder  extends Function0[TBeanMetadata]  {
 
@@ -155,4 +153,4 @@ trait TBeanMetadataBuilder {
 • factory-ref, factory-method
 """
   }
-}
+

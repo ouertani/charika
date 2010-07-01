@@ -14,8 +14,7 @@ package builder
 
 import reflect._
 import reflect.impl._
-trait TPropsMetadataBuilder {
-  val propsMetadataBuilder:PropsMetadataBuilder
+
   
 class PropsMetadataBuilder extends Function0[TPropsMetadata] {
   
@@ -35,4 +34,4 @@ class PropsMetadataBuilder extends Function0[TPropsMetadata] {
     new PropsMetadata( _entries)
   }
 }
-}
+

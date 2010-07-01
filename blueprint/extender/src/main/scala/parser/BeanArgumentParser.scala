@@ -17,20 +17,18 @@ import reflect._
 import builder._
 import scala.xml.Node
 
-trait TBeanArgumentParser { this : TMetadataParser with TBeanArgumentBuilder=>
 
- 
-  val beanArgumentParser :BeanArgumentParser
   
-  class BeanArgumentParser  extends Function1[Node,TBeanArgument]  {
- 
-    override def  apply( node:Node):TBeanArgument = {
-     
-      val metadata = metadataParser(node)
-      beanArgumentBuilder
-      .withValueType(node << TYPE_ATTRIBUTE )
-      .withIndex(node << INDEX_ATTRIBUTE )
-      .withValue(metadata)    ()
-    }
+class BeanArgumentParser  extends Function1[Node,TBeanArgument]  {
+  
+
+
+
+  override def  apply( node:Node):TBeanArgument = {     
+  
+    new BeanArgumentBuilder()
+    .withValueType(node << TYPE_ATTRIBUTE )
+    .withIndex(node << INDEX_ATTRIBUTE )
+    .withValue(new MetadataParser () (node))    ()
   }
 }

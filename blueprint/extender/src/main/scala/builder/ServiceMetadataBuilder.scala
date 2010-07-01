@@ -17,15 +17,13 @@ import reflect._
 import reflect.impl._
 import scala.collection.JavaConversions._
 
-trait TServiceMetadataBuilder{ this : TComponentMetadataBuilder =>
 
- 
-  val serviceMetadataBuilder:ServiceMetadataBuilder
   
   class ServiceMetadataBuilder extends Function0[TServiceMetadata]{
 
 
     this : ComponentMetadataBuilder =>
+    
     private [this] var   _serviceComponent:TTarget=_
     private [this] var   _interfaces:List[String]=_
     private [this] var   _autoExport:AutoExport=_
@@ -84,4 +82,3 @@ trait TServiceMetadataBuilder{ this : TComponentMetadataBuilder =>
         _registrationListeners )
     }
   }
-}
