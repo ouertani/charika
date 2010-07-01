@@ -25,7 +25,8 @@ trait TDelegateParser {
   val delegateParser:DelegateParser=new DelegateParser()
   val delegates = Map (
     BEAN_ELEMENT  ->BeanMetadataParserComponent.beanMetadataParser ,
-    VALUE_ELEMENT -> ValueMetadataParserComponent.valueMetadataParser)
+    VALUE_ELEMENT -> ValueMetadataParserComponent.valueMetadataParser,
+    NULL_ELEMENT -> NullMetadataParserComponent.nullMetadataParser)
   
   class DelegateParser extends  Function1[NodeSeq,Option[TMetadata]]{
    

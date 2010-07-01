@@ -149,6 +149,30 @@ class BeanMetadataParserSpec extends SpecificationWithJUnit with Mockito {
   }
 
 
+
+  """complex args with null """ in {
+
+    val xml =     <bean id="id" class="clazz">
+   
+      <argument><null/></argument>
+                  </bean>
+    val arg1 =   BeanArgument(TNullMetadata.NILL, None,Some(-1)) 
+    val destBean = new BeanMetadata(
+      "id" ,
+      Eager,
+      List(),
+      Option("clazz"),
+      None ,
+      None,
+      List(arg1),
+      List(),
+      None,
+      None,
+      Singleton)
+
+    srcBean (xml) mustEqual destBean
+  }
+
     
 
 }

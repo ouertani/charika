@@ -48,7 +48,7 @@ trait TMetadataParser { this:TDelegateParser with TValueMetadataBuilder with TRe
       if(b) {
         if( ref isDefined) refMetadataBuilder.withcomponentId(node << REF_ATTRIBUTE) ()
         else if( value isDefined) valueMetadataBuilder.withStringValue(node << VALUE_ATTRIBUTE).withType(node << TYPE_ATTRIBUTE) ()
-       else p get
+        else p get
        
       }else {
         error("MetadataParser Error ---------- TO BE FIXED ---------------\n")
