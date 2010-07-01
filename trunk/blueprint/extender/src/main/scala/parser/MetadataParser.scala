@@ -21,15 +21,14 @@ import builder._
 import scala.xml._
 
 
-trait TMetadataParser { this:TDelegateParser with TValueMetadataBuilder with TRefMetadataBuilder =>
+trait TMetadataParser { this: TValueMetadataBuilder with TRefMetadataBuilder =>
   val metadataParser:MetadataParser= new MetadataParser()
-  
+
   class MetadataParser  extends  Function1[ Node,TMetadata] {
 
 
     def  apply(node:Node):  TMetadata= {
-
-     
+      
       val ref = node <<< REF_ATTRIBUTE
       val value = node <<< VALUE_ATTRIBUTE
       val child = node \ "_"
@@ -38,9 +37,8 @@ trait TMetadataParser { this:TDelegateParser with TValueMetadataBuilder with TRe
 
       if((child isDefined)  && !( child.isEmpty) ){
      
-        val n:Node =child.head
-        
-        p =(delegates.get(n label)) get (n)        
+        val n:Node =child.head       
+        p =(parsers.get(n label)) get (n)
         
       }
      
