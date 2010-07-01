@@ -42,7 +42,7 @@ class BeanMetadataParserSpec extends SpecificationWithJUnit with Mockito {
 
 
   
-   srcBean (xml) mustEqual destBean
+    srcBean (xml) mustEqual destBean
  
   }
 
@@ -95,15 +95,15 @@ class BeanMetadataParserSpec extends SpecificationWithJUnit with Mockito {
     srcBean (xml) mustEqual destBean
   }
 
-   """one props""" in {
+  """one props""" in {
 
     val xml = <bean id="id" class="clazz">
       <property name="pName"  >
-         <value type="type1">10</value>
-         </property>
+        <value type="type1">10</value>
+      </property>
               </bean>
 
-    val props = new  BeanProperty("pName",new ValueMetadata("10","type1"))
+    val props = BeanProperty("pName",new ValueMetadata("10","type1"))
     val destBean = new BeanMetadata(
       "id" ,
       Eager,
@@ -121,5 +121,34 @@ class BeanMetadataParserSpec extends SpecificationWithJUnit with Mockito {
 
     srcBean (xml) mustEqual destBean
   }
+
+
+  """complext args""" in {
+
+    val xml =  <bean id="id" class="clazz" >
+      <argument><value type="t1">v1</value></argument>
+      <argument value="v2" />
+               </bean>
+
+    val arg1 =  BeanArgument(new ValueMetadata("v1","t1"), None,Some(-1))
+    val arg2 =  BeanArgument(new ValueMetadata("v2",None), None)
+    val destBean = new BeanMetadata(
+      "id" ,
+      Eager,
+      List(),
+      Option("clazz"),
+      None ,
+      None,
+      List(arg1,arg2),
+      List(),
+      None,
+      None,
+      Singleton)
+
+    srcBean (xml) mustEqual destBean
+  }
+
+
+    
 
 }
