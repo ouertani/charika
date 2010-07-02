@@ -18,9 +18,10 @@ import reflect._
 import scala.xml.Node
 
   
-  class ComponentMetadataParser extends  Function1[Node,TComponentMetadata] {
+  class ComponentMetadataParser  extends  Function2[Node,TDefault,TComponentMetadata] {
  
-    override def  apply( node:Node) :TComponentMetadata = new ComponentMetadataBuilder()
+    override def  apply(node:Node,
+                        default:TDefault) :TComponentMetadata = new ComponentMetadataBuilder(default)
     .withId(node <<< ID_ATTRIBUTE )
     .withActivation(node <<< ACTIVATION_ATTRIBUTE )
     .withDependsOns(node <<< DEPENDS_ON_ATTRIBUTE ) ()

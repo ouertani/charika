@@ -17,8 +17,8 @@ import builder._
 import scala.xml._
 
   
-  class NullMetadataParser  extends Function1[Node,TNullMetadata]  {
-    def  apply(node:Node):  TNullMetadata= {
+  class NullMetadataParser  extends Function2[Node,TDefault,TNullMetadata]  {
+    def  apply(node:Node, default:TDefault):  TNullMetadata= {
       TNullMetadata.NILL
     }
   }

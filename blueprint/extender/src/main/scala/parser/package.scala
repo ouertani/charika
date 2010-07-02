@@ -95,11 +95,11 @@ package object parser{
   val  USE_SERVICE_REFERENCE = "service-reference";
 
 
-  val parsers = Map (
-    BEAN_ELEMENT  -> new BeanMetadataParser (),
-    VALUE_ELEMENT -> new ValueMetadataParser(),
-    NULL_ELEMENT  -> new NullMetadataParser()
-  )
+   val parsers = Map (
+      BEAN_ELEMENT  -> new BeanMetadataParser ,
+      VALUE_ELEMENT -> new ValueMetadataParser,
+      NULL_ELEMENT  -> new NullMetadataParser
+    )
 
 
   def error( msg : String) : Nothing={

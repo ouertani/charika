@@ -18,9 +18,9 @@ import builder._
 import scala.xml.Node
 
 
-class ValueMetadataParser  extends Function1[Node,TValueMetadata]  {
+class ValueMetadataParser   extends Function2[Node,TDefault,TValueMetadata]  {
 
-    override def  apply( node:Node):TValueMetadata = {
+    override def  apply( node:Node, default:TDefault):TValueMetadata = {
      
       new ValueMetadataBuilder().withStringValue(node.text).withType(node <<< TYPE_ATTRIBUTE)()
     }

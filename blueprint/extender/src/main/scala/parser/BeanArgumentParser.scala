@@ -19,12 +19,12 @@ import scala.xml.Node
 
 
   
-class BeanArgumentParser  extends Function1[Node,TBeanArgument]  {
+class BeanArgumentParser extends Function2[Node,TDefault,TBeanArgument]  {
   
-  override def  apply( node:Node):TBeanArgument = {     
+  override def  apply( node:Node, default:TDefault):TBeanArgument = {
 
    new BeanArgumentBuilder().withValueType(node <<< TYPE_ATTRIBUTE )
     .withIndex(node <<< INDEX_ATTRIBUTE )
-    .withValue(new MetadataParser () (node)) ()
+    .withValue(new MetadataParser () (node,default)) ()
   }
 }
