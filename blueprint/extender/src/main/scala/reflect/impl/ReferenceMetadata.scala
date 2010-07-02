@@ -13,7 +13,7 @@ package net.dikka.charika.blueprint
 package reflect.impl
 import reflect._
 class ReferenceMetadata (
-  id :String ,
+  override val id :String ,
   activation:Activation ,
   dependsOns:List[String],
   availability : Availability,
@@ -22,12 +22,14 @@ class ReferenceMetadata (
   filter:String,
   referenceListeners:Iterable[TReferenceListener],
   timeOut:Long) extends ServiceReferenceMetadata ( id ,
-                                                   activation,
-                                                   dependsOns,
-                                                   availability ,
-                                                   interface,
-                                                   componentName,
-                                                   filter,
-                                                   referenceListeners)with TReferenceMetadata {
+                                                  activation,
+                                                  dependsOns,
+                                                  availability ,
+                                                  interface,
+                                                  componentName,
+                                                  filter,
+                                                  referenceListeners)
+                   with TReferenceMetadata
+{
   override def getTimeout()=timeOut
 }

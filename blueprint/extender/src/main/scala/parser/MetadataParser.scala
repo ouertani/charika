@@ -23,7 +23,7 @@ import scala.xml._
 
 
 class MetadataParser  extends  Function1[ Node,TMetadata] {
-//  this: ValueMetadataBuilder with RefMetadataBuilder =>
+
 
   def  apply(node:Node):  TMetadata= {
       
@@ -42,8 +42,8 @@ class MetadataParser  extends  Function1[ Node,TMetadata] {
      
     val b = true //TODO TO BE FIXED
     if(b) {
-      if( ref isDefined) new RefMetadataBuilder().withcomponentId(node << REF_ATTRIBUTE) ()
-      else if( value isDefined) new ValueMetadataBuilder().withStringValue(node << VALUE_ATTRIBUTE).withType(node << TYPE_ATTRIBUTE) ()
+      if( ref isDefined) new RefMetadataBuilder().withcomponentId(node <<< REF_ATTRIBUTE) ()
+      else if( value isDefined) new ValueMetadataBuilder().withStringValue(node <<< VALUE_ATTRIBUTE).withType(node <<< TYPE_ATTRIBUTE) ()
       else p get
        
     }else {

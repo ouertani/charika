@@ -17,9 +17,7 @@ import reflect.TBeanArgument
 import reflect.TMetadata
 import reflect.impl.BeanArgument
 
-
-
-  class BeanArgumentBuilder  extends Function0[TBeanArgument]  {
+class BeanArgumentBuilder ()  extends Function0[TBeanArgument]  {
     
     final private [this] var _value : TMetadata=_
     final private [this] var _valueType : Option[String]=None

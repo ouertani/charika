@@ -18,13 +18,13 @@ import builder._
 import scala.xml.Node
 
 
-  class DefaultParser extends  Function1[Node,TDefault]{
-//this : DefaultBuilder =>
+class DefaultParser extends  Function1[Node,TDefault]{
+
    override def  apply( node:Node):TDefault = {
       new DefaultBuilder()
-      .withDefaultActivation(node << DEFAULT_ACTIVATION_ATTRIBUTE)
-      .withDefaultAvailability(node << DEFAULT_AVAILABILITY_ATTRIBUTE)
-      .withDefaultTimeout(node << DEFAULT_TIMEOUT_ATTRIBUTE) ()
+      .withDefaultActivation(node <<< DEFAULT_ACTIVATION_ATTRIBUTE)
+      .withDefaultAvailability(node <<< DEFAULT_AVAILABILITY_ATTRIBUTE)
+      .withDefaultTimeout(node <<< DEFAULT_TIMEOUT_ATTRIBUTE) ()
     }
   }
 

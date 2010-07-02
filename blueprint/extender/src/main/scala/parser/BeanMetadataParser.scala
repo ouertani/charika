@@ -27,13 +27,6 @@ import scala.xml.Node
 class BeanMetadataParser extends  Function1[Node,TBeanMetadata] {
 
 
-//                            this : BeanArgumentParser
-//                            with BeanPropertyParser
-//                            with ComponentMetadataParser
-//                            with BeanMetadataBuilder
-//                            with RefMetadataBuilder   =>
-
-
   override def  apply( node:Node):TBeanMetadata = {
 
 
@@ -46,16 +39,16 @@ class BeanMetadataParser extends  Function1[Node,TBeanMetadata] {
       new RefMetadataBuilder().withcomponentId(node <<< FACTORY_REF_ATTRIBUTE ) ()
      
 
-    new BeanMetadataBuilder().
-    withComponentMetadata(componentMetadata)
-    .withClassName(node << CLASS_ATTRIBUTE )
-    .withFactoryMethod(node << FACTORY_METHOD_ATTRIBUTE )
-    .withFactoryComponent(refMetadata )
-    .withInitMethod(node << INIT_METHOD_ATTRIBUTE )
-    .withDestroyMethod(node << DESTROY_METHOD_ATTRIBUTE )
-    .withScope(node << SCOPE_ATTRIBUTE )
-    .withBeanProperties  (parseProperties(node) )
-    .withBeanArguments (parseArguments(node) )     ()
+  
+   new BeanMetadataBuilder() .withComponentMetadata(componentMetadata)
+   .withClassName(node <<< CLASS_ATTRIBUTE )
+   .withFactoryMethod(node <<< FACTORY_METHOD_ATTRIBUTE )
+   .withFactoryComponent(refMetadata )
+   .withInitMethod(node <<< INIT_METHOD_ATTRIBUTE )
+   .withDestroyMethod(node <<< DESTROY_METHOD_ATTRIBUTE )
+   .withScope(node <<< SCOPE_ATTRIBUTE )
+   .withBeanProperties  (parseProperties(node) )
+   .withBeanArguments (parseArguments(node) ) ()
   }
 
   def parseArguments(node : Node)={

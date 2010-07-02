@@ -18,7 +18,7 @@ import reflect.impl._
 
 
   
-  class BeanMetadataBuilder  extends Function0[TBeanMetadata]  {
+class BeanMetadataBuilder  extends Function0[TBeanMetadata]  {
 
     final protected [this] var _componentMetadata: TComponentMetadata=_
     final protected [this] var _className:Option[String]=None
@@ -81,23 +81,22 @@ import reflect.impl._
       _factoryComponent=factoryComponent
       this
     }
-    def withScope(scope:Scope):BeanMetadataBuilder={
+    def withScope(scope:Scope)={
       _scope=scope
       this
     }
 
 
-    def withScope(scope:String):BeanMetadataBuilder={
-      if((scope == null) || (scope isEmpty)){
-        withScope( Singleton)
-      }
-      else {
+    def withScope(scope:String)={
         scope match {
-          case "singleton" =>  withScope( Singleton)
-          case "prototype" =>  withScope( Prototype)
+          case null => _scope =Singleton
+          case "" => _scope =Singleton
+          case "singleton" => _scope = Singleton
+          case "prototype" =>  _scope = Prototype
           case e => error ( e +" invalid scope text")
         }
-      }
+     
+      this
     }
 
     def validate (){

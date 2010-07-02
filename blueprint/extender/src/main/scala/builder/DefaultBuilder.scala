@@ -15,57 +15,51 @@ package builder
 import reflect._
 import reflect.impl._
 
+class DefaultBuilder extends Function0[TDefault]{
 
-  
-  class DefaultBuilder extends Function0[TDefault]{
-    
-    private[this] var _defaultActivation:Activation=Eager
-    private[this] var _defaultTimeout:Int=300000
-    private[this] var _defaultAvailability:Availability = Mandatory
-
-
+ final protected [this] var _defaultActivation:Activation=Eager
+ final protected [this]  var _defaultTimeout:Int=300000
+ final protected [this]  var _defaultAvailability:Availability = Mandatory
+ 
+  def withDefaultActivation(activation:String)={
    
-    def withDefaultActivation(activation:String)={
-   
-      activation match {
-        case "eager" =>  _defaultActivation=Eager;
-        case "lazy" => _defaultActivation= Lazy;
-        case "" => _defaultActivation=Eager;
-        case null =>_defaultActivation=Eager;
-        case e => error ( e +" is invalid defaultActivation text")
-      }
-     
-      this
-    
+    activation match {
+      case "eager" =>  _defaultActivation=Eager;
+      case "lazy" => _defaultActivation= Lazy;
+      case "" => _defaultActivation=Eager;
+      case null =>_defaultActivation=Eager;
+      case e => error ( e +" is invalid defaultActivation text")
     }
+     this
+  }
 
-    private def toInt(index:String) : Int={
-      if((index ==null) || (index isEmpty) ){_defaultTimeout}
-      else {
-        try {
-          Integer.parseInt(index) 
-        }catch {
-          case _ => error ("invalid index "+ index)
-        }
+  private def toInt(index:String) : Int={
+    if((index ==null) || (index isEmpty) ){_defaultTimeout}
+    else {
+      try {
+        Integer.parseInt(index)
+      }catch {
+        case _ => error ("invalid index "+ index)
       }
-    }
-    def withDefaultTimeout(timeOut:String)={
-
-      _defaultTimeout=toInt(timeOut)
-      this
-    }
-    def withDefaultAvailability(defaultAvailability:String)={
-      defaultAvailability match {
-        case "mondatory" =>  _defaultAvailability=Mandatory;
-        case "Optional" => _defaultAvailability= Optional;
-        case "" => _defaultAvailability=Mandatory;
-        case null =>_defaultAvailability=Mandatory;
-        case e => error ( e +" is invalid defaultAvailability text")
-      }
-      this
-    }
-    def apply()={
-      Default(_defaultActivation,_defaultTimeout,_defaultAvailability)
     }
   }
+  def withDefaultTimeout(timeOut:String)={
+    _defaultTimeout=toInt(timeOut)
+    this
+   
+  }
+  def withDefaultAvailability(defaultAvailability:String)={
+    defaultAvailability match {
+      case "mondatory" => _defaultAvailability=Mandatory;
+      case "Optional" => _defaultAvailability= Optional;
+      case "" => _defaultAvailability=Mandatory;
+      case null => _defaultAvailability=Mandatory;
+      case e => error ( e +" is invalid defaultAvailability text")
+    }
+    this
+  }
+  def apply()={
+    Default(_defaultActivation,_defaultTimeout,_defaultAvailability)
+  }
+}
 

@@ -17,29 +17,33 @@ import reflect.impl._
 
 
 
-  class ReferenceMetadataBuilder  extends Function0[TReferenceMetadata] {
-    this :ServiceReferenceMetadataBuilder with ComponentMetadataBuilder =>
-    final protected [this] var   _timeOut:Long =_
+class ReferenceMetadataBuilder  extends Function0[TReferenceMetadata] {
+  
+  this:ServiceReferenceMetadataBuilder with ComponentMetadataBuilder =>
 
-    def withTimeOut (timeOut:Long)={
-      _timeOut=timeOut
-      this
-    }
+  
+  final protected [this] var _timeOut:Long =_
 
 
-
-
-    def apply()={
-      new ReferenceMetadata (
-        _id ,
-        _activation,
-        _dependsOns,
-        _availability,
-        _interface,
-        _componentName,
-        _filter,
-        _referenceListeners,
-        _timeOut)
-    }
-
+  def withTimeOut (timeOut:Long)={
+    _timeOut=timeOut
+    this
   }
+
+
+
+
+  def apply()={
+    new ReferenceMetadata (
+      _id ,
+      _activation,
+      _dependsOns,
+      _availability,
+      _interface,
+      _componentName,
+      _filter,
+      _referenceListeners,
+      _timeOut)
+  }
+
+}

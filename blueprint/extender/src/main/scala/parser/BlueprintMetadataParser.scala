@@ -8,10 +8,8 @@ import builder._
 import scala.xml.Node
 
 
+class BlueprintMetadataParser extends  Function1[Node,TBlueprintMetadata]{
 
-
-  class BlueprintMetadataParser extends  Function1[Node,TBlueprintMetadata]{
-//    this :DefaultParser with BlueprintMetadataBuilder =>
 
     override def apply( node:Node):TBlueprintMetadata = {
       val default= new DefaultParser () (node)
