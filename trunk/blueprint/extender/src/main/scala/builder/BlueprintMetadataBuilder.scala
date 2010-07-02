@@ -19,7 +19,7 @@ import reflect.impl._
 class BlueprintMetadataBuilder extends Function0[TBlueprintMetadata] {
     
     private [this] var _default:TDefault=_
-    private [this] var _metadatas:List[TMetadata]=_
+    private [this] var _metadatas:List[TMetadata]=List()
 
 
     def withDefault(default:TDefault)={

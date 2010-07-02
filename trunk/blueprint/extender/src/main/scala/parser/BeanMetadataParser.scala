@@ -24,38 +24,34 @@ import scala.xml.Node
 
 
   
-class BeanMetadataParser extends  Function1[Node,TBeanMetadata] {
+class BeanMetadataParser  extends  Function2[Node,TDefault,TBeanMetadata] {
 
 
-  override def  apply( node:Node):TBeanMetadata = {
+  override def  apply( node:Node, default:TDefault):TBeanMetadata = {
 
+    val componentMetadata:TComponentMetadata = new  ComponentMetadataParser() (node,default)
 
-
-    val componentMetadata:TComponentMetadata = new  ComponentMetadataParser() (node)
-    // val refMetadata:TRefMetadata = refMetadataBuilder.withcomponentId(node << FACTORY_REF_ATTRIBUTE ) ()
-
-      
-    val refMetadata:Option[TRefMetadata] = if (node.attribute(FACTORY_REF_ATTRIBUTE).isEmpty) None else 
+    val refMetadata:Option[TRefMetadata] = if (node.attribute(FACTORY_REF_ATTRIBUTE).isEmpty) None else
       new RefMetadataBuilder().withcomponentId(node <<< FACTORY_REF_ATTRIBUTE ) ()
      
-
+    def parseArguments(node : Node)={
+      for( elem <-  node \ ARGUMENT_ELEMENT) yield  new BeanArgumentParser () (elem,default)
+    }
+    def parseProperties(node : Node) = {
+      for( elem <-  node \ PROPERTY_ELEMENT) yield new BeanPropertyParser () (elem,default)
+    }
   
-   new BeanMetadataBuilder() .withComponentMetadata(componentMetadata)
-   .withClassName(node <<< CLASS_ATTRIBUTE )
-   .withFactoryMethod(node <<< FACTORY_METHOD_ATTRIBUTE )
-   .withFactoryComponent(refMetadata )
-   .withInitMethod(node <<< INIT_METHOD_ATTRIBUTE )
-   .withDestroyMethod(node <<< DESTROY_METHOD_ATTRIBUTE )
-   .withScope(node <<< SCOPE_ATTRIBUTE )
-   .withBeanProperties  (parseProperties(node) )
-   .withBeanArguments (parseArguments(node) ) ()
+    new BeanMetadataBuilder() .withComponentMetadata(componentMetadata)
+    .withClassName(node <<< CLASS_ATTRIBUTE )
+    .withFactoryMethod(node <<< FACTORY_METHOD_ATTRIBUTE )
+    .withFactoryComponent(refMetadata )
+    .withInitMethod(node <<< INIT_METHOD_ATTRIBUTE )
+    .withDestroyMethod(node <<< DESTROY_METHOD_ATTRIBUTE )
+    .withScope(node <<< SCOPE_ATTRIBUTE )
+    .withBeanProperties  (parseProperties(node) )
+    .withBeanArguments (parseArguments(node) ) ()
   }
 
-  def parseArguments(node : Node)={
-    for( elem <-  node \ ARGUMENT_ELEMENT) yield  new BeanArgumentParser () (elem)
-  }
-  def parseProperties(node : Node) = {
-    for( elem <-  node \ PROPERTY_ELEMENT) yield new BeanPropertyParser () (elem)
-  }
+ 
 
 }

@@ -23,6 +23,9 @@ import  org.osgi.service.blueprint.container._
 
 class BeanMetadataParserSpec extends SpecificationWithJUnit with Mockito {
 
+   val d= Default(Eager,
+      300000,
+      Mandatory)
   val srcBean =   new BeanMetadataParser()
 
   """simple""" in {
@@ -44,7 +47,7 @@ class BeanMetadataParserSpec extends SpecificationWithJUnit with Mockito {
 
 
 
-    srcBean (xml) mustEqual destBean
+    srcBean (xml,d) mustEqual destBean
 
   }
 
@@ -69,7 +72,7 @@ class BeanMetadataParserSpec extends SpecificationWithJUnit with Mockito {
       None,
       Singleton)
 
-    srcBean (xml) mustEqual destBean
+     srcBean (xml,d) mustEqual destBean
   }
 
   """two args""" in {
@@ -94,7 +97,7 @@ class BeanMetadataParserSpec extends SpecificationWithJUnit with Mockito {
       None,
       Singleton)
 
-    srcBean (xml) mustEqual destBean
+     srcBean (xml,d) mustEqual destBean
   }
 
   """one props""" in {
@@ -120,7 +123,7 @@ class BeanMetadataParserSpec extends SpecificationWithJUnit with Mockito {
 
 
 
-    srcBean (xml) mustEqual destBean
+     srcBean (xml,d) mustEqual destBean
   }
 
 
@@ -146,7 +149,7 @@ class BeanMetadataParserSpec extends SpecificationWithJUnit with Mockito {
       None,
       Singleton)
 
-    srcBean (xml) mustEqual destBean
+     srcBean (xml,d) mustEqual destBean
   }
 
 
@@ -170,7 +173,7 @@ class BeanMetadataParserSpec extends SpecificationWithJUnit with Mockito {
       None,
       Singleton)
 
-    srcBean (xml) mustEqual destBean
+     srcBean (xml,d) mustEqual destBean
   }
 
 
@@ -205,7 +208,7 @@ class BeanMetadataParserSpec extends SpecificationWithJUnit with Mockito {
       None,
       Singleton)
 
-    srcBean (xml) mustEqual destBean
+     srcBean (xml,d) mustEqual destBean
   }
 
 
@@ -217,7 +220,7 @@ class BeanMetadataParserSpec extends SpecificationWithJUnit with Mockito {
                   </bean>
 
 
-    srcBean (xml) must throwA[ComponentDefinitionException]
+     srcBean (xml,d) must throwA[ComponentDefinitionException]
   }
 
     """failed constructor empty""" in {
@@ -226,7 +229,7 @@ class BeanMetadataParserSpec extends SpecificationWithJUnit with Mockito {
                   </bean>
 
 
-    srcBean (xml) must throwA[ComponentDefinitionException]
+     srcBean (xml,d) must throwA[ComponentDefinitionException]
   }
 
    """failed constructor invalid combination""" in {
@@ -235,7 +238,7 @@ class BeanMetadataParserSpec extends SpecificationWithJUnit with Mockito {
                   </bean>
 
 
-    srcBean (xml) must throwA[ComponentDefinitionException]
+     srcBean (xml,d) must throwA[ComponentDefinitionException]
   }
 
 
@@ -246,7 +249,7 @@ class BeanMetadataParserSpec extends SpecificationWithJUnit with Mockito {
       <argument value="v2" index="0"/>
                </bean>
 
-   srcBean (xml) mustNot throwA[ComponentDefinitionException]
+    srcBean (xml,d) mustNot throwA[ComponentDefinitionException]
   }
 
 
@@ -258,7 +261,7 @@ class BeanMetadataParserSpec extends SpecificationWithJUnit with Mockito {
       <argument value="v2" index="2"/>
                </bean>
 
-   srcBean (xml) must throwA[ComponentDefinitionException]
+    srcBean (xml,d) must throwA[ComponentDefinitionException]
   }
 
      """invalid args  start""" in {
@@ -268,7 +271,7 @@ class BeanMetadataParserSpec extends SpecificationWithJUnit with Mockito {
       <argument value="v2" index="2"/>
                </bean>
 
-   srcBean (xml) must throwA[ComponentDefinitionException]
+    srcBean (xml,d) must throwA[ComponentDefinitionException]
   }
    """invalid args  negatif value """ in {
 
@@ -277,6 +280,6 @@ class BeanMetadataParserSpec extends SpecificationWithJUnit with Mockito {
       <argument value="v2" index="0"/>
                </bean>
 
-   srcBean (xml) must throwA[ComponentDefinitionException]
+    srcBean (xml,d) must throwA[ComponentDefinitionException]
   }
 }

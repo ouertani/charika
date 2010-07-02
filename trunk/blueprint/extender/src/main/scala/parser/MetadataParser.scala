@@ -22,10 +22,10 @@ import scala.xml._
 
 
 
-class MetadataParser  extends  Function1[ Node,TMetadata] {
+class MetadataParser extends  Function2[ Node,TDefault,TMetadata] {
 
 
-  def  apply(node:Node):  TMetadata= {
+  def  apply(node:Node, default:TDefault):  TMetadata= {
       
     val ref = node <<< REF_ATTRIBUTE
     val value = node <<< VALUE_ATTRIBUTE
@@ -36,7 +36,7 @@ class MetadataParser  extends  Function1[ Node,TMetadata] {
     if((child isDefined)  && !( child.isEmpty) ){
      
       val n:Node =child.head
-      p =(parsers.get(n label)) get (n)
+      p =(parsers.get(n label)) get (n,default)
         
     }
      

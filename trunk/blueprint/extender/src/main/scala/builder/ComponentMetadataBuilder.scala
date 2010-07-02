@@ -15,12 +15,11 @@ package builder
 import reflect._
 import reflect.impl._
 
-class ComponentMetadataBuilder  extends Function0[TComponentMetadata]{ 
+class ComponentMetadataBuilder(default:TDefault)  extends Function0[TComponentMetadata]{
 
 
-  final protected [this] var _default:TDefault=new Default
   final protected [this] var _id :Option[String]=None
-  final protected [this] var _activation:Activation=Eager
+  final protected [this] var _activation:Activation=default.defaultActivation
   final protected [this] var _dependsOns:List[String]=List()
 
 

@@ -13,4 +13,7 @@ package net.dikka.charika.blueprint
 package reflect
 
 
-trait TBlueprintMetadata 
+trait TBlueprintMetadata {
+  val default:TDefault
+  val metaData:List[TMetadata]
+}

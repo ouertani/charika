@@ -117,7 +117,7 @@ class BeanMetadataBuilder  extends Function0[TBeanMetadata]  {
     def apply()={
       validate 
       validateArguments
-      new BeanMetadata( _componentMetadata.id ,
+      new BeanMetadata(_componentMetadata.id ,
                        _componentMetadata.activation,
                        _componentMetadata.dependsOns,
                        _className,
