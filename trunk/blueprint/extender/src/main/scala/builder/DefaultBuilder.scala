@@ -48,13 +48,13 @@ class DefaultBuilder extends Function0[TDefault]{
     this
    
   }
-  def withDefaultAvailability(defaultAvailability:String)={
+  def withDefaultAvailability(defaultAvailability:Option[String])={
     defaultAvailability match {
-      case "mondatory" => _defaultAvailability=Mandatory;
-      case "Optional" => _defaultAvailability= Optional;
-      case "" => _defaultAvailability=Mandatory;
-      case null => _defaultAvailability=Mandatory;
-      case e => error ( e +" is invalid defaultAvailability text")
+      case Some("mondatory") => _defaultAvailability=Mandatory;
+      case Some("optional") => _defaultAvailability= Optional;
+      case Some(e)  => error ( e +" is invalid defaultAvailability text")
+      case None =>
+     
     }
     this
   }

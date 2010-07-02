@@ -29,7 +29,7 @@ class BeanDefaultConfusion extends SpecificationWithJUnit with Mockito {
     val xml = <blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0"
-      default-activation="lazy" >
+      default-activation="lazy" default-timeout="5000" default-availability="optional">
 
       <bean id="id" class="clazz">
 
@@ -52,8 +52,8 @@ class BeanDefaultConfusion extends SpecificationWithJUnit with Mockito {
       Singleton)
 
     val d= Default(Lazy,
-                   300000,
-                   Mandatory)
+                   5000,
+                   Optional)
 
     val bpm =BlueprintMetadata(d,List(destBean))
     val bp =bpp (xml)
