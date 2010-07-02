@@ -27,11 +27,11 @@ class BeanMetadataParserSpec extends SpecificationWithJUnit with Mockito {
 
   """simple""" in {
 
-    val xml = <bean id="id" class="clazz">
+    val xml = <bean id="id" class="clazz" activation="lazy">
               </bean>
     val destBean = BeanMetadata(
       "id" ,
-      Eager,
+      Lazy,
       List(),
       Option("clazz"),
       None ,
