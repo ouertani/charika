@@ -23,6 +23,7 @@ class BlueprintMetadataParser extends  Function1[Node,TBlueprintMetadata]{
 
 
   override def apply( node:Node):TBlueprintMetadata = {
+    
     val default= new DefaultParser () (node)
     
     val d=   new BlueprintMetadataBuilder().withDefault(default)
