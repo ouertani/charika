@@ -21,7 +21,7 @@ import  net.dikka.charika.blueprint.reflect._
 import  net.dikka.charika.blueprint.reflect.impl._
 import  org.osgi.service.blueprint.container._
 
-class BeanDefaultConfusion extends SpecificationWithJUnit with Mockito {
+class BeanDefaultConfusionSpec extends SpecificationWithJUnit with Mockito {
 
   val bpp=new BlueprintMetadataParser()
   """simple""" in {
