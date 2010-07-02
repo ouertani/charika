@@ -32,10 +32,10 @@
         <project.reporting.outputEncoding>${project.build.sourceEncoding}</project.reporting.outputEncoding>
         <maven.compiler.source>1.5</maven.compiler.source>
         <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
-        <scala.version>2.8.0.RC6</scala.version>
+        <scala.version>2.8.0.RC7</scala.version>
         <osgi.version>4.2.0</osgi.version>
         <pax-exam.version>1.2.0</pax-exam.version>
-        <specs.artifactId>specs_2.8.0.RC6</specs.artifactId>
+        <specs.artifactId>specs_2.8.0.RC7</specs.artifactId>
         <mockito-all.version>1.8.5</mockito-all.version>
     </properties>
 
