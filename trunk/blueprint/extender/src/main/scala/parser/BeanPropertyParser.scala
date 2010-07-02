@@ -18,16 +18,11 @@ import builder._
 import scala.xml.Node
 
 
-  
-  class BeanPropertyParser extends  Function1[Node,TBeanProperty]{
+class BeanPropertyParser extends  Function1[Node,TBeanProperty]{
 
-//    this :MetadataParser with BeanPropertyBuilder=>
-    override def  apply( node:Node):TBeanProperty = {    
+  override def  apply( node:Node):TBeanProperty = {
       
-      val metadata = new MetadataParser () (node)
-
-      new BeanPropertyBuilder()
-      .withName(node << NAME_ATTRIBUTE )
-      .withValue(metadata)    ()
-    }
+    val metadata = new MetadataParser () (node)
+    new BeanPropertyBuilder().withName(node <<< NAME_ATTRIBUTE ).withValue(metadata) ()
   }
+}

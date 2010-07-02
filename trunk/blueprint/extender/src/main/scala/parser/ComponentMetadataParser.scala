@@ -21,10 +21,7 @@ import scala.xml.Node
   class ComponentMetadataParser extends  Function1[Node,TComponentMetadata] {
  
     override def  apply( node:Node) :TComponentMetadata = new ComponentMetadataBuilder()
-    .withId(node << ID_ATTRIBUTE )
-    .withActivation(node << ACTIVATION_ATTRIBUTE )
-    .withDependsOns(node << DEPENDS_ON_ATTRIBUTE ) ()
-
-
-
+    .withId(node <<< ID_ATTRIBUTE )
+    .withActivation(node <<< ACTIVATION_ATTRIBUTE )
+    .withDependsOns(node <<< DEPENDS_ON_ATTRIBUTE ) ()
   }

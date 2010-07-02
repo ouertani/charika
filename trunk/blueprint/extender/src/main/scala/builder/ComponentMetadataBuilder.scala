@@ -15,59 +15,41 @@ package builder
 import reflect._
 import reflect.impl._
 
+class ComponentMetadataBuilder  extends Function0[TComponentMetadata]{ 
 
 
-  
-  class ComponentMetadataBuilder  extends Function0[TComponentMetadata]{ 
+  final protected [this] var _default:TDefault=new Default
+  final protected [this] var _id :Option[String]=None
+  final protected [this] var _activation:Activation=Eager
+  final protected [this] var _dependsOns:List[String]=List()
 
 
-    final protected [this] var _default:TDefault=new Default
-    final protected [this] var _id :String=_
-    final protected [this] var _activation:Activation=_
-    final protected [this] var _dependsOns:List[String]=List()
-
-
-
-    def withId(id :String ) = {
-      _id=id
-      this
-    }
-    def withActivation(activation:Activation):ComponentMetadataBuilder={
-      _activation=activation
-      this
-    }
-    def withActivation(activation:String):ComponentMetadataBuilder={
-      if((activation == null) || (activation isEmpty)){
-        withActivation( _default.defaultActivation)
-      }
-      else {
-        activation match {
-          case "eager" =>  withActivation( Eager)
-          case "lazy" =>  withActivation( Lazy)
-          case e => error ( e +" invalid activation text")
-        }
-      }
-
-    }
-
-
-    def withDependsOns( dependsOns:List[String])={
-      _dependsOns=dependsOns
-      this
-    }
-    def withDependsOns( dependsOns:String)={
-      if(dependsOns !=null && ! (dependsOns isEmpty) )
-        _dependsOns=dependsOns.split(" ").toList
-      this
-    }
-
-    def withDependsOn( dependsOn:String)={
-      _dependsOns=_dependsOns :+dependsOn
-      this
-    }
-
-    def apply()={
-      new ComponentMetadata(_id,_activation,_dependsOns)
-    }
-
+  def withId(id :String )={
+    _id=id
+    this
   }
+ 
+  def withActivation(activation:Option[String])={   
+    activation match {
+      case Some("eager") =>  _activation = Eager
+      case Some("lazy") =>  _activation = Lazy
+      case Some(e) => error ( e +" invalid activation text")
+      case None => 
+    }
+     this
+  }
+
+
+
+  def withDependsOns( dependsOns:String)={
+    if(dependsOns !=null && ! (dependsOns isEmpty) ) {
+      _dependsOns=dependsOns.split(" ").toList
+    }
+    this
+  }
+
+  def apply()={
+    new ComponentMetadata(_id,_activation,_dependsOns)
+  }
+
+}

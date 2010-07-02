@@ -16,16 +16,14 @@ import reflect._
 import reflect.impl._
 
 
-
-  
-  class CollectionMetadataBuilder extends Function0[TCollectionMetadata]{
+ class CollectionMetadataBuilder extends Function0[TCollectionMetadata]{
     final protected [this] var _collectionClass :Class[_]=_
     final protected [this] var _valueType:String =_
     final protected [this] var _values:List[TMetadata]=_
 
 
 
-    def withCollectionClass(collectionClass :Class[_]) ={
+    def withCollectionClass(collectionClass :Class[_])={
       this._collectionClass=collectionClass
       this
     }
@@ -39,7 +37,7 @@ import reflect.impl._
       this
     }
 
-    def withValue(value: TMetadata)= {
+    def withValue(value: TMetadata)={
       this._values ::= value
       this
     }

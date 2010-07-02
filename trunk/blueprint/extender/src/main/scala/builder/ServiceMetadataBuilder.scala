@@ -22,8 +22,7 @@ import scala.collection.JavaConversions._
   class ServiceMetadataBuilder extends Function0[TServiceMetadata]{
 
 
-    this : ComponentMetadataBuilder =>
-    
+    this: ComponentMetadataBuilder =>
     private [this] var   _serviceComponent:TTarget=_
     private [this] var   _interfaces:List[String]=_
     private [this] var   _autoExport:AutoExport=_

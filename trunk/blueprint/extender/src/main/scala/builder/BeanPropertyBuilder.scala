@@ -17,8 +17,8 @@ import reflect._
 import reflect.impl._
 
 
+class BeanPropertyBuilder extends Function0[TBeanProperty] {
   
-  class BeanPropertyBuilder extends Function0[TBeanProperty] {
     final protected [this] var _name:String=_
     final protected [this] var _value : TMetadata=_
 

@@ -16,8 +16,8 @@ import reflect._
 import reflect.impl._
 
 
+class IdRefMetadataBuilder extends Function0[TIdRefMetadata]  {
   
-  class IdRefMetadataBuilder extends Function0[TIdRefMetadata]  {
     final protected [this] var _componentId:String=_
 
     def withComponentId(componentId:String)={
