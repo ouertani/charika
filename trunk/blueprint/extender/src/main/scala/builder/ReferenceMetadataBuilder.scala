@@ -17,10 +17,8 @@ import reflect.impl._
 
 
 
-class ReferenceMetadataBuilder  extends Function0[TReferenceMetadata] {
-  
-  this:ServiceReferenceMetadataBuilder with ComponentMetadataBuilder =>
-
+class ReferenceMetadataBuilder[T <: ReferenceMetadataBuilder [T]] (default:TDefault)
+extends ServiceReferenceMetadataBuilder[ReferenceMetadataBuilder[T]](default) with  Function0[TReferenceMetadata] {
   
   final protected [this] var _timeOut:Long =_
 
@@ -33,7 +31,7 @@ class ReferenceMetadataBuilder  extends Function0[TReferenceMetadata] {
 
 
 
-  def apply()={
+  override def apply()={
     new ReferenceMetadata (
       _id ,
       _activation,

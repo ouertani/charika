@@ -17,11 +17,11 @@ import reflect.impl._
 
 
 
-  class ReferenceListMetadataBuilder extends Function0[TReferenceListMetadata]  {
-       this:ServiceReferenceMetadataBuilder  with ComponentMetadataBuilder=>
+  class ReferenceListMetadataBuilder(default:TDefault)  extends ServiceReferenceMetadataBuilder[ReferenceListMetadataBuilder](default) with Function0[TReferenceListMetadata]  {
+     
 
     final protected [this] var  _memberType : MemberType=_
-    final protected [this] var _serviceReferenceMetadataBuilder:ServiceReferenceMetadataBuilder=_
+   
 
     def withMemberType(memberType : MemberType)= {
       _memberType=memberType
@@ -30,7 +30,7 @@ import reflect.impl._
 
 
 
-    def apply()={
+    override def apply()={
       new ReferenceListMetadata (
         _id ,
         _activation,

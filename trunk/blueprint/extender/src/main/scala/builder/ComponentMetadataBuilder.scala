@@ -15,7 +15,7 @@ package builder
 import reflect._
 import reflect.impl._
 
-class ComponentMetadataBuilder(default:TDefault)  extends Function0[TComponentMetadata]{
+class ComponentMetadataBuilder [T <: ComponentMetadataBuilder[T]] (default:TDefault)  extends Function0[TComponentMetadata]{
 
 
   final protected [this] var _id :Option[String]=None
@@ -23,28 +23,33 @@ class ComponentMetadataBuilder(default:TDefault)  extends Function0[TComponentMe
   final protected [this] var _dependsOns:List[String]=List()
 
 
-  def withId(id :String )={
+
+  def self():T = {
+    this.asInstanceOf[T]
+  }
+
+  def withId(id :String ):T={
     _id=id
-    this
+    self
   }
  
-  def withActivation(activation:Option[String])={   
+  def withActivation(activation:Option[String]):T={
     activation match {
       case Some("eager") =>  _activation = Eager
       case Some("lazy") =>  _activation = Lazy
       case Some(e) => error ( e +" invalid activation text")
       case None => 
     }
-     this
+    self
   }
 
 
 
-  def withDependsOns( dependsOns:String)={
+  def withDependsOns( dependsOns:String):T={
     if(dependsOns !=null && ! (dependsOns isEmpty) ) {
       _dependsOns=dependsOns.split(" ").toList
     }
-    this
+    self
   }
 
   def apply()={
