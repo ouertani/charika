@@ -13,6 +13,7 @@ package net.dikka.charika.blueprint
 package reflect.impl
 import reflect._
 import scala.collection.JavaConversions._
+
 class ServiceMetadata(
   id :String ,
   activation:Activation ,

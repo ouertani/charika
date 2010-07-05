@@ -29,7 +29,7 @@ class BeanMetadataParser  extends  Function2[Node,TDefault,TBeanMetadata] {
 
   override def  apply( node:Node, default:TDefault):TBeanMetadata = {
 
-    val componentMetadata:TComponentMetadata = new  ComponentMetadataParser() (node,default)
+   
 
     val refMetadata:Option[TRefMetadata] = if (node.attribute(FACTORY_REF_ATTRIBUTE).isEmpty) None else
       new RefMetadataBuilder().withcomponentId(node <<< FACTORY_REF_ATTRIBUTE ) ()
@@ -41,7 +41,10 @@ class BeanMetadataParser  extends  Function2[Node,TDefault,TBeanMetadata] {
       for( elem <-  node \ PROPERTY_ELEMENT) yield new BeanPropertyParser () (elem,default)
     }
   
-    new BeanMetadataBuilder() .withComponentMetadata(componentMetadata)
+    new BeanMetadataBuilder(default)
+    .withId(node <<< ID_ATTRIBUTE )
+    .withActivation(node <<< ACTIVATION_ATTRIBUTE )
+    .withDependsOns(node <<< DEPENDS_ON_ATTRIBUTE )
     .withClassName(node <<< CLASS_ATTRIBUTE )
     .withFactoryMethod(node <<< FACTORY_METHOD_ATTRIBUTE )
     .withFactoryComponent(refMetadata )

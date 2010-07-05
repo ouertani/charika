@@ -19,9 +19,8 @@ import scala.collection.JavaConversions._
 
 
   
-class ServiceReferenceMetadataBuilder extends Function0[TServiceReferenceMetadata] {
+class ServiceReferenceMetadataBuilder [T <: ServiceReferenceMetadataBuilder [T] ] (default:TDefault)  extends ComponentMetadataBuilder[ServiceReferenceMetadataBuilder[T]] (default) with Function0[TServiceReferenceMetadata] {
 
-  this: ComponentMetadataBuilder =>
 
   final protected [this] var   _availability : Availability=_
   final protected [this] var   _interface:String=_
@@ -54,7 +53,7 @@ class ServiceReferenceMetadataBuilder extends Function0[TServiceReferenceMetadat
 
 
 
-  def apply={
+  override def apply={
     new ServiceReferenceMetadata (
       _id ,
       _activation,

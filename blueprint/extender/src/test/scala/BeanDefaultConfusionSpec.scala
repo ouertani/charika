@@ -98,6 +98,7 @@ class BeanDefaultConfusionSpec extends SpecificationWithJUnit with Mockito {
                    Optional)
 
     val bpm =BlueprintMetadata(d,List(destBean))
+    
     val bp =bpp (xml)
     
     bp mustNot throwA[Exception]
